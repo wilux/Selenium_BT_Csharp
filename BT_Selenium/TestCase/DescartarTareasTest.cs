@@ -14,7 +14,7 @@ namespace BT_Selenium.TestCase
     public class DescartarTareaTest : BaseTest
     {
      
-        [Test]
+      //  [Test]
         public void Descartar()
         {
             //Login
