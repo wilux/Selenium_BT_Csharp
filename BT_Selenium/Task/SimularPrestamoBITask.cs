@@ -1,30 +1,32 @@
 ﻿using BT_Selenium.Handler;
 using BT_Selenium.PageObject;
 using BT_Selenium.PageObject.WebPanel;
-using BT_Selenium.Task;
-using BT_Selenium.TestCase;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace BT_Selenium.TestCase
+namespace BT_Selenium.Task
 {
-
-    [TestFixture]
-    public class SimularPrestamoTest : BaseTest
+    /*
+     * Clase que lista todas las tareas para simular un prestamo persona 
+     */
+    public class SimularPrestamoTask : BasePage
     {
-        //10000 = 100,000 cien mil 
-       // [TestCase("20303879618", "10000", "4725555", "50,000.00", "36")]
-        //[TestCase("20322717564", "15000", "4721111", "30,000.00", "24")]
-        //[TestCase("20179364973", "19000", "4722222", "60,000.00", "18")]
-        //[TestCase("40303879618", "10000", "4725555", "50,000.00", "36")]// Con falla (cuil invalido)
-        public void Simulador(String cuil, String ingresos, string telefono, String monto, String plazo)
+
+        public SimularPrestamoTask(IWebDriver Driver)
         {
+            driver = Driver;
+        }
+
+
+      public void BI(String cuil, String ingresos, string telefono, String monto, String plazo)
+        {
+
 
             //Frames
             Frame frame = new Frame();
@@ -175,7 +177,7 @@ namespace BT_Selenium.TestCase
 
             //Elijo paquete (Trae por defecto el mas alto disponible)
             //Aqui deberia poner logica para elegir uno distinto
-            
+
 
             //WebPanel hBNQFPB3 - Simulación - Venta de Productos
             //Elegimos iframe
@@ -231,10 +233,6 @@ namespace BT_Selenium.TestCase
                 );
 
 
-
-
         }
-
-
     }
 }

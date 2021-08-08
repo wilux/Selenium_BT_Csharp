@@ -34,13 +34,32 @@ namespace BT_Selenium.PageObject
         public By BandejaTareas = By.XPath("//a[.='BANDEJA DE TAREAS']");
 
 
+      public void MenuInicio(IWebDriver Driver)
+        {
+            driver = Driver;
+            driver.FindElement(Inicio).Click();
 
+        }
+
+        public void MenuWorkFlow(IWebDriver Driver)
+        {
+            driver = Driver;
+            driver.FindElement(WF).Click();
+
+        }
+
+        public void MenuBandejaTareas(IWebDriver Driver)
+        {
+            driver = Driver;
+            driver.FindElement(BandejaTareas).Click();
+        
+        }
 
         public PrincipalPage(IWebDriver Driver)
         {
           driver = Driver;
 
-            driver.SwitchTo().Window(driver.WindowHandles.Last());
+            
 
 
         }

@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace BT_Selenium.TestCase
 {
-    //[TestFixture]
-    public class DescartarTareaTest : BaseTest
+   [TestFixture]
+    public class DescartarTest : BaseTest
     {
-     
-      //  [Test]
+
+
+       // [Test]
         public void Descartar()
         {
-            //Login
-            LoginPage loginPage = new LoginPage(driver);
-            PrincipalPage principalPage = loginPage.IngresarComo("floresnes", "Enilde2021");
-            //Tareas
             DescartarTareaTask descartarTareaTask = new DescartarTareaTask(driver);
-            descartarTareaTask.Descartar();
-
+            try
+            {
+                descartarTareaTask.Descartar();
+            }
+            catch { }
         }
 
     }

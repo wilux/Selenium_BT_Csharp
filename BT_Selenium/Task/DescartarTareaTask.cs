@@ -1,4 +1,5 @@
-﻿using BT_Selenium.PageObject;
+﻿using BT_Selenium.Handler;
+using BT_Selenium.PageObject;
 using BT_Selenium.PageObject.WebPanel;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -22,98 +23,84 @@ namespace BT_Selenium.Task
             driver = Driver;
         }
         //Frames
-        Steps steps = new Steps();
-
-        //Hbnqfpb3 - Simular 
-        SimulaPrestamo simulaPrestamo = new SimulaPrestamo();
+       // Steps steps = new Steps();
 
         PrincipalPage principalPage = new PrincipalPage();
 
+        Frame frame = new Frame();
+        Entrevista entrevista = new Entrevista();
 
         public void Descartar()
         {
 
 
+            //Ventana Actual
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
 
             //Pausa
-            Thread.Sleep(8000);
+            WaitHandler.ElementIsPresent(driver, principalPage.Inicio);
 
             //Ingreso al menu hasta -> BandejaTareas
             driver.FindElement(principalPage.Inicio).Click();
             driver.FindElement(principalPage.WF).Click();
             driver.FindElement(principalPage.BandejaTareas).Click();
 
-            Thread.Sleep(2000);
-            //Hay que cambiar de frame
-            //Pasamos al Frame principal/activo
-            IWebElement iframe = driver.FindElement(By.Id("0"));
-            driver.SwitchTo().Frame(iframe);
-            
+            // Objetos de hxwf900 Bandeja de tareas
+            BandejaTareas bandejaTareas = new BandejaTareas();
 
-            // Descarta 10 tareas, hay que mejorar para que descarte X cantidad de tareas 
-            for (int row = 1; row < 5; row++)
+
+            frame.BuscarFrame(driver, bandejaTareas.Grilla_Tareas);
+            WaitHandler.ElementIsPresent(driver, bandejaTareas.Grilla_Tareas);
+
+            IWebElement GRIDINBOX = driver.FindElement(bandejaTareas.Grilla_Tareas);
+            String asunto = GRIDINBOX.FindElement(By.Id("span__ASUNTO_0001")).Text;
+
+            while(asunto != "Venta de Productos" || asunto != "")
             {
+                WaitHandler.ElementIsPresent(driver, bandejaTareas.PrimerTarea);
 
-                String a = "";
-                String b = "";
-                String c = "";
-
-                if ((row % 2) == 0)
-                    //par
+                if (asunto != "Venta de Productos")
                 {
-                    a = "step0";
-                    b = "step3";
-                    c = "step1";
-
-                }//impar
+                    GRIDINBOX.FindElement(bandejaTareas.PrimerTarea).Click();
+                }
                 else
                 {
-                    a = "step1";
-                    b = "step2";
-                    c = "step0";
-                }
+                    GRIDINBOX.FindElement(bandejaTareas.PrimerTarea).Click();
+                    driver.FindElement(bandejaTareas.BTNOPOEJECUTAR).Click();
 
-                //Pausa
-                Thread.Sleep(2000);
+                    //Elegimos iframe
+                    frame.BuscarFrame(driver, entrevista.SelectTipo);
+                    entrevista.Seleccionar(driver, entrevista.SelectTipo, "C.U.I.L.");
 
-                if (row == 1)
-                {
+                    //Ingreso CUIL/CUIT del Cliente a entrevistar
+                    driver.FindElement(entrevista.InputDocumento).SendKeys("20322717564");
+                    driver.FindElement(entrevista.BTNOPVALIDAR).Click();
+
                     
-                    driver.SwitchTo().Frame(a);
+                    frame.BuscarFrame(driver, bandejaTareas.BTNOPDESCARTAR);
+                    WaitHandler.ElementIsPresent(driver, bandejaTareas.BTNOPDESCARTAR);
+                    driver.FindElement(bandejaTareas.BTNOPDESCARTAR).Click();
+
+
+                    frame.BuscarFrame(driver, bandejaTareas.BTNCONFIRMATION);
+                    WaitHandler.ElementIsPresent(driver, bandejaTareas.BTNCONFIRMATION);
+                    driver.FindElement(bandejaTareas.BTNCONFIRMATION).Click();
                 }
-                else
-                {
-                    IWebElement iframe2 = driver.FindElement(By.Id("0"));
-                    driver.SwitchTo().Frame(iframe2);
-                    driver.SwitchTo().Frame(a);
-                }
-
-                //Arranca en step1
-                IWebElement GRIDINBOX = driver.FindElement(By.Id("GRIDINBOX"));
-                GRIDINBOX.FindElement(By.Id("span__IDINSTANCIA_0001")).Click();
 
 
-                //Pausa
-                Thread.Sleep(2000);
-                driver.FindElement(By.Id("BTNOPOEJECUTAR")).Click();
-
-                //Pausa
-                Thread.Sleep(2000);
-                //En Nuevo Panel Descartar
-                driver.SwitchTo().ParentFrame();
-                driver.SwitchTo().Frame(c);//step0
-                driver.FindElement(By.Id("BTNOPDESCARTAR")).Click();
-
-                //Pausa
-                Thread.Sleep(2000);
-                //Confirmar SI
-                driver.SwitchTo().ParentFrame();
-                driver.SwitchTo().Frame(b);//step2
-                driver.FindElement(By.Id("BTNCONFIRMATION")).Click();
+                driver.FindElement(bandejaTareas.BTNOPOEJECUTAR).Click();
+                frame.BuscarFrame(driver, bandejaTareas.BTNOPDESCARTAR);
+                driver.FindElement(bandejaTareas.BTNOPDESCARTAR).Click();
 
 
+                frame.BuscarFrame(driver, bandejaTareas.BTNCONFIRMATION);
+                WaitHandler.ElementIsPresent(driver, bandejaTareas.BTNCONFIRMATION);
+                driver.FindElement(bandejaTareas.BTNCONFIRMATION).Click();
+            
+                //Descartar hasta que no haya mas
+            } 
 
-            }
         }
-       }
+        }
+       
 }

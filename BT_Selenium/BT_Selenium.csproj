@@ -78,6 +78,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handler\DB.cs" />
+    <Compile Include="Handler\ElementDisplayed.cs" />
     <Compile Include="Handler\Frame.cs" />
     <Compile Include="Handler\Reporte.cs" />
     <Compile Include="Handler\Capturar.cs" />
@@ -85,16 +87,18 @@
     <Compile Include="PageObject\BasePage.cs" />
     <Compile Include="PageObject\LoginPage.cs" />
     <Compile Include="PageObject\PrincipalPage.cs" />
-    <Compile Include="PageObject\Steps.cs" />
     <Compile Include="PageObject\WebPanel\Entrevista.cs" />
     <Compile Include="PageObject\WebPanel\SimulaPrestamo.cs" />
     <Compile Include="PageObject\WebPanel\BandejaTareas.cs" />
     <Compile Include="PageObject\WebPanel\NuevaInstancia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Task\SimularPrestamoBITask.cs" />
+    <Compile Include="Task\CalificarTask.cs" />
     <Compile Include="Task\DescartarTareaTask.cs" />
-    <Compile Include="Task\SimularPrestamoTask.cs" />
     <Compile Include="TestCase\BaseTest.cs" />
-    <Compile Include="TestCase\DescartarTareasTest.cs" />
+    <Compile Include="TestCase\CircuitoCalificacionTest.cs" />
+    <Compile Include="TestCase\DbTest.cs" />
+    <Compile Include="TestCase\DescartarTest.cs" />
     <Compile Include="TestCase\SimuladorPrestamoTest.cs" />
   </ItemGroup>
   <ItemGroup>
