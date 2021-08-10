@@ -92,6 +92,7 @@
     <Compile Include="PageObject\WebPanel\BandejaTareas.cs" />
     <Compile Include="PageObject\WebPanel\NuevaInstancia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Task\EjecutarProgramaTask.cs" />
     <Compile Include="Task\SimularPrestamoBITask.cs" />
     <Compile Include="Task\CalificarTask.cs" />
     <Compile Include="Task\DescartarTareaTask.cs" />

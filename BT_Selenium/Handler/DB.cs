@@ -14,6 +14,32 @@ namespace BT_Selenium.Handler
         {
             _ConnectionString = "Persist Security Info = False; Integrated Security = true; Initial Catalog = BPN_WEB_QA; Server = arcncd07";
             }
+
+        public static void ejecutarQuery(string sql)
+        {
+
+            string connectionString = _ConnectionString;
+            SqlConnection connection = new SqlConnection(@connectionString);
+            string query = sql;
+            SqlCommand command = new SqlCommand(query, connection);
+
+
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+                Console.WriteLine("Records Inserted Successfully");
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("Error Generated. Details: " + e.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
         public static DataSet ObtenerDatos(string sql)
         {
             var ds = new DataSet();
@@ -55,5 +81,15 @@ namespace BT_Selenium.Handler
         }
 
 
-}
+        public static void CambiarUsuario(string usuario)
+        {
+            
+            string sql = $"UPDATE J055XZ SET J055XZUsr='{usuario}' WHERE J055XZUad='floresnes'";
+            ejecutarQuery(sql);
+
+
+        }
+
+
+    }
 }

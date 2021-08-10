@@ -15,7 +15,7 @@ using System.Threading;
 
 namespace BT_Selenium.TestCase
 {
-    [TestFixture]
+   //[TestFixture]
     public class CircuitoCalificacionTest : BaseTest
     {
 
@@ -29,7 +29,7 @@ namespace BT_Selenium.TestCase
         Entrevista entrevista = new Entrevista();
         SimulaPrestamo simulaPrestamo = new SimulaPrestamo();
 
-        [Test]
+       // [Test]
         public void Calificar()
         {
             //Obtengo de DB
@@ -101,8 +101,7 @@ namespace BT_Selenium.TestCase
             if (TipoPersona == "J")
             {
                 //Llamo a Calificar para PJ
-                // calificarTask.PJ();
-                Console.WriteLine("PJ");
+                calificarTask.PJ();
 
             }
             else

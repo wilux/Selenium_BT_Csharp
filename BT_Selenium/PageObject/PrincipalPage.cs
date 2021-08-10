@@ -33,8 +33,14 @@ namespace BT_Selenium.PageObject
         //Inicio -> WorkFlow -> BANDEJA DE TAREAS
         public By BandejaTareas = By.XPath("//a[.='BANDEJA DE TAREAS']");
 
+        public void MenuEjecutar(IWebDriver Driver)
+        {
+            driver = Driver;
+            driver.FindElement(Ejecutar).Click();
 
-      public void MenuInicio(IWebDriver Driver)
+        }
+
+        public void MenuInicio(IWebDriver Driver)
         {
             driver = Driver;
             driver.FindElement(Inicio).Click();
