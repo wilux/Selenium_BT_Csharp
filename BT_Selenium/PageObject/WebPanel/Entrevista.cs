@@ -36,13 +36,27 @@ namespace BT_Selenium.PageObject.WebPanel
         public By InputIngresosDepedencia = By.Name("_BNQFPA2IRD");
         //input _BNQFPA2IRD importe relacion depedendencia
 
-        public By TipoPersona = By.Name("_PETIPO");
+        public By TipoPersona = By.Id("_PETIPO");
 
-        public void Seleccionar(IWebDriver driver, By select, String text)
+        public void Seleccionar(IWebDriver driver, By select, string text)
         {
             webElement = driver.FindElement(select);
             selectElement = new SelectElement(webElement);
             selectElement.SelectByText(text);
+        }
+
+      
+        public string InputValue(IWebDriver driver, By locator)
+        {
+            //IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
+            ////set the text
+            //jsExecutor.ExecuteScript($"document.getElementById('{input}').value='{value}'");
+            ////get the text
+            //string text = (string)jsExecutor.ExecuteScript($"return document.getElementById('{input}').value");
+
+            string text = driver.FindElement(locator).GetAttribute("value");
+            return text;
+            
         }
 
     }

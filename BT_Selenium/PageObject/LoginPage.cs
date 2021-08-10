@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using BT_Selenium.Handler;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,7 @@ namespace BT_Selenium.PageObject
             EscribirUsuario("floresnes");
             EscribirPassword("Carme2022");
             ClickLoginButton();
+            WaitHandler.Wait(driver, 2000);
             return new PrincipalPage(driver);
         }
 

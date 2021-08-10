@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BT_Selenium.Handler
@@ -23,10 +24,9 @@ namespace BT_Selenium.Handler
 
 
 
-
             try
             {
-                driver.Manage().Window.Maximize();
+
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
                 wait.Until(ExpectedConditions.ElementIsVisible(locator));
 
@@ -34,10 +34,16 @@ namespace BT_Selenium.Handler
             }
             catch (Exception e)
             {
-                Reporte.Logger(e.Message);
+                Reporte.Logger(e.Message+" para: "+locator);
                 Console.WriteLine("No se encontro el elemento: " + locator);
             }
             return false;
+        }
+        //Esperar un tiempo arbitrario
+        public static void Wait(IWebDriver driver, int miliseconds, int maxTimeOutSeconds = 60)
+        {
+
+            Thread.Sleep(miliseconds);
         }
     }
 

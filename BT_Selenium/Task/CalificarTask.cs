@@ -24,7 +24,6 @@ namespace BT_Selenium.Task
         }
 
         //Frames
-        //Steps steps = new Steps();
         Frame frame = new Frame();
 
         // Instancia de Objetos

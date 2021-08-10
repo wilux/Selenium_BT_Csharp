@@ -33,9 +33,9 @@ namespace BT_Selenium.TestCase
         public void Calificar()
         {
             //Obtengo de DB
-            String cuit = DB.ObtenerCuit();
+            //String cuit = DB.ObtenerCuit();
             //
-            String documento = cuit; //"20322717564";
+            String documento = "30657249765";
             //String ingresos = "10000";
             //String telefono = "4725555";
             //String monto = "500000";
@@ -60,7 +60,7 @@ namespace BT_Selenium.TestCase
 
             //Elegimos iframe
             frame.BuscarFrame(driver, bandejaTareas.BTNOPOINICIAR);
-            WaitHandler.ElementIsPresent(driver, bandejaTareas.BTNOPOINICIAR);
+           // WaitHandler.ElementIsPresent(driver, bandejaTareas.BTNOPOINICIAR);
 
             //Iniciar instancia
             driver.FindElement(bandejaTareas.BTNOPOINICIAR).Click();
@@ -90,25 +90,26 @@ namespace BT_Selenium.TestCase
             driver.FindElement(entrevista.InputDocumento).SendKeys(documento);
             driver.FindElement(entrevista.BTNOPVALIDAR).Click();
 
-            //Elegimos iframe
-            frame.BuscarFrame(driver, By.Id("HTMLTXTTITLE8"));
-            WaitHandler.ElementIsPresent(driver, By.Id("HTMLTXTTITLE8"));
+            //frame.BuscarFrame(driver, entrevista.TipoPersona); --> No funca!
+            driver.SwitchTo().ParentFrame();
+            driver.SwitchTo().Frame("step3");
+            //WaitHandler.ElementIsPresent(driver, entrevista.TipoPersona); --> Es INVISIBLE
+            string TipoPersona = driver.FindElement(entrevista.TipoPersona).GetAttribute("value");
+            //string TipoPersona = driver.FindElement(By.Id("_PETIPO")).GetAttribute("value");
 
 
-            string TipoPersona =  driver.FindElement(By.Id("HTMLTXTTITLE8")).Text;
-
-            //Decidir segun tipo de persona 
-
-            if (TipoPersona == "Datos Personales")
+            if (TipoPersona == "J")
             {
                 //Llamo a Calificar para PJ
-                calificarTask.PJ();
+                // calificarTask.PJ();
+                Console.WriteLine("PJ");
 
             }
             else
             {
                 //Llamo a Calificar para PF
-                calificarTask.PF();
+                //calificarTask.PF();
+                Console.WriteLine("PF");
             }
 
 

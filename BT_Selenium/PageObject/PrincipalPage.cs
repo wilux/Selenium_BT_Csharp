@@ -59,13 +59,15 @@ namespace BT_Selenium.PageObject
         {
           driver = Driver;
 
-            
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
+            driver.Manage().Window.Maximize();
 
 
         }
 
         public PrincipalPage()
         {
+
         }
 
 

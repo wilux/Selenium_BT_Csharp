@@ -14,6 +14,19 @@ namespace BT_Selenium.Handler {
         new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(condition: ExpectedConditions.PresenceOfAllElementsLocatedBy(locator));
         return driver.FindElement(locator).Displayed;
     }
-}
+
+        public bool existeElemento(IWebDriver driver, By locator)
+        {
+            try
+            {
+                driver.FindElement(locator);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
+    }
 }
 

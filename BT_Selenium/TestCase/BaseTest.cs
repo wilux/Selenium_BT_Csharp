@@ -24,6 +24,7 @@ namespace BT_Selenium.TestCase
         {
             var options = new InternetExplorerOptions();
             options.EnsureCleanSession = true;
+            options.RequireWindowFocus = true;
             driver = new InternetExplorerDriver("C:\\webdriver\\");
             driver.Navigate().GoToUrl("http://btwebqa.ar.bpn/BTWeb/hlogin.aspx");
             driver.Manage().Window.Maximize();
