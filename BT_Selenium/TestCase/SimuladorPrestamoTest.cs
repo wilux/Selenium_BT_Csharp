@@ -19,8 +19,8 @@ namespace BT_Selenium.TestCase
     public class SimularPrestamoTest : BaseTest
     {
         //10000 = 100,000 cien mil 
-        [TestCase("20303879618", "10000", "4725555", "50,000.00", "36")]
-        //[TestCase("20322717564", "15000", "4721111", "30,000.00", "24")]
+        //[TestCase("20303879618", "10000", "4725555", "50,000.00", "36")]
+        [TestCase("20322717564", "15000", "4721111", "30,000.00", "24")]
         //[TestCase("20179364973", "19000", "4722222", "60,000.00", "18")]
         //[TestCase("40303879618", "10000", "4725555", "50,000.00", "36")]// Con falla (cuil invalido)
         public void Simulador(String cuil, String ingresos, string telefono, String monto, String plazo)

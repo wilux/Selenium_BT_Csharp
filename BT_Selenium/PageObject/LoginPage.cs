@@ -57,8 +57,9 @@ namespace BT_Selenium.PageObject
 
         public PrincipalPage Ingresar()
         {
-            EscribirUsuario("floresnes");
-            EscribirPassword("Carme2022");
+            Credenciales credenciales = new Credenciales();
+            EscribirUsuario(credenciales.usuario);
+            EscribirPassword(credenciales.password);
             ClickLoginButton();
             WaitHandler.Wait(driver, 2000);
             return new PrincipalPage(driver);

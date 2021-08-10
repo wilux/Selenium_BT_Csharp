@@ -85,6 +85,7 @@
     <Compile Include="Handler\Capturar.cs" />
     <Compile Include="Handler\WaitHandler.cs" />
     <Compile Include="PageObject\BasePage.cs" />
+    <Compile Include="PageObject\Credenciales.cs" />
     <Compile Include="PageObject\LoginPage.cs" />
     <Compile Include="PageObject\PrincipalPage.cs" />
     <Compile Include="PageObject\WebPanel\Entrevista.cs" />
