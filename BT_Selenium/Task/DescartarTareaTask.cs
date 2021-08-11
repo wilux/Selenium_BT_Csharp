@@ -17,22 +17,20 @@ namespace BT_Selenium.Task
      */
     public class DescartarTareaTask : BasePage
     {
+        Frame frame = new Frame();
 
         public DescartarTareaTask(IWebDriver Driver)
         {
             driver = Driver;
         }
-        //Frames
-       // Steps steps = new Steps();
-
-        PrincipalPage principalPage = new PrincipalPage();
-
-        Frame frame = new Frame();
-        Entrevista entrevista = new Entrevista();
 
         public void Descartar()
         {
-
+            Entrevista entrevista = new Entrevista(driver);
+            PrincipalPage principalPage = new PrincipalPage(driver);
+            BandejaTareas bandejaTareas = new BandejaTareas();
+            NuevaInstancia nuevaInstancia = new NuevaInstancia();
+            SimulacionProductos simulacionProductos = new SimulacionProductos();
 
             //Ventana Actual
             driver.SwitchTo().Window(driver.WindowHandles[1]);
@@ -44,9 +42,6 @@ namespace BT_Selenium.Task
             driver.FindElement(principalPage.Inicio).Click();
             driver.FindElement(principalPage.WF).Click();
             driver.FindElement(principalPage.BandejaTareas).Click();
-
-            // Objetos de hxwf900 Bandeja de tareas
-            BandejaTareas bandejaTareas = new BandejaTareas();
 
 
             frame.BuscarFrame(driver, bandejaTareas.Grilla_Tareas);
@@ -70,7 +65,7 @@ namespace BT_Selenium.Task
 
                     //Elegimos iframe
                     frame.BuscarFrame(driver, entrevista.SelectTipo);
-                    entrevista.Seleccionar(driver, entrevista.SelectTipo, "C.U.I.L.");
+                    entrevista.SeleccionarByText(driver, entrevista.SelectTipo, "C.U.I.L.");
 
                     //Ingreso CUIL/CUIT del Cliente a entrevistar
                     driver.FindElement(entrevista.InputDocumento).SendKeys("20322717564");

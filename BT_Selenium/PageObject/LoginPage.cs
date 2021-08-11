@@ -47,22 +47,22 @@ namespace BT_Selenium.PageObject
         }
 
         //Metodo para loguearse. Retorna la pagina principal de BT.
-        public PrincipalPage IngresarComo(string usuario, string password)
+        public void IngresarComo(string usuario, string password)
         {
             EscribirUsuario(usuario);
             EscribirPassword(password);
             ClickLoginButton();
-            return new PrincipalPage(driver);
+          //  return new PrincipalPage(driver);
         }
 
-        public PrincipalPage Ingresar()
+        public void Ingresar()
         {
             Credenciales credenciales = new Credenciales();
             EscribirUsuario(credenciales.usuario);
             EscribirPassword(credenciales.password);
             ClickLoginButton();
-            WaitHandler.Wait(driver, 2000);
-            return new PrincipalPage(driver);
+           // WaitHandler.Wait(driver, 2000);
+            //return new PrincipalPage(driver);
         }
 
     }

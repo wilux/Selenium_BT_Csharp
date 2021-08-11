@@ -17,6 +17,7 @@ namespace BT_Selenium.Task
      */
     public class SimularPrestamoTask : BasePage
     {
+        Frame frame = new Frame();
 
         public SimularPrestamoTask(IWebDriver Driver)
         {
@@ -24,156 +25,55 @@ namespace BT_Selenium.Task
         }
 
 
-      public void BI(String cuil, String ingresos, string telefono, String monto, String plazo)
+      public void BI(String documento,String monto, String plazo)
         {
-
-
-            //Frames
-            Frame frame = new Frame();
-
-            // Instancia de Objetos
-            PrincipalPage principalPage = new PrincipalPage();
+            Entrevista entrevista = new Entrevista(driver);
             BandejaTareas bandejaTareas = new BandejaTareas();
-            NuevaInstancia nuevaInstancia = new NuevaInstancia();
-            Entrevista entrevista = new Entrevista();
-            SimulaPrestamo simulaPrestamo = new SimulaPrestamo();
+            SimulacionProductos simulacionProductos = new SimulacionProductos();
 
+            
 
-            //Ventana Actual
-            driver.SwitchTo().Window(driver.WindowHandles[1]);
+            //Iniciar hasta CUIL/CUIT
+            entrevista.Iniciar(driver);
 
-
-            //Tareas
-
-            //Pausa
-            WaitHandler.ElementIsPresent(driver, principalPage.Menu);
-
-            //Menu ir a...Inicio>WF>BandejaTarea
-            principalPage.MenuInicio(driver);
-            principalPage.MenuWorkFlow(driver);
-            principalPage.MenuBandejaTareas(driver);
-
-            //WebPanel  hxwf900 - Bandeja de tareas
-            //Iniciamos Nueva Tarea en Bandeja de tareas
-
-            //Elegimos iframe
-            frame.BuscarFrame(driver, bandejaTareas.BTNOPOINICIAR);
-            //Esperamos elemento
-
-
-            //Iniciar instancia
-
-            driver.FindElement(bandejaTareas.BTNOPOINICIAR).Click();
-
-            //WebPanel  hxwf901
-            //Elegimos nueva Entrevista / Identificacion
-
-            //Elegimos iframe
-            frame.BuscarFrame(driver, nuevaInstancia.Entrevista_Identificacion);
-            //Esperamos elemento
-            WaitHandler.ElementIsPresent(driver, nuevaInstancia.Entrevista_Identificacion);
-            //Ejecutamos acciones
-            driver.FindElement(nuevaInstancia.Entrevista_Identificacion).Click();
-            driver.FindElement(nuevaInstancia.BTNOPOINICIAR).Click();
-
-            //WebPanel HBNQFCB8 Entrevista
-            //Cargar CUIT/CUIL Cliente
-
-            //Seleccionamos tipo CUIT/CUIL
-
-            //Elegimos iframe
-            frame.BuscarFrame(driver, entrevista.SelectTipo);
-            entrevista.Seleccionar(driver, entrevista.SelectTipo, "C.U.I.L.");
-
-            //Ingreso CUIL/CUIT del Cliente a entrevistar
-            driver.FindElement(entrevista.InputDocumento).SendKeys(cuil);
-            driver.FindElement(entrevista.BTNOPVALIDAR).Click();
+            //Seleccionamos tipo CUIT/CUIL e ingresamos documento
+            entrevista.IngresarDocumento(driver, documento);
 
 
             //Pantalla Entrevista
-            //Elegimos iframe
-            frame.BuscarFrame(driver, entrevista.InputMail);
 
-            //Mail, sino tiene tildamos, de lo contrario dejamos como esta.
-            String mail = driver.FindElement(entrevista.InputMail).GetAttribute("value");
-            if (mail == "")
-            {
-                driver.FindElement(entrevista.NoMail).Click();
-            }
-
-
-            //Campos Telefonico 1
-
-            //Elegimos iframe
-            frame.BuscarFrame(driver, entrevista.SelectTelefono);
-            entrevista.Seleccionar(driver, entrevista.SelectTelefono, "Celular");
-            entrevista.Seleccionar(driver, entrevista.SelectCodigoArea, "299");
-            //Escribimos un numero telefonico 1 
-            driver.FindElement(entrevista.InputTelefono).Click();
-            driver.FindElement(entrevista.InputTelefono).SendKeys(telefono);
-            driver.FindElement(entrevista.InputTelefono).SendKeys(Keys.Return);
-
-            //Campos Telefonico 1
-
-            entrevista.Seleccionar(driver, entrevista.SelectTelefono2, "Seleccionar");
-            entrevista.Seleccionar(driver, entrevista.SelectCodigoArea2, "Seleccionar");
-            //Escribimos un numero telefonico 2 (Lo dejo vacio)
-            driver.FindElement(entrevista.InputTelefono2).Clear();
+            //Completamos Datos Contacto
+            entrevista.Completar_DatosContacto(driver);
 
             //Seleccionar Cuenta (Falta logica para ver cual elegir) elijo por defecto la primera
-            IWebElement GRIDACRED = driver.FindElement(entrevista.GridCtaDebito);
-            GRIDACRED.FindElement(By.TagName("td")).Click();
-            driver.FindElement(entrevista.BTNOPELEGIRCTA).Click();
+            entrevista.SeleccionarCuentaCredito(driver);
 
 
 
-            //Ingresos
-            //Elegimos iframe
-            frame.BuscarFrame(driver, entrevista.SelectSectorEmpleador);
+            //Ingresos y Sector Empleador
+            entrevista.IngresosPF(driver);
 
-            //Sector Empleador
-            entrevista.Seleccionar(driver, entrevista.SelectSectorEmpleador, "Publico");
-
-
-            //Importe Ingresos en Depedencia
-            driver.FindElement(entrevista.InputIngresosDepedencia).Click();
-            driver.FindElement(entrevista.InputIngresosDepedencia).SendKeys(ingresos);
-            driver.FindElement(entrevista.InputIngresosDepedencia).SendKeys(Keys.Return);
-            Capturar.Pantalla(driver, "Ingresos", cuil);
 
             //Confirmar Entrevista
             driver.FindElement(entrevista.BTNOPCONFIRMAR).Click();
-            Capturar.Pantalla(driver, "Entrevista", cuil);
+
 
             //Cerrar para continuar siguiente pantalla
-            //Elegimos iframe
-            frame.BuscarFrame(driver, entrevista.BTNOPCERRAR);
-            driver.FindElement(entrevista.BTNOPCERRAR).Click();
-
+            entrevista.Cerrar(driver);
 
             //Volvemos a hxwf900 - Bandeja de Entrada de Tareas
-            //Elegimos iframe
-            frame.BuscarFrame(driver, bandejaTareas.Grilla_Tareas);
-
-            //Elegir primer Tarea para Continuar Flujo // Siguiente
-            IWebElement GRIDINBOX = driver.FindElement(bandejaTareas.Grilla_Tareas);
-            GRIDINBOX.FindElement(bandejaTareas.PrimerTarea).Click();
-            driver.FindElement(bandejaTareas.BTNOPOSIGUIENTE).Click();
+            bandejaTareas.Seleccionar(driver);
+            bandejaTareas.Siguiente(driver);
 
             //Confirmar SI
-            //Elegimos iframe
-            frame.BuscarFrame(driver, bandejaTareas.BTNCONFIRMATION);
-            driver.FindElement(bandejaTareas.BTNCONFIRMATION).Click();
+            bandejaTareas.Si(driver);
+
+            //Seleccionar
+            bandejaTareas.Seleccionar(driver);
             //Ejecutar
+            bandejaTareas.Ejecutar(driver);
 
-            //Elegimos iframe
-            frame.BuscarFrame(driver, bandejaTareas.Grilla_Tareas);
-            //Elegir primer Tarea para Continuar Flujo // Ejecutar
-
-            IWebElement GRIDINBOX2 = driver.FindElement(bandejaTareas.Grilla_Tareas);
-            GRIDINBOX2.FindElement(bandejaTareas.PrimerTarea).Click();
-            driver.FindElement(bandejaTareas.BTNOPOEJECUTAR).Click();
-            Capturar.Pantalla(driver, "TramiteEnBandeja", cuil);
+            //Simular
 
             //Elijo paquete (Trae por defecto el mas alto disponible)
             //Aqui deberia poner logica para elegir uno distinto
@@ -181,48 +81,39 @@ namespace BT_Selenium.Task
 
             //WebPanel hBNQFPB3 - Simulación - Venta de Productos
             //Elegimos iframe
-            frame.BuscarFrame(driver, simulaPrestamo.SelectLineaPrestamo);
+            frame.BuscarFrame(driver, simulacionProductos.SelectLineaPrestamo);
 
             //Elijo Linea _LINEA
-            IWebElement Linea = driver.FindElement(simulaPrestamo.SelectLineaPrestamo);
-            SelectElement SelectLinea = new SelectElement(Linea);
-            SelectLinea.SelectByIndex(1);//Elijo la primera disponible.
-            Linea.SendKeys(Keys.Return);
+            simulacionProductos.LineaPrestamo(driver);
 
-            //Pausa
-            WaitHandler.ElementIsPresent(driver, simulaPrestamo.InputMonto);
+            //Pause
+            WaitHandler.Wait(driver, 5000);
 
             //Monto _BNQFPC5MTO
-            //Elegimos iframe
-            frame.BuscarFrame(driver, simulaPrestamo.InputMonto);
-            driver.FindElement(simulaPrestamo.InputMonto).Clear();
-            driver.FindElement(simulaPrestamo.InputMonto).Click();
-            driver.FindElement(simulaPrestamo.InputMonto).SendKeys(monto);
+            simulacionProductos.MontoPrestamo(driver, monto);
 
             //Cuotas _BNQFPC5PZO
-            driver.FindElement(simulaPrestamo.InputPlazo).Clear();
-            driver.FindElement(simulaPrestamo.InputPlazo).SendKeys(plazo);
+            simulacionProductos.PlazoPrestamo(driver, plazo);
 
             //Destino Fondos _BNQFPC5DES en step4
-            driver.FindElement(simulaPrestamo.SelectDestinoFondos).Click();
-            entrevista.Seleccionar(driver, simulaPrestamo.SelectDestinoFondos, "Otros");
+            simulacionProductos.DesinoFondos(driver);
 
             //Boton Simular BTNOPSIMULAR en step4
-            driver.FindElement(simulaPrestamo.BTNOPSIMULAR).Click();
-            Capturar.Pantalla(driver, "Simulacion", cuil);
+            driver.FindElement(simulacionProductos.BTNOPSIMULAR).Click();
+
 
             //Elegimos iframe
-            frame.BuscarFrame(driver, simulaPrestamo.ValorCuotaAprox);
+            frame.BuscarFrame(driver, simulacionProductos.ValorCuotaAprox);
 
             //Variables con datos para el reporte
-            String valorCuota = driver.FindElement(simulaPrestamo.ValorCuotaAprox).GetAttribute("value");
-            String TNA = driver.FindElement(simulaPrestamo.ValorTna).GetAttribute("value");
-            String TEM = driver.FindElement(simulaPrestamo.ValorTem).GetAttribute("value");
-            String TEA = driver.FindElement(simulaPrestamo.ValorTea).GetAttribute("value");
+            String valorCuota = driver.FindElement(simulacionProductos.ValorCuotaAprox).GetAttribute("value");
+            String TNA = driver.FindElement(simulacionProductos.ValorTna).GetAttribute("value");
+            String TEM = driver.FindElement(simulacionProductos.ValorTem).GetAttribute("value");
+            String TEA = driver.FindElement(simulacionProductos.ValorTea).GetAttribute("value");
 
 
             //Escribo Reporte
-            Reporte.Logger("Cliente CUIL: " + cuil
+            Reporte.Logger("Cliente CUIL: " + documento
                 +
                 ". Simulacion por un monto de de $"
                 + monto

@@ -18,20 +18,14 @@ namespace BT_Selenium.TestCase
    //[TestFixture]
     public class CircuitoCalificacionTest : BaseTest
     {
+        
 
-
-
-        // Instancia de Objetos
-        PrincipalPage principalPage = new PrincipalPage();
-        Frame frame = new Frame();
-        BandejaTareas bandejaTareas = new BandejaTareas();
-        NuevaInstancia nuevaInstancia = new NuevaInstancia();
-        Entrevista entrevista = new Entrevista();
-        SimulaPrestamo simulaPrestamo = new SimulaPrestamo();
-
-       // [Test]
-        public void Calificar()
+        [TestCase("BE")]
+        public void Calificar(string circuito)
         {
+            Entrevista entrevista = new Entrevista(driver);
+            CalificarTask calificarTask = new CalificarTask(driver);
+
             //Obtengo de DB
             //String cuit = DB.ObtenerCuit();
             //
@@ -41,75 +35,28 @@ namespace BT_Selenium.TestCase
             //String monto = "500000";
             //String plazo = "12";
 
+            //Iniciar hasta CUIL/CUIT
+            entrevista.Iniciar(driver);
 
-            //Tareas
-            CalificarTask calificarTask = new CalificarTask(driver);
+            //Seleccionamos tipo CUIT/CUIL e ingresamos documento
+            entrevista.IngresarDocumento(driver, documento);
 
+            calificarTask.PJ(circuito);
 
-            driver.SwitchTo().Window(driver.WindowHandles[1]);
-            //Pause
-            WaitHandler.ElementIsPresent(driver, principalPage.Menu);
+            //Corregir validacion para tipo de persona
 
-            //Menu ir a...Inicio>WF>BandejaTarea
-            principalPage.MenuInicio(driver);
-            principalPage.MenuWorkFlow(driver);
-            principalPage.MenuBandejaTareas(driver);
+            //if (documento.Substring(0) == "3")
+            //{
+            //    //Llamo a Calificar para PJ
+            //    calificarTask.PJ(circuito);
 
-            //WebPanel  hxwf900 - Bandeja de tareas
-            //Iniciamos Nueva Tarea en Bandeja de tareas
-
-            //Elegimos iframe
-            frame.BuscarFrame(driver, bandejaTareas.BTNOPOINICIAR);
-           // WaitHandler.ElementIsPresent(driver, bandejaTareas.BTNOPOINICIAR);
-
-            //Iniciar instancia
-            driver.FindElement(bandejaTareas.BTNOPOINICIAR).Click();
-
-            //Elegimos iframe
-            frame.BuscarFrame(driver, nuevaInstancia.Entrevista_Identificacion);
-
-            //Elegimos Instancia
-            driver.FindElement(nuevaInstancia.Entrevista_Identificacion).Click();
-            driver.FindElement(nuevaInstancia.BTNOPOINICIAR).Click();
-
-
-            //WebPanel HBNQFCB8 Entrevista
-
-            //Cargar CUIT/CUIL Cliente
-
-            //Elegimos iframe
-            frame.BuscarFrame(driver, entrevista.SelectTipo);
-
-            WaitHandler.ElementIsPresent(driver, entrevista.SelectTipo);
-            entrevista.Seleccionar(driver, entrevista.SelectTipo, "C.U.I.T.");
-
-            //Seleccionar tipo CUIL o CUIT 
-
-
-            //Ingreso CUIL/CUIT del Cliente a entrevistar
-            driver.FindElement(entrevista.InputDocumento).SendKeys(documento);
-            driver.FindElement(entrevista.BTNOPVALIDAR).Click();
-
-            //frame.BuscarFrame(driver, entrevista.TipoPersona); --> No funca!
-            driver.SwitchTo().ParentFrame();
-            driver.SwitchTo().Frame("step3");
-            //WaitHandler.ElementIsPresent(driver, entrevista.TipoPersona); --> Es INVISIBLE
-            string TipoPersona = driver.FindElement(entrevista.TipoPersona).GetAttribute("value");
-            //string TipoPersona = driver.FindElement(By.Id("_PETIPO")).GetAttribute("value");
-
-
-            if (TipoPersona == "J")
-            {
-                //Llamo a Calificar para PJ
-                calificarTask.PJ();
-
-            }
-            else
-            {
-                //Llamo a Calificar para PF
-                //calificarTask.PF();
-                Console.WriteLine("PF");
-            }
+            //}
+            //else
+            //{
+            //    //Llamo a Calificar para PF
+            //    //calificarTask.PF();
+            //    Console.WriteLine("PF");
+            //}
 
 
 

@@ -14,21 +14,15 @@ namespace BT_Selenium.Handler
      */
     public class WaitHandler
     {
-
-
-
         //Metodo para esperar por un elemento presente en la pagina web
         //Reotorna true si se encuentra el elemento en un maximo de 10 segundos, sino retorna false
         public static bool ElementIsPresent(IWebDriver driver, By locator)
         {
-
-
-
             try
             {
 
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
-                wait.Until(ExpectedConditions.ElementIsVisible(locator));
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+                wait.Until(e => e.FindElement(locator));
 
                 return true;
             }

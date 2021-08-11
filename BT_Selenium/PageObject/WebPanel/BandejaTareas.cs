@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using BT_Selenium.Handler;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace BT_Selenium.PageObject.WebPanel
      */
     public class BandejaTareas  : BasePage 
     {
+        Frame frame = new Frame();
+
         public By Grilla_Tareas = By.Id("GRIDINBOX");
         public By PrimerTarea = By.Id("span__IDINSTANCIA_0001");
         public By SegundaTarea = By.Id("span__IDINSTANCIA_0002");
@@ -28,5 +31,39 @@ namespace BT_Selenium.PageObject.WebPanel
         {
             driver.FindElement(BTNOPOINICIAR).Click();
         }
+
+        public void Seleccionar(IWebDriver driver)
+        {
+         
+            //Elegir primer Tarea para Continuar Flujo
+            frame.BuscarFrame(driver, Grilla_Tareas);
+            IWebElement GRIDINBOX = driver.FindElement(Grilla_Tareas);
+            GRIDINBOX.FindElement(PrimerTarea).Click();
+        }
+
+        public void Siguiente(IWebDriver driver)
+        {
+            driver.FindElement(BTNOPOSIGUIENTE).Click();
+        }
+
+        public void Si(IWebDriver driver)
+        {
+            frame.BuscarFrame(driver, BTNCONFIRMATION);
+            driver.FindElement(BTNCONFIRMATION).Click();
+        }
+
+        public void Ejecutar(IWebDriver driver)
+        {
+            frame.BuscarFrame(driver, Grilla_Tareas);
+            driver.FindElement(BTNOPOEJECUTAR).Click();
+        }
+
+        public void Tomar(IWebDriver driver)
+        {
+            frame.BuscarFrame(driver, Grilla_Tareas);
+            driver.FindElement(BTNOPOTOMAR).Click();
+        }
+
+
     }
 }

@@ -23,18 +23,11 @@ namespace BT_Selenium.Task
             driver = Driver;
         }
 
-        //Frames
-        Frame frame = new Frame();
-
-        // Instancia de Objetos
-        PrincipalPage principalPage = new PrincipalPage();
-        BandejaTareas bandejaTareas = new BandejaTareas();
-        NuevaInstancia nuevaInstancia = new NuevaInstancia();
-        Entrevista entrevista = new Entrevista();
-        SimulaPrestamo simulaPrestamo = new SimulaPrestamo();
 
       public void Ejecutar(IWebDriver driver, string programa)
         {
+          
+            PrincipalPage principalPage = new PrincipalPage(driver);
             principalPage.MenuEjecutar(driver);
 
             //Abrir programa (Iniciar Entrevista)

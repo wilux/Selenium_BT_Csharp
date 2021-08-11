@@ -13,7 +13,7 @@ namespace BT_Selenium.Handler
 {
     public class Frame
     {
-        ElementDisplayed elementDisplayed = new ElementDisplayed();
+
         //Metodo que devuelve el frame actual en el que estoy
         public String FrameActual(IWebDriver driver)
         {
@@ -55,19 +55,19 @@ namespace BT_Selenium.Handler
 
 
         //Metodo que cambia al frame que contiene el elemento buscado.
-        public bool BuscarA(IWebDriver driver, By locator)
+        private bool BuscarA(IWebDriver driver, By locator)
         {
 
             for (int i = 0; i < 6; i++)
             {
-                driver.SwitchTo().DefaultContent();
+               // driver.SwitchTo().DefaultContent();
 
                 try
                 {
+                    driver.SwitchTo().DefaultContent();
                     driver.SwitchTo().Frame(4);
                     driver.SwitchTo().Frame("step" + i);
-                    //if (driver.FindElement(locator).Displayed)
-                     if (elementDisplayed.existeElemento(driver, locator))
+                     if (WaitHandler.ElementIsPresent(driver, locator))
                     {
                         string frameActual = FrameActual(driver);
                         return true;
@@ -76,7 +76,7 @@ namespace BT_Selenium.Handler
                     }
 
                 }
-                catch (Exception e){ continue; }
+                catch{ continue; }
             }
 
 
@@ -86,21 +86,21 @@ namespace BT_Selenium.Handler
 
 
 
-        public bool BuscarB(IWebDriver driver, By locator)
+        private bool BuscarB(IWebDriver driver, By locator)
         {
 
 
             for (int i = 0; i < 6; i++)
             {
-                driver.SwitchTo().ParentFrame();
+                
 
                 try
                 {
-                   
+                    driver.SwitchTo().ParentFrame();
 
-                   driver.SwitchTo().Frame("step"+i);
+                    driver.SwitchTo().Frame("step"+i);
 
-                    if (elementDisplayed.existeElemento(driver, locator))
+                    if (WaitHandler.ElementIsPresent(driver, locator))
                     {
                        // string frameActual = FrameActual(driver);
                         return true;
@@ -109,18 +109,18 @@ namespace BT_Selenium.Handler
                     }
 
                 }
-                catch (Exception e) { continue; }
+                catch { continue; }
             }
 
             return false;
         }//Fin 
 
 
-        public bool BuscarC(IWebDriver driver, By locator)
+        private bool BuscarC(IWebDriver driver, By locator)
         {
 
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 10; i++)
             {
 
 
@@ -135,7 +135,7 @@ namespace BT_Selenium.Handler
                     driver.SwitchTo().Frame("step"+i);
 
                     //if (driver.FindElement(locator).Displayed)
-                    if (elementDisplayed.existeElemento(driver, locator))
+                    if (WaitHandler.ElementIsPresent(driver, locator))
                     {
                         string frameActual = FrameActual(driver);
                         return true;
@@ -144,7 +144,7 @@ namespace BT_Selenium.Handler
                     }
 
                 }
-                catch (Exception e) { continue; }
+                catch { continue; }
             }
 
             return false;

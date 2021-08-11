@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using BT_Selenium.Handler;
+using BT_Selenium.PageObject.WebPanel;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,7 @@ namespace BT_Selenium.PageObject
         protected IWebDriver driver;
         protected IWebElement webElement;
         protected SelectElement selectElement;
+
 
 
     }

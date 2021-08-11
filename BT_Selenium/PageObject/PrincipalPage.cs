@@ -43,7 +43,15 @@ namespace BT_Selenium.PageObject
         public void MenuInicio(IWebDriver Driver)
         {
             driver = Driver;
-            driver.FindElement(Inicio).Click();
+
+            if (WaitHandler.ElementIsPresent(driver, Menu) == true)
+            {
+                driver.FindElement(Inicio).Click();
+            }
+            else
+            {
+                driver.Quit();
+            }
 
         }
 
@@ -71,6 +79,7 @@ namespace BT_Selenium.PageObject
 
         }
 
+      
         public PrincipalPage()
         {
 

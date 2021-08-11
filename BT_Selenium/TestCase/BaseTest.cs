@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BT_Selenium.Handler;
+using BT_Selenium.PageObject.WebPanel;
 
 namespace BT_Selenium.TestCase
 {
@@ -18,6 +19,7 @@ namespace BT_Selenium.TestCase
     {
         //Selenium Driver
         protected IWebDriver driver;
+
 
         [SetUp]
         public void BeforeBaseTest()
