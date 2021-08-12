@@ -19,11 +19,20 @@ namespace BT_Selenium.PageObject.WebPanel
             driver = Driver;
         }
 
-
+        //Datos personales
+        public By inputApellido = By.Id("_BNQFPA2APE");
+        public By inputNombre = By.Id("_BNQFPA2NOM"); 
+        public By inputFechaNac = By.Id("_BNQFPA2FNA");
+        public By SelectCapacidadLegal = By.Id("_PFCAPL");
+        public By SelectSexo = By.Id("_BNQFPA2SEX");
+        public By SelectNacionalidad = By.Id("_PFPNAC");
+        public By SelectProvincia = By.Id("_SNGC11DPTO");
+        public By inputLocalidad = By.Id("_SNGC11PROV");//326 Neuquen
+        public By SelectOcupacion = By.Id("_SNGC60OCUP");
+        public By BTNOPDOMICILIOREAL = By.Id("BTNOPDOMICILIOREAL");
         public By SelectTipo = By.Name("_BNQFPA2TDO");
         public By InputDocumento = By.Id("_BNQFPA2NDO");
         public By BTNOPVALIDAR = By.Id("BTNOPVALIDAR");
-        //HTMLTBLCAT245 tabla
         public By InputMail = By.Name("_BNQFPA2MAI");
         public By NoMail = By.Name("_NOTIENEEMAIL");
         public By SelectTelefono = By.Name("_BNQFPA2TT1");
@@ -39,20 +48,17 @@ namespace BT_Selenium.PageObject.WebPanel
         public By BTN_NO = By.Id("BTNCANCELCONFIRMATION");
         public By BTNOPCERRAR = By.Id("BTNOPCERRAR");
 
-        // Value S o N
-        public By RCheckGrupo = By.Id("_BNQFB11PGE");
-        public By RCheckSociedad = By.Id("_BNQFB11SHE");
-
         //MsgText
         public By MsgText = By.ClassName("MsgText");
 
-        // table GRIDACRED (cuentas actuales)
+        public By tabla_HTMLTBLCAT245 = By.Id("HTMLTBLCAT245");
+        public By GRIDACRED = By.Id("GRIDACRED");
+        public By CampoAcreditaBPN = By.Name("span__ACREDITAENBPN_0001");
         //input hidden _ACREDITAENBPN_0001 SI o NO 
         //span__ACREDITAENBPN_0001
 
         public By SelectSectorEmpleador = By.Name("_BNQFPA2ORD");
         public By InputIngresosDepedencia = By.Name("_BNQFPA2IRD");
-        //input _BNQFPA2IRD importe relacion depedendencia
 
         public By TipoPersona = By.Id("_PETIPO");
 
@@ -100,6 +106,14 @@ namespace BT_Selenium.PageObject.WebPanel
             string text = driver.FindElement(locator).GetAttribute("value");
             return text;
             
+        }
+
+        public void irBandejaTareas(IWebDriver driver)
+        {
+            PrincipalPage principalPage = new PrincipalPage(driver);
+            principalPage.MenuInicio(driver);
+            principalPage.MenuWorkFlow(driver);
+            principalPage.MenuBandejaTareas(driver);
         }
 
         public void Iniciar(IWebDriver driver)

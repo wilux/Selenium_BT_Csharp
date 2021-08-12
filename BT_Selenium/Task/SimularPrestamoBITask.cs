@@ -62,14 +62,12 @@ namespace BT_Selenium.Task
             entrevista.Cerrar(driver);
 
             //Volvemos a hxwf900 - Bandeja de Entrada de Tareas
-            bandejaTareas.Seleccionar(driver);
             bandejaTareas.Siguiente(driver);
 
             //Confirmar SI
             bandejaTareas.Si(driver);
 
             //Seleccionar
-            bandejaTareas.Seleccionar(driver);
             //Ejecutar
             bandejaTareas.Ejecutar(driver);
 

@@ -33,6 +33,7 @@ namespace BT_Selenium.PageObject.WebPanel
         public By ValorTea = By.Name("_BNQFPC5TEA");
         public By CheckCalificacion = By.Name("_BNQFPC5CBE");
         public By SelectCircuito = By.Name("_CICUITOS_CALIF_E");
+        public By BTNOPADHESION_SERVICIOS = By.Name("BTNOPADHESION_SERVICIOS");
         public By BTNOPCERRAR = By.Id("BTNOPCERRAR");
 
         public void Confirmar(IWebDriver driver)

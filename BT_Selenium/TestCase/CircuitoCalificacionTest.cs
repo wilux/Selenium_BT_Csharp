@@ -30,18 +30,19 @@ namespace BT_Selenium.TestCase
             //String cuit = DB.ObtenerCuit();
             //
             String documento = "30657249765";
-            //String ingresos = "10000";
-            //String telefono = "4725555";
-            //String monto = "500000";
-            //String plazo = "12";
 
             //Iniciar hasta CUIL/CUIT
             entrevista.Iniciar(driver);
 
+            //Quitar // Solo para no hacer todo desde cero
+            //Menu ir a...Inicio>WF>BandejaTarea
+            //entrevista.irBandejaTareas(driver);
+            //Quitar
+
             //Seleccionamos tipo CUIT/CUIL e ingresamos documento
             entrevista.IngresarDocumento(driver, documento);
 
-            calificarTask.PJ(circuito);
+
 
             //Corregir validacion para tipo de persona
 
@@ -58,8 +59,8 @@ namespace BT_Selenium.TestCase
             //    Console.WriteLine("PF");
             //}
 
-
-
+            //Cuando es BE
+            calificarTask.PJ(circuito);
 
         }
 

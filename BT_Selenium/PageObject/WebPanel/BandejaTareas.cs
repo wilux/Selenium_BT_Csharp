@@ -34,8 +34,7 @@ namespace BT_Selenium.PageObject.WebPanel
 
         public void Seleccionar(IWebDriver driver)
         {
-         
-            //Elegir primer Tarea para Continuar Flujo
+            //WaitHandler.Wait(driver, 5000);
             frame.BuscarFrame(driver, Grilla_Tareas);
             IWebElement GRIDINBOX = driver.FindElement(Grilla_Tareas);
             GRIDINBOX.FindElement(PrimerTarea).Click();
@@ -43,6 +42,7 @@ namespace BT_Selenium.PageObject.WebPanel
 
         public void Siguiente(IWebDriver driver)
         {
+            Seleccionar(driver);
             driver.FindElement(BTNOPOSIGUIENTE).Click();
         }
 
@@ -54,12 +54,14 @@ namespace BT_Selenium.PageObject.WebPanel
 
         public void Ejecutar(IWebDriver driver)
         {
+            Seleccionar(driver);
             frame.BuscarFrame(driver, Grilla_Tareas);
             driver.FindElement(BTNOPOEJECUTAR).Click();
         }
 
         public void Tomar(IWebDriver driver)
         {
+            Seleccionar(driver);
             frame.BuscarFrame(driver, Grilla_Tareas);
             driver.FindElement(BTNOPOTOMAR).Click();
         }

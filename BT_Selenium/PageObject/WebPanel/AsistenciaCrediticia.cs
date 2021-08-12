@@ -17,35 +17,32 @@ namespace BT_Selenium.PageObject.WebPanel
         public By InputCantidadEmp = By.Id("_BNQFB11CEM");//1
 
         //Datos Patrimoniales
-        //_BNQFB11ACT input activo total // 200.000
-        //_BNQFB11PAT input pasivo total // 100.000
+        public By InputActivoTotal = By.Id("_BNQFB11ACT");// 200.000
+        public By InputPasivoTotal = By.Id("_BNQFB11PAT");// 100.000
         public By InputPatrimonioNeto = By.Id("_BNQFB11PNT");//100.000
-        //_BNQFB11RPG input resultado Antes Impuesto gcias // 100.000
+        public By InputResultadoAntesGcias = By.Id("_BNQFB11RPG");// 100.000
 
         public By InputVtasAnuales = By.Id("_VTASANUALES"); //100.000
-        //_BNQFB11ACO input Activo Corrriente // 100.000
-        //_BNQFB11PAC input Pasivo corriente / 100.000
+        public By InputActivoCorriente = By.Id("_BNQFB11ACO"); //100.000
+        public By InputPasivoCorriente = By.Id("_BNQFB11PAC"); //100.000
         public By InputResultadoEjerc = By.Id("_BNQFB11REJ");//100.000
 
         //Datos comerciales
-        //_BNQFB11ANT Antioguedad Empresa // 1
-        //_BNQFB11VPP Vtas 2021 //100.000
-        //_BNQFB11VA1 Vtas 2020 //100.000
-        //_BNQFB11VA2 vtas 2019 // 100.000
+        public By InputAntiguedadEmpresa = By.Id("_BNQFB11ANT");// 1
+        public By InputVtasActual = By.Id("_BNQFB11VPP");// 100.000  //2021
+        public By InputVtasAnterior1 = By.Id("_BNQFB11VA1");// 100.000  //2020
+        public By InputVtasAnterior2 = By.Id("_BNQFB11VA2");// 100.000  //2019
 
+        //Botonera inferior
+        public By BTN_CalcularAsistencia = By.Id("BTNOPCALCULOASISTENCIA");
+        public By BTN_PerfilRiesgo = By.Id("BTNOPPERFILDERIESGO");
+        public By BTNOPCONFIRMAR = By.Id("BTNOPCONFIRMAR");
+        public By BTNOPCERRAR = By.Id("BTNOPCERRAR");
+
+
+        //Botones Si/NO
         public By BTN_SI = By.Id("BTNCONFIRMATION");
         public By BTN_NO = By.Id("BTNCANCELCONFIRMATION");
-
-        //BTNOPCALCULOASISTENCIA Calcular Asistencia 
-        //Perfil riesgo BTNOPPERFILDERIESGO
-        //Confirmar
-        //Si
-        //Cerrar
-
-            //bandeja
-            //Seleccionar, Siguiente, Si // FIN!
-
-        public By BTNOPCERRAR = By.Id("BTNOPCERRAR");
     }
 
 
