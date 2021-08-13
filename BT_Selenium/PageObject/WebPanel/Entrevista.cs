@@ -19,6 +19,9 @@ namespace BT_Selenium.PageObject.WebPanel
             driver = Driver;
         }
 
+        //Tramite
+        public By campoTramite = By.Id("span__BNQFPA2NRO");
+
         //Datos personales
         public By inputApellido = By.Id("_BNQFPA2APE");
         public By inputNombre = By.Id("_BNQFPA2NOM"); 
@@ -26,10 +29,12 @@ namespace BT_Selenium.PageObject.WebPanel
         public By SelectCapacidadLegal = By.Id("_PFCAPL");
         public By SelectSexo = By.Id("_BNQFPA2SEX");
         public By SelectNacionalidad = By.Id("_PFPNAC");
+        public By SelectPaisCiudadania = By.Id("_PAIS");
         public By SelectProvincia = By.Id("_SNGC11DPTO");
         public By inputLocalidad = By.Id("_SNGC11PROV");//326 Neuquen
         public By SelectOcupacion = By.Id("_SNGC60OCUP");
         public By BTNOPDOMICILIOREAL = By.Id("BTNOPDOMICILIOREAL");
+        public By CampoDomicilio = By.Id("span__BNQFPA2DOM");
         public By SelectTipo = By.Name("_BNQFPA2TDO");
         public By InputDocumento = By.Id("_BNQFPA2NDO");
         public By BTNOPVALIDAR = By.Id("BTNOPVALIDAR");
@@ -73,6 +78,16 @@ namespace BT_Selenium.PageObject.WebPanel
             frame.BuscarFrame(driver, BTNOPCERRAR);
             driver.FindElement(BTNOPCERRAR).Click();
         }
+
+        public string GetText(IWebDriver driver, By locator)
+        {
+            frame.BuscarFrame(driver, locator);
+            IWebElement l = driver.FindElement(locator);
+            String text = l.Text;
+            return text;
+
+        }
+
 
         public void SeleccionarByText(IWebDriver driver, By select, string text)
         {
@@ -150,12 +165,58 @@ namespace BT_Selenium.PageObject.WebPanel
 
         }
 
+
+        public void Completar_DatosPersonales(IWebDriver driver, string nombre= "John", string apellido = "Doe", string fecha="01/01/1981")
+        {
+            //Elegimos iframe (step10)
+            if (driver.FindElement(inputNombre).Text=="") {
+                driver.FindElement(inputNombre).SendKeys(nombre);
+                driver.FindElement(inputApellido).SendKeys("Doe");
+            }
+            frame.BuscarFrame(driver, inputFechaNac);
+            driver.FindElement(inputFechaNac).SendKeys(fecha);
+            SeleccionarByValue(driver, SelectCapacidadLegal, "1");//Mayor edad
+            if (driver.FindElement(SelectSexo).Text == "")
+            {
+                SeleccionarByValue(driver, SelectSexo, "M");//M
+            }
+            SeleccionarByValue(driver, SelectNacionalidad, "80");//80 argentina
+            SeleccionarByValue(driver, SelectProvincia, "15");//15 Neuquen
+            driver.FindElement(inputLocalidad).SendKeys("326");//326 Neuquen
+            SeleccionarByValue(driver, SelectPaisCiudadania, "80");//80 argentina
+        }
+
+        public void Completar_Ocupacion(IWebDriver driver, string ocupacion="1")
+        {
+            SeleccionarByValue(driver, SelectOcupacion, ocupacion);//1 empleado x defecto
+        }
+
+        public void Completar_Domicilio(IWebDriver driver)
+        {
+            //Ver de agregar tiempos entre cada operacion
+            DetalleDireccion detalleDireccion = new DetalleDireccion();
+            SeleccionarByValue(driver, detalleDireccion.SelectCalle, "1");
+            driver.FindElement(detalleDireccion.InputCalle).SendKeys("Calle Falsa");
+            driver.FindElement(detalleDireccion.InputNumero).SendKeys("123");
+            SeleccionarByValue(driver, detalleDireccion.SelectPais, "80");
+            SeleccionarByValue(driver, detalleDireccion.SelectLocalidad, "326");
+            driver.FindElement(detalleDireccion.InputCodigoPostal).SendKeys("Q8300NQN");
+            driver.FindElement(detalleDireccion.BTNOPBTNCONFIRMAR).Click();
+        }
+
         public void Completar_DatosContacto(IWebDriver driver)
         {
 
             //Pantalla Entrevista
             //Elegimos iframe
             frame.BuscarFrame(driver, InputMail);
+
+            //Verificamos si tiene domicilio
+            if (driver.FindElement(CampoDomicilio).Text == "") // No tiene nada
+            {
+                driver.FindElement(BTNOPDOMICILIOREAL).Click();// abre pantalla para completar domuicilio
+
+            }
 
             //Mail, sino tiene tildamos, de lo contrario dejamos como esta.
             String mail = driver.FindElement(InputMail).GetAttribute("value");

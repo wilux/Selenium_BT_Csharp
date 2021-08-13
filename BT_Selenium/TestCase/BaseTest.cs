@@ -20,7 +20,7 @@ namespace BT_Selenium.TestCase
         //Selenium Driver
         protected IWebDriver driver;
 
-
+               
         [SetUp]
         public void BeforeBaseTest()
         {
@@ -39,10 +39,11 @@ namespace BT_Selenium.TestCase
         {
             if (driver != null)
             {
-                
+
                 //Capturar.Pantalla(driver, "Fin", "000000000");
-                driver.Close();
+                //driver.Close();
                 driver.Quit();
+                //Console.WriteLine("FIN");
             }
         }
     }

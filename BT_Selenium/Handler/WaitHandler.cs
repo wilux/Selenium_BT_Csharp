@@ -26,9 +26,9 @@ namespace BT_Selenium.Handler
 
                 return true;
             }
-            catch (Exception e)
+            catch
             {
-                Reporte.Logger(e.Message+" para: "+locator);
+                //Reporte.Logger(e.Message+" para: "+locator);
                 Console.WriteLine("No se encontro el elemento: " + locator);
             }
             return false;

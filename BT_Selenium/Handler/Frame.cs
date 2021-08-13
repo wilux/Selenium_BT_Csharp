@@ -55,7 +55,7 @@ namespace BT_Selenium.Handler
 
 
         //Metodo que cambia al frame que contiene el elemento buscado.
-        private bool BuscarA(IWebDriver driver, By locator)
+        public bool BuscarA(IWebDriver driver, By locator)
         {
 
             for (int i = 0; i < 6; i++)
@@ -86,7 +86,7 @@ namespace BT_Selenium.Handler
 
 
 
-        private bool BuscarB(IWebDriver driver, By locator)
+        public bool BuscarB(IWebDriver driver, By locator)
         {
 
 
@@ -116,7 +116,7 @@ namespace BT_Selenium.Handler
         }//Fin 
 
 
-        private bool BuscarC(IWebDriver driver, By locator)
+        public bool BuscarC(IWebDriver driver, By locator)
         {
 
 

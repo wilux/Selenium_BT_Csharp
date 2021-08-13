@@ -26,7 +26,6 @@ namespace BT_Selenium.PageObject.WebPanel
         public By BTNOPOINICIAR = By.Id("BTNOPOINICIAR");
         public By BTNOPOTOMAR = By.Id("BTNOPOTOMAR");
 
-        // driver.FindElement(bandejaTareas.BTNOPOINICIAR).Click();
         public void BTNOPOINICIAR_Click(IWebDriver driver)
         {
             driver.FindElement(BTNOPOINICIAR).Click();
@@ -35,7 +34,7 @@ namespace BT_Selenium.PageObject.WebPanel
         public void Seleccionar(IWebDriver driver)
         {
             //WaitHandler.Wait(driver, 5000);
-            frame.BuscarFrame(driver, Grilla_Tareas);
+            frame.BuscarA(driver, Grilla_Tareas);
             IWebElement GRIDINBOX = driver.FindElement(Grilla_Tareas);
             GRIDINBOX.FindElement(PrimerTarea).Click();
         }
@@ -43,6 +42,7 @@ namespace BT_Selenium.PageObject.WebPanel
         public void Siguiente(IWebDriver driver)
         {
             Seleccionar(driver);
+            WaitHandler.Wait(driver, 2000);
             driver.FindElement(BTNOPOSIGUIENTE).Click();
         }
 
@@ -55,14 +55,14 @@ namespace BT_Selenium.PageObject.WebPanel
         public void Ejecutar(IWebDriver driver)
         {
             Seleccionar(driver);
-            frame.BuscarFrame(driver, Grilla_Tareas);
+            WaitHandler.Wait(driver, 2000);
             driver.FindElement(BTNOPOEJECUTAR).Click();
         }
 
         public void Tomar(IWebDriver driver)
         {
             Seleccionar(driver);
-            frame.BuscarFrame(driver, Grilla_Tareas);
+            WaitHandler.Wait(driver, 2000);
             driver.FindElement(BTNOPOTOMAR).Click();
         }
 

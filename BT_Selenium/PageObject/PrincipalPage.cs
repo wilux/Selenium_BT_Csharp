@@ -50,7 +50,10 @@ namespace BT_Selenium.PageObject
             }
             else
             {
-                driver.Quit();
+                driver.SwitchTo().Window(driver.WindowHandles[1]);
+                driver.Manage().Window.Maximize();
+                WaitHandler.Wait(driver, 5000);
+                driver.FindElement(Inicio).Click();
             }
 
         }

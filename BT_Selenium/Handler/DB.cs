@@ -58,6 +58,25 @@ namespace BT_Selenium.Handler
             return ds;
         }
 
+        public static String ObtenerValorCampo(string sql, string fila)
+        {
+
+            //Consultar DB 
+            string consulta = sql;
+            DataSet respuesta = DB.ObtenerDatos(consulta);
+            string resultado = "";
+
+            foreach (DataRow dr in respuesta.Tables[0].Rows)
+            {
+                fila = dr[$"{fila}"].ToString();
+            }
+
+            return resultado = fila;
+
+
+
+        }
+
         public static String  ObtenerCuit()
             {
 

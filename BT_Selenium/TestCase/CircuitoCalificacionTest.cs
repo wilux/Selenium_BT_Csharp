@@ -20,7 +20,7 @@ namespace BT_Selenium.TestCase
     {
         
 
-        [TestCase("BE")]
+       // [TestCase("BE")]
         public void Calificar(string circuito)
         {
             Entrevista entrevista = new Entrevista(driver);

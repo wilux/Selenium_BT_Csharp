@@ -111,6 +111,8 @@
     <Compile Include="TestCase\CircuitoCalificacionTest.cs" />
     <Compile Include="TestCase\DbTest.cs" />
     <Compile Include="TestCase\DescartarTest.cs" />
+    <Compile Include="TestCase\GDEM956.cs" />
+    <Compile Include="TestCase\GDEM610.cs" />
     <Compile Include="TestCase\SimuladorPrestamoTest.cs" />
   </ItemGroup>
   <ItemGroup>

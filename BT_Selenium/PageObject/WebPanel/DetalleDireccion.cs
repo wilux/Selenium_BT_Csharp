@@ -14,6 +14,8 @@ namespace BT_Selenium.PageObject.WebPanel
     {
         public By InputFechaDesde = By.Id("_SNGC13RDES");
         public By SelectCalle = By.Id("_SNGC01ID");
+        public By InputCalle = By.Id("_NOM1");
+        public By InputNumero = By.Id("_NOM2");
         public By SelectNumero = By.Id("_SNGC02ID");
         public By SelectPais = By.Id("_PAISDOM");
         public By SelectProvincia = By.Id("_DODEPCODP");

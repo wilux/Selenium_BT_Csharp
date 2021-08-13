@@ -21,7 +21,14 @@ namespace BT_Selenium.TestCase
         public void Conectar()
         {
 
-         DB.CambiarUsuario("pianciolag");
+            //DB.CambiarUsuario("pianciolag");
+            string nroEntrevista = "980279";
+
+            //Consultar DB 
+            string consulta = $"select * from bnqfpa2 where BNQFPA2Nro='{nroEntrevista}'";
+            string estado =  DB.ObtenerValorCampo(consulta, "BNQFPA2ACD");
+            string mensaje = DB.ObtenerValorCampo(consulta, "BNQFPA2MCD");
+
 
         }
 

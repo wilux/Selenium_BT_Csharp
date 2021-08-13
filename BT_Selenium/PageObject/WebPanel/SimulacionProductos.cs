@@ -16,6 +16,8 @@ namespace BT_Selenium.PageObject.WebPanel
     {
         Frame frame = new Frame();
 
+        //MsgText
+        public By MsgText = By.ClassName("MsgText");
         public By SelectPaquete = By.Name("_JBNYC5PQTE");
         public By SelectLineaPrestamo = By.Name("_LINEA");
         public By InputMonto = By.Name("_BNQFPC5MTO"); 
