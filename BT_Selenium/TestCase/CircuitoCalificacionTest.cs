@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BT_Selenium.Handler;
+using BT_Selenium.Actions;
 using System.Data.SqlClient;
 using System.Data;
-using BT_Selenium.PageObject.WebPanel;
+using BT_Selenium.UI;
 using System.Threading;
 
 namespace BT_Selenium.TestCase
@@ -23,7 +23,7 @@ namespace BT_Selenium.TestCase
        // [TestCase("BE")]
         public void Calificar(string circuito)
         {
-            Entrevista entrevista = new Entrevista(driver);
+            EntrevistaUI entrevista = new Entrevista(driver);
             CalificarTask calificarTask = new CalificarTask(driver);
 
             //Obtengo de DB

@@ -1,4 +1,4 @@
-﻿using BT_Selenium.Handler;
+﻿using BT_Selenium.Actions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -7,36 +7,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BT_Selenium.PageObject.WebPanel
+namespace BT_Selenium.UI
 {
     //Simulación - Venta de Productos
 
 
-    public class SimulacionProductos : BasePage
+    public class SimulacionProductosUI
     {
         Frame frame = new Frame();
 
         //MsgText
-        public By MsgText = By.ClassName("MsgText");
-        public By SelectPaquete = By.Name("_JBNYC5PQTE");
-        public By SelectLineaPrestamo = By.Name("_LINEA");
-        public By InputMonto = By.Name("_BNQFPC5MTO"); 
-        public By InputPlazo = By.Name("_BNQFPC5PZO");
-        public By SelectDestinoFondos = By.Name("_BNQFPC5DES");
-        public By BTNOPSIMULAR = By.Id("BTNOPSIMULAR");
-        public By BTNOPDESCARTAR = By.Id("BTNOPDESCARTAR");
-        public By BTNOPCONFIRMAR = By.Id("BTNOPCONFIRMAR");
-        public By BTN_SI = By.Id("BTNCONFIRMATION");
-        public By BTN_NO = By.Id("BTNCANCELCONFIRMATION");
-        //public By BTNCONFIRMATION = By.Id("BTNCONFIRMATION");
-        public By ValorCuotaAprox = By.Name("_BNQFPC5CUO");
-        public By ValorTna = By.Name("_BNQFPC5TNA");
-        public By ValorTem = By.Name("_BNQFPC5TEM");
-        public By ValorTea = By.Name("_BNQFPC5TEA");
-        public By CheckCalificacion = By.Name("_BNQFPC5CBE");
-        public By SelectCircuito = By.Name("_CICUITOS_CALIF_E");
-        public By BTNOPADHESION_SERVICIOS = By.Name("BTNOPADHESION_SERVICIOS");
-        public By BTNOPCERRAR = By.Id("BTNOPCERRAR");
+        public static By MsgText = By.ClassName("MsgText");
+        public static By SelectPaquete = By.Name("_JBNYC5PQTE");
+        public static By SelectLineaPrestamo = By.Name("_LINEA");
+        public static By InputMonto = By.Name("_BNQFPC5MTO"); 
+        public static By InputPlazo = By.Name("_BNQFPC5PZO");
+        public static By SelectDestinoFondos = By.Name("_BNQFPC5DES");
+        public static By BTNOPSIMULAR = By.Id("BTNOPSIMULAR");
+        public static By BTNOPDESCARTAR = By.Id("BTNOPDESCARTAR");
+        public static By BTNOPCONFIRMAR = By.Id("BTNOPCONFIRMAR");
+        public static By BTN_SI = By.Id("BTNCONFIRMATION");
+        public static By BTN_NO = By.Id("BTNCANCELCONFIRMATION");
+        //public static By BTNCONFIRMATION = By.Id("BTNCONFIRMATION");
+        public static By ValorCuotaAprox = By.Name("_BNQFPC5CUO");
+        public static By ValorTna = By.Name("_BNQFPC5TNA");
+        public static By ValorTem = By.Name("_BNQFPC5TEM");
+        public static By ValorTea = By.Name("_BNQFPC5TEA");
+        public static By CheckCalificacion = By.Name("_BNQFPC5CBE");
+        public static By SelectCircuito = By.Name("_CICUITOS_CALIF_E");
+        public static By BTNOPADHESION_SERVICIOS = By.Name("BTNOPADHESION_SERVICIOS");
+        public static By BTNOPCERRAR = By.Id("BTNOPCERRAR");
 
         public void Confirmar(IWebDriver driver)
         {
@@ -96,7 +96,7 @@ namespace BT_Selenium.PageObject.WebPanel
 
         public void DesinoFondos(IWebDriver driver)
         {
-            Entrevista entrevista = new Entrevista(driver);
+            EntrevistaUI entrevista = new Entrevista(driver);
             driver.FindElement(SelectDestinoFondos).Click();
             entrevista.SeleccionarByText(driver, SelectDestinoFondos, "Otros");
         }

@@ -1,16 +1,10 @@
-﻿using BT_Selenium.Handler;
-using BT_Selenium.PageObject;
-using BT_Selenium.PageObject.WebPanel;
-using BT_Selenium.Task;
-using BT_Selenium.TestCase;
+﻿using BT_Selenium.Actions;
+using BT_Selenium.UI;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BT_Selenium.Tools;
 
 namespace BT_Selenium.TestCase
 {
@@ -18,7 +12,7 @@ namespace BT_Selenium.TestCase
     [TestFixture]
     public class GDEM610 : BaseTest
     {
-        //[TestCase("20303879618", "C/ 20/1, S/paquete, S/deuda.")]
+        [TestCase("20303879618", "C/ 20/1, S/paquete, S/deuda.")]
         //[TestCase("20108200090", "C/ 20/1, C/ 20/5,  C/paquete S/deuda.")]
         //[TestCase("23161636479", "C/ 20/1, Conjunta, S/paquete S/Acuerdo.")]
         //[TestCase("27363826550", "C/ 20/5, S/20/1 C/paquete Empleado C/Acuerdo.")]
@@ -28,9 +22,9 @@ namespace BT_Selenium.TestCase
         public void RF04(string documento, string comentario)
         {
             Frame frame = new Frame();
-            Entrevista entrevista = new Entrevista(driver);
-            BandejaTareas bandejaTareas = new BandejaTareas();
-            SimulacionProductos simulacionProductos = new SimulacionProductos();
+            EntrevistaUI entrevista = new EntrevistaUI();
+            BandejaTareasUI bandejaTareas = new BandejaTareasUI();
+            SimulacionProductosUI simulacionProductos = new SimulacionProductosUI();
 
             //entrevista.irBandejaTareas(driver);//despues Borrar solo prueba
             //Iniciar hasta CUIL/CUIT
@@ -57,8 +51,7 @@ namespace BT_Selenium.TestCase
 
 
             ////Confirmar Entrevista
-            driver.FindElement(entrevista.BTNOPCONFIRMAR).Click();
-
+            Click.On(driver, EntrevistaUI.BTNOPCONFIRMAR);
 
             ////Cerrar para continuar siguiente pantalla
             entrevista.Cerrar(driver);
@@ -118,7 +111,7 @@ namespace BT_Selenium.TestCase
                 frame.BuscarFrame(driver, simulacionProductos.SelectPaquete);
                 simulacionProductos.SeleccionarByIndex(driver, simulacionProductos.SelectPaquete, i);
                 driver.FindElement(simulacionProductos.SelectPaquete).SendKeys(Keys.ArrowDown);
-                WaitHandler.Wait(driver, 6000);
+                WaitActions.Wait(driver, 6000);
                 Reporte.Logger(documento + " - " + comentario + " - " + paquetes[i]);
                 Capturar.Pantalla(driver, paquetes[i], documento);
             }

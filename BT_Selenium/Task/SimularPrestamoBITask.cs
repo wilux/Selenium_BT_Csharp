@@ -1,6 +1,6 @@
-﻿using BT_Selenium.Handler;
+﻿using BT_Selenium.Actions;
 using BT_Selenium.PageObject;
-using BT_Selenium.PageObject.WebPanel;
+using BT_Selenium.UI;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -15,7 +15,7 @@ namespace BT_Selenium.Task
     /*
      * Clase que lista todas las tareas para simular un prestamo persona 
      */
-    public class SimularPrestamoTask : BasePage
+    public class SimularPrestamoTask
     {
         Frame frame = new Frame();
 
@@ -27,9 +27,9 @@ namespace BT_Selenium.Task
 
       public void BI(String documento,String monto, String plazo)
         {
-            Entrevista entrevista = new Entrevista(driver);
-            BandejaTareas bandejaTareas = new BandejaTareas();
-            SimulacionProductos simulacionProductos = new SimulacionProductos();
+            EntrevistaUI entrevista = new Entrevista(driver);
+            BandejaTareasUI bandejaTareas = new BandejaTareasUI();
+            SimulacionProductosUI simulacionProductos = new SimulacionProductosUI();
 
             
 
@@ -85,7 +85,7 @@ namespace BT_Selenium.Task
             simulacionProductos.LineaPrestamo(driver);
 
             //Pause
-            WaitHandler.Wait(driver, 5000);
+            WaitActions.Wait(driver, 5000);
 
             //Monto _BNQFPC5MTO
             simulacionProductos.MontoPrestamo(driver, monto);

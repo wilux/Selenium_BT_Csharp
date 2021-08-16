@@ -1,6 +1,6 @@
-﻿using BT_Selenium.Handler;
+﻿using BT_Selenium.Actions;
 using BT_Selenium.PageObject;
-using BT_Selenium.PageObject.WebPanel;
+using BT_Selenium.UI;
 using BT_Selenium.Task;
 using BT_Selenium.TestCase;
 using NUnit.Framework;

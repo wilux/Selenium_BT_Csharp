@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BT_Selenium.PageObject.WebPanel
+namespace BT_Selenium.UI
 {
     //Simulación - Venta de Productos
 
-    public class MatrizRiesgo : BasePage
+    public class MatrizRiesgoUI
     {
 
-        public By BTNOPCONFIRMAR = By.Id("BTNOPCONFIRMAR");
-        public By BTNOPCERRAR = By.Id("BTNOPCERRAR");
+        public static By BTNOPCONFIRMAR = By.Id("BTNOPCONFIRMAR");
+        public static By BTNOPCERRAR = By.Id("BTNOPCERRAR");
 
 
     }

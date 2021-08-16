@@ -1,6 +1,6 @@
-﻿using BT_Selenium.Handler;
+﻿using BT_Selenium.Actions;
 using BT_Selenium.PageObject;
-using BT_Selenium.PageObject.WebPanel;
+using BT_Selenium.UI;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -15,7 +15,7 @@ namespace BT_Selenium.Task
     /*
      * Clase que lista todas las tareas para simular un prestamo persona 
      */
-    public class EjecutarProgramaTask : BasePage
+    public class EjecutarProgramaTask
     {
 
         public EjecutarProgramaTask(IWebDriver Driver)

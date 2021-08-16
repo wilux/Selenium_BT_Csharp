@@ -1,6 +1,6 @@
-﻿using BT_Selenium.Handler;
+﻿using BT_Selenium.Actions;
 using BT_Selenium.PageObject;
-using BT_Selenium.PageObject.WebPanel;
+using BT_Selenium.UI;
 using BT_Selenium.Task;
 using BT_Selenium.TestCase;
 using NUnit.Framework;
@@ -27,9 +27,9 @@ namespace BT_Selenium.TestCase
         public void RF02(string documento)
         {
             Frame frame = new Frame();
-            Entrevista entrevista = new Entrevista(driver);
-            BandejaTareas bandejaTareas = new BandejaTareas();
-            SimulacionProductos simulacionProductos = new SimulacionProductos();
+            EntrevistaUI entrevista = new Entrevista(driver);
+            BandejaTareasUI bandejaTareas = new BandejaTareasUI();
+            SimulacionProductosUI simulacionProductos = new SimulacionProductosUI();
 
             //entrevista.irBandejaTareas(driver);//despues Borrar solo prueba
             //Iniciar hasta CUIL/CUIT
@@ -71,7 +71,7 @@ namespace BT_Selenium.TestCase
             string estado = DB.ObtenerValorCampo(consulta, "BNQFPA2ACD");
             string mensaje = DB.ObtenerValorCampo(consulta, "BNQFPA2MCD");
 
-            WaitHandler.Wait(driver, 3000);
+            WaitActions.Wait(driver, 3000);
             Reporte.Logger(documento + "Entrevista nro "+ nroEntrevista + " - " + " Estado: "+estado +" Mensaje: "+ mensaje);
 
 

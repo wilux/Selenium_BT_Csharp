@@ -1,33 +1,26 @@
-﻿using BT_Selenium.PageObject;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Support.PageObjects;
-using NUnit.Framework;
+﻿using OpenQA.Selenium;
 
-namespace BT_Selenium.Handler
+
+namespace BT_Selenium.Tools
 {
     public class Frame
     {
 
         //Metodo que devuelve el frame actual en el que estoy
-        public String FrameActual(IWebDriver driver)
+        //Es un algoritmo costoso. Hay que mejorarlo.
+        public static string FrameActual(IWebDriver driver)
         {
 
 
 
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
-            String currentFrame = (String)jsExecutor.ExecuteScript("return self.name");
+            string currentFrame = (string)jsExecutor.ExecuteScript("return self.name");
 
             return currentFrame;
 
         }
 
-        public bool BuscarFrame(IWebDriver driver, By locator)
+        public static bool BuscarFrame(IWebDriver driver, By locator)
         {
 
 
@@ -55,7 +48,7 @@ namespace BT_Selenium.Handler
 
 
         //Metodo que cambia al frame que contiene el elemento buscado.
-        public bool BuscarA(IWebDriver driver, By locator)
+        public static bool BuscarA(IWebDriver driver, By locator)
         {
 
             for (int i = 0; i < 6; i++)
@@ -67,7 +60,7 @@ namespace BT_Selenium.Handler
                     driver.SwitchTo().DefaultContent();
                     driver.SwitchTo().Frame(4);
                     driver.SwitchTo().Frame("step" + i);
-                     if (WaitHandler.ElementIsPresent(driver, locator))
+                     if (WaitActions.ElementIsPresent(driver, locator))
                     {
                         string frameActual = FrameActual(driver);
                         return true;
@@ -86,7 +79,7 @@ namespace BT_Selenium.Handler
 
 
 
-        public bool BuscarB(IWebDriver driver, By locator)
+        public static bool BuscarB(IWebDriver driver, By locator)
         {
 
 
@@ -100,7 +93,7 @@ namespace BT_Selenium.Handler
 
                     driver.SwitchTo().Frame("step"+i);
 
-                    if (WaitHandler.ElementIsPresent(driver, locator))
+                    if (WaitActions.ElementIsPresent(driver, locator))
                     {
                        // string frameActual = FrameActual(driver);
                         return true;
@@ -116,7 +109,7 @@ namespace BT_Selenium.Handler
         }//Fin 
 
 
-        public bool BuscarC(IWebDriver driver, By locator)
+        public static bool BuscarC(IWebDriver driver, By locator)
         {
 
 
@@ -135,7 +128,7 @@ namespace BT_Selenium.Handler
                     driver.SwitchTo().Frame("step"+i);
 
                     //if (driver.FindElement(locator).Displayed)
-                    if (WaitHandler.ElementIsPresent(driver, locator))
+                    if (WaitActions.ElementIsPresent(driver, locator))
                     {
                         string frameActual = FrameActual(driver);
                         return true;

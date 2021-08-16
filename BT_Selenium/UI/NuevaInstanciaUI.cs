@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BT_Selenium.PageObject.WebPanel
+namespace BT_Selenium.UI
 {
     /*
      * Clase que representa el webpanel hxwf901 - Iniciar Instancia de Proceso
      */
-    public class NuevaInstancia  : BasePage
+    public class NuevaInstanciaUI 
     {
         //hxwf901 - Iniciar Instancia de Proceso
-        public By Grilla_Instancia = By.Id("GRIDPROCESOSYTAREAS");
-        public By Entrevista_Identificacion = By.Id("span__DSCTAREA_0002");
-        public By BTNOPOINICIAR = By.Id("BTNOPOINICIAR");
+        public static By Grilla_Instancia = By.Id("GRIDPROCESOSYTAREAS");
+        public static By Entrevista_Identificacion = By.Id("span__DSCTAREA_0002");
+        public static By BTNOPOINICIAR = By.Id("BTNOPOINICIAR");
 
 
         public void Fila_EntrevistaIdentificacion(IWebDriver driver)

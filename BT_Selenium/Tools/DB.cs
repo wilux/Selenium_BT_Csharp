@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
-namespace BT_Selenium.Handler
+
+namespace BT_Selenium.Tools
 {
+    //Clase que realiza la conexion con la Base de Dato. 
+    //Contiene metodos para insertar y obtener datos de la misma.
     public static class DB
     {
         private static string _ConnectionString = null;
