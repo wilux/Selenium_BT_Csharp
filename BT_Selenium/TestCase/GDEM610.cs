@@ -13,7 +13,7 @@ namespace BT_Selenium.TestCase
     [TestFixture]
     public class GDEM610 : BaseTest
     {
-        [TestCase("20303879618", "C/ 20/1, S/paquete, S/deuda.")]
+        //[TestCase("20303879618", "C/ 20/1, S/paquete, S/deuda.")]
         //[TestCase("20108200090", "C/ 20/1, C/ 20/5,  C/paquete S/deuda.")]
         //[TestCase("23161636479", "C/ 20/1, Conjunta, S/paquete S/Acuerdo.")]
         //[TestCase("27363826550", "C/ 20/5, S/20/1 C/paquete Empleado C/Acuerdo.")]

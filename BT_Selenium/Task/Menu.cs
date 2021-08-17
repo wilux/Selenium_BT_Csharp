@@ -9,35 +9,35 @@ namespace BT_Selenium.Task
     {
         public static void Ejecutar(IWebDriver driver)
         {
-            Click.On(driver, HomeUI.Ejecutar);
+            Click.Simple(driver, HomeUI.Ejecutar);
 
         }
 
         public static void Inicio(IWebDriver driver)
         {
 
-            if (WaitHandler.ElementIsPresent(driver, HomeUI.Menu) == true)
+            if (WaitHandler.ElementIsPresent(driver, HomeUI.Inicio) == true)
             {
-                Click.On(driver, HomeUI.Inicio);
+                Click.Simple(driver, HomeUI.Inicio);
             }
             else
             {
                 driver.SwitchTo().Window(driver.WindowHandles[1]);
                 driver.Manage().Window.Maximize();
                 WaitHandler.Wait(5000);
-                Click.On(driver, HomeUI.Inicio);
+                Click.Simple(driver, HomeUI.Inicio);
             }
 
         }
 
         public static void WorkFlow(IWebDriver driver)
         {
-            Click.On(driver, HomeUI.WF);
+            Click.Simple(driver, HomeUI.WF);
         }
 
         public static void BandejaTareas(IWebDriver driver)
         {
-            Click.On(driver, HomeUI.BandejaTareas);
+            Click.Simple(driver, HomeUI.BandejaTareas);
         }
     }
 }

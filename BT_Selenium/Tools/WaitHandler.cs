@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Linq;
 using System.Threading;
 
 
@@ -15,19 +16,25 @@ namespace BT_Selenium.Tools
         //Reotorna true si se encuentra el elemento en un maximo de 10 segundos, sino retorna false
         public static bool ElementIsPresent(IWebDriver driver, By locator)
         {
+    
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            // wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
             try
             {
+                //  wait.Until(e => e.FindElement(locator));
+          
 
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-                wait.Until(e => e.FindElement(locator));
-                return true;
+                if (driver.FindElement(locator).Displayed)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            catch
-            {
-                //Reporte.Logger(e.Message+" para: "+locator);
-                Console.WriteLine("No se encontro el elemento: " + locator);
-                return false;
-            }
+            catch { return false; }
+
             
         }
         //Esperar un tiempo arbitrario
@@ -36,6 +43,8 @@ namespace BT_Selenium.Tools
 
             Thread.Sleep(miliseconds);
         }
+
+
     }
 
 

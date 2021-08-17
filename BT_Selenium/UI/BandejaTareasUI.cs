@@ -8,7 +8,9 @@ namespace BT_Selenium.UI
      */
     public class BandejaTareasUI  
     {
-
+        //Bandeja de Entrada
+        // if (driver.FindElement(By.CssSelector("meta[content='" + meta_content + "']")).Displayed)
+        //public static By meta_conte = By.CssSelector("Bandeja de Entrada");
         public static By Grilla_Tareas = By.Id("GRIDINBOX");
         public static By PrimerTarea = By.Id("span__IDINSTANCIA_0001");
         public static By SegundaTarea = By.Id("span__IDINSTANCIA_0002");

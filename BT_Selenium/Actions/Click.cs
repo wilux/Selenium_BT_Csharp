@@ -6,10 +6,27 @@ namespace BT_Selenium.Actions
 {
     public class Click
     {
+        public static void Simple(IWebDriver driver, By locator)
+        {
+            driver.FindElement(locator).Click();
+        }
         public static void On(IWebDriver driver, By locator)
         {
-            Frame.BuscarFrame(driver, locator);
-            driver.FindElement(locator).Click();
+            //Frame.BuscarFrame(driver, locator);
+            if
+            (Frame.BuscarFrame(driver, locator))
+            {
+                driver.FindElement(locator).Click();
+            }
+            else
+            {
+                if (driver != null)
+                {
+                    driver.Quit();
+                    //Console.WriteLine("FIN");
+                }
+            }
+
         }
 
     }

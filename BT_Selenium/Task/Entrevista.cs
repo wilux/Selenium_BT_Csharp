@@ -41,6 +41,7 @@ namespace BT_Selenium.Tasks
             //Iniciamos Nueva Tarea en Bandeja de tareas
 
             //Iniciar instancia
+            
             Click.On(driver, BandejaTareasUI.BTNOPOINICIAR);
 
             //Elegimos Instancia
@@ -97,7 +98,7 @@ namespace BT_Selenium.Tasks
 
             //Verificamos si tiene domicilio
             
-            if (Get.InputValue(driver, EntrevistaUI.CampoDomicilio) == "") // No tiene nada
+            if (Get.InputValue(driver, EntrevistaUI.InputDomicilio) == "") // No tiene nada
             {
                 Click.On(driver, EntrevistaUI.BTNOPDOMICILIOREAL);//abre pantalla para completar domuicilio
             }

@@ -31,7 +31,7 @@ namespace BT_Selenium.Task
             Menu.WorkFlow(driver);
             Menu.BandejaTareas(driver);
 
-            string asunto  = Get.Text(driver, BandejaTareasUI.PrimerAsunto);
+            string asunto  = Get.SpanText(driver, BandejaTareasUI.PrimerAsunto);
 
             while(asunto != "Venta de Productos" || asunto != "")
             {

@@ -11,6 +11,7 @@ namespace BT_Selenium.UI
 
         //Tramite
         public static By campoTramite = By.Id("span__BNQFPA2NRO");
+        public static By inputTramite = By.Id("_BNQFPA2NRO");
 
         //Datos personales
         public static By inputApellido = By.Id("_BNQFPA2APE");
@@ -25,6 +26,7 @@ namespace BT_Selenium.UI
         public static By SelectOcupacion = By.Id("_SNGC60OCUP");
         public static By BTNOPDOMICILIOREAL = By.Id("BTNOPDOMICILIOREAL");
         public static By CampoDomicilio = By.Id("span__BNQFPA2DOM");
+        public static By InputDomicilio = By.Id("_BNQFPA2DOM");
         public static By SelectTipo = By.Name("_BNQFPA2TDO");
         public static By InputDocumento = By.Id("_BNQFPA2NDO");
         public static By BTNOPVALIDAR = By.Id("BTNOPVALIDAR");
