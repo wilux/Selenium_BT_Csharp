@@ -1,4 +1,6 @@
-﻿using BT_Selenium.UI;
+﻿using BT_Selenium.Actions;
+using BT_Selenium.Tasks;
+using BT_Selenium.UI;
 using OpenQA.Selenium;
 
 
@@ -10,15 +12,8 @@ namespace BT_Selenium.Task
     public class CalificarTask
     {
         
-        public static void PJ(string circuito)
+        public static void PJ(IWebDriver driver, string circuito)
         {
-            Frame frame = new Frame();
-            EntrevistaUI entrevista = new Entrevista(driver);
-            PrincipalPage principalPage = new PrincipalPage(driver);
-            BandejaTareasUI bandejaTareas = new BandejaTareasUI();
-            NuevaInstanciaUI nuevaInstancia = new NuevaInstanciaUI();
-            SimulacionProductosUI simulacionProductos = new SimulacionProductosUI();
-            CircuitoBETask circuitoBETask = new CircuitoBETask(driver);
 
             ////Pantalla Entrevista
 
@@ -40,37 +35,34 @@ namespace BT_Selenium.Task
             //bandejaTareas.Si(driver);
 
             //Elegir Tarea, Ejecutar
-            bandejaTareas.Ejecutar(driver);
+            BandejaTareas.Ejecutar(driver);
 
-            //Pantalla Simulacion
-
-            frame.BuscarFrame(driver, simulacionProductos.SelectPaquete);
-            //Sin paquete -- 0
-            simulacionProductos.SeleccionarByIndex(driver, simulacionProductos.SelectPaquete, 0);
-            driver.FindElement(simulacionProductos.SelectPaquete).SendKeys(Keys.Return);
+            //Pantalla Simulacion          
+            Select.ByIndex(driver, SimulacionProductosUI.SelectPaquete, 0); //Sin paquete -- 0
+            PressKey.Return(driver, SimulacionProductosUI.SelectPaquete);
 
             //Chequear Calificacion
-            driver.FindElement(simulacionProductos.CheckCalificacion).Click();
+            Click.On(driver, SimulacionProductosUI.CheckCalificacion);
 
             //Elegir Circuito // fallo
-            frame.BuscarFrame(driver, simulacionProductos.SelectCircuito);
-            simulacionProductos.SeleccionarByValue(driver, simulacionProductos.SelectCircuito, circuito);
+            Select.ByValue(driver, SimulacionProductosUI.SelectCircuito, circuito);
 
             //Confirmar 
-            simulacionProductos.Confirmar(driver);
+            Click.On(driver, SimulacionProductosUI.BTNOPCONFIRMAR);
+
             //Si
-            simulacionProductos.Si(driver);
+            Click.On(driver, SimulacionProductosUI.BTN_SI);
 
             //Tomar
-            bandejaTareas.Tomar(driver);
+            BandejaTareas.Tomar(driver);
 
             // if circuito == "BE"
-            circuitoBETask.IniciarCircuito();
+            CircuitoBETask.IniciarCircuito();
 
         }
 
 
-        public void PF()
+        public static void PF()
         {
 
         }

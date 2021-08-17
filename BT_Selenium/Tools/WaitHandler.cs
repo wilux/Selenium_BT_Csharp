@@ -9,7 +9,7 @@ namespace BT_Selenium.Tools
     /*
      * Clase para manejar las esperas explicitas
      */
-    public class WaitActions
+    public class WaitHandler
     {
         //Metodo para esperar por un elemento presente en la pagina web
         //Reotorna true si se encuentra el elemento en un maximo de 10 segundos, sino retorna false
@@ -31,7 +31,7 @@ namespace BT_Selenium.Tools
             
         }
         //Esperar un tiempo arbitrario
-        public static void Wait(IWebDriver driver, int miliseconds, int maxTimeOutSeconds = 60)
+        public static void Wait(int miliseconds, int maxTimeOutSeconds = 60)
         {
 
             Thread.Sleep(miliseconds);

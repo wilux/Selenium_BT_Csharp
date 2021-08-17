@@ -8,7 +8,6 @@ namespace BT_Selenium.Tasks
     {
         public static void As(IWebDriver driver, string user, string passWord)
         {
-            Credenciales credenciales = new Credenciales();
             Enter.Text(driver, LoginUI.UserInput, user);
             Enter.Text(driver, LoginUI.PasswordInput, passWord);
             Click.On(driver, LoginUI.LoginButton);

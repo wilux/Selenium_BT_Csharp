@@ -1,9 +1,7 @@
-﻿using NUnit.Framework;
+﻿using BT_Selenium.Tasks;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
-using System;
-using BT_Selenium.Handler;
-using BT_Selenium.PageObject.WebPanel;
 
 namespace BT_Selenium.TestCase
 {
@@ -22,7 +20,7 @@ namespace BT_Selenium.TestCase
         [SetUp]
         public void BeforeBaseTest()
         {
-            var options = new InternetExplorerOptions
+            _ = new InternetExplorerOptions
             {
                 EnsureCleanSession = true,
                 RequireWindowFocus = true

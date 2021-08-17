@@ -16,7 +16,7 @@ namespace BT_Selenium.Task
         public static void Inicio(IWebDriver driver)
         {
 
-            if (WaitActions.ElementIsPresent(driver, HomeUI.Menu) == true)
+            if (WaitHandler.ElementIsPresent(driver, HomeUI.Menu) == true)
             {
                 Click.On(driver, HomeUI.Inicio);
             }
@@ -24,7 +24,7 @@ namespace BT_Selenium.Task
             {
                 driver.SwitchTo().Window(driver.WindowHandles[1]);
                 driver.Manage().Window.Maximize();
-                WaitActions.Wait(driver, 5000);
+                WaitHandler.Wait(5000);
                 Click.On(driver, HomeUI.Inicio);
             }
 

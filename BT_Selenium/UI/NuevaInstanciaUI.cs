@@ -17,16 +17,5 @@ namespace BT_Selenium.UI
         public static By Entrevista_Identificacion = By.Id("span__DSCTAREA_0002");
         public static By BTNOPOINICIAR = By.Id("BTNOPOINICIAR");
 
-
-        public void Fila_EntrevistaIdentificacion(IWebDriver driver)
-        {
-            driver.FindElement(Entrevista_Identificacion).Click();
-        }
-
-        public void BTNOPOINICIAR_Click(IWebDriver driver)
-        {
-            driver.FindElement(BTNOPOINICIAR).Click();
-        }
-
     }
 }

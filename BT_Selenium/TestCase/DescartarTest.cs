@@ -1,12 +1,5 @@
-﻿using BT_Selenium.PageObject;
-using BT_Selenium.Task;
+﻿using BT_Selenium.Task;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BT_Selenium.TestCase
 {
@@ -18,10 +11,9 @@ namespace BT_Selenium.TestCase
        // [Test]
         public void Descartar()
         {
-            DescartarTareaTask descartarTareaTask = new DescartarTareaTask(driver);
             try
             {
-                descartarTareaTask.Descartar();
+                DescartarTarea.DescartarTareas(driver);
             }
             catch { }
         }

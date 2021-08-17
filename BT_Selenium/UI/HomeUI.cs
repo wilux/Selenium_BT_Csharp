@@ -26,6 +26,8 @@ namespace BT_Selenium.UI
         //Inicio -> WorkFlow -> BANDEJA DE TAREAS
         public static By BandejaTareas = By.XPath("//a[.='BANDEJA DE TAREAS']");
 
-
+        public static By _PROGRAMA = By.Id("_PROGRAMA");
+        public static By BTNOPCONFIRMAR = By.Id("BTNOPCONFIRMAR");
+        
     }
 }

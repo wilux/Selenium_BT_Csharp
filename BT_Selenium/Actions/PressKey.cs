@@ -10,5 +10,11 @@ namespace BT_Selenium.Actions
             Frame.BuscarFrame(driver, locator);
             driver.FindElement(locator).SendKeys(Keys.Return);
         }
+
+        public static void ArrowDown(IWebDriver driver, By locator)
+        {
+            Frame.BuscarFrame(driver, locator);
+            driver.FindElement(locator).SendKeys(Keys.ArrowDown);
+        }
     }
 }

@@ -11,11 +11,8 @@ namespace BT_Selenium.UI
 {
     //Simulación - Venta de Productos
 
-
     public class SimulacionProductosUI
-    {
-        Frame frame = new Frame();
-
+    { 
         //MsgText
         public static By MsgText = By.ClassName("MsgText");
         public static By SelectPaquete = By.Name("_JBNYC5PQTE");
@@ -38,70 +35,6 @@ namespace BT_Selenium.UI
         public static By BTNOPADHESION_SERVICIOS = By.Name("BTNOPADHESION_SERVICIOS");
         public static By BTNOPCERRAR = By.Id("BTNOPCERRAR");
 
-        public void Confirmar(IWebDriver driver)
-        {
-            frame.BuscarFrame(driver, BTNOPCONFIRMAR);
-            driver.FindElement(BTNOPCONFIRMAR).Click();
-        }
-
-        public void Si(IWebDriver driver)
-        {
-            frame.BuscarFrame(driver, BTN_SI);
-            driver.FindElement(BTN_SI).Click();
-
-        }
-
-        public void SeleccionarByText(IWebDriver driver, By select, string text)
-        {
-            webElement = driver.FindElement(select);
-            selectElement = new SelectElement(webElement);
-            selectElement.SelectByText(text);
-        }
-
-        public void SeleccionarByValue(IWebDriver driver, By select, string value)
-        {
-            webElement = driver.FindElement(select);
-            selectElement = new SelectElement(webElement);
-            selectElement.SelectByValue(value);
-        }
-
-        public void SeleccionarByIndex(IWebDriver driver, By select, int index)
-        {
-            webElement = driver.FindElement(select);
-            selectElement = new SelectElement(webElement);
-            selectElement.SelectByIndex(index);
-        }
-
-        public void LineaPrestamo(IWebDriver driver)
-        {
-            IWebElement Linea = driver.FindElement(SelectLineaPrestamo);
-            SelectElement SelectLinea = new SelectElement(Linea);
-            SelectLinea.SelectByIndex(1);//Elijo la primera disponible.
-            Linea.SendKeys(Keys.Return);
-        }
-
-        public void MontoPrestamo(IWebDriver driver, string monto)
-        {
-            frame.BuscarFrame(driver, InputMonto);
-            driver.FindElement(InputMonto).Clear();
-            driver.FindElement(InputMonto).Click();
-            driver.FindElement(InputMonto).SendKeys(monto);
-        }
-
-        public void PlazoPrestamo(IWebDriver driver, string plazo)
-        {
-            driver.FindElement(InputPlazo).Clear();
-            driver.FindElement(InputPlazo).SendKeys(plazo);
-        }
-
-        public void DesinoFondos(IWebDriver driver)
-        {
-            EntrevistaUI entrevista = new Entrevista(driver);
-            driver.FindElement(SelectDestinoFondos).Click();
-            entrevista.SeleccionarByText(driver, SelectDestinoFondos, "Otros");
-        }
     }
-
-
 
 }

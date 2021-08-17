@@ -14,21 +14,21 @@ namespace BT_Selenium.Tasks
             Click.On(driver, EntrevistaUI.BTNOPCONFIRMAR);
         }
 
-        public void Cerrar(IWebDriver driver)
+        public static void Cerrar(IWebDriver driver)
         {
             Click.On(driver, EntrevistaUI.BTNOPCERRAR);
         }
 
 
 
-        public void irBandejaTareas(IWebDriver driver)
+        public static void IraBandejaTareas(IWebDriver driver)
         {
             Menu.Inicio(driver);
             Menu.WorkFlow(driver);
             Menu.BandejaTareas(driver);
         }
 
-        public void Iniciar(IWebDriver driver)
+        public static void Iniciar(IWebDriver driver)
         {
 
 
@@ -49,7 +49,7 @@ namespace BT_Selenium.Tasks
         }
 
 
-        public void Completar_DatosPersonales(IWebDriver driver, string nombre = "John", string apellido = "Doe", 
+        public static void Completar_DatosPersonales(IWebDriver driver, string nombre = "John", string apellido = "Doe", 
             string fecha = "01/01/1981", string capacidadLegal ="1", string sexo="M", string nacionalidad="80",
             string provincia="15", string localidad = "326", string ciudadania = "80" )
         {
@@ -73,12 +73,12 @@ namespace BT_Selenium.Tasks
             Select.ByValue(driver, EntrevistaUI.SelectPaisCiudadania, ciudadania);//80 argentina
         }
 
-        public void Completar_Ocupacion(IWebDriver driver, string ocupacion = "1")
+        public static void Completar_Ocupacion(IWebDriver driver, string ocupacion = "1")
         {
             Select.ByValue(driver, EntrevistaUI.SelectOcupacion, ocupacion);//1 empleado x defecto
         }
 
-        public void Completar_Domicilio(IWebDriver driver)
+        public static void Completar_Domicilio(IWebDriver driver)
         {
             //Ver de agregar tiempos entre cada operacion
             Select.ByValue(driver, DetalleDireccionUI.SelectCalle, "1");
@@ -90,7 +90,7 @@ namespace BT_Selenium.Tasks
             Click.On(driver, DetalleDireccionUI.BTNOPBTNCONFIRMAR);
         }
 
-        public void Completar_DatosContacto(IWebDriver driver, string telefono = "Celular", 
+        public static void Completar_DatosContacto(IWebDriver driver, string telefono = "Celular", 
             string cArea ="299", string numero="4721234", string telefono2 = "Seleccionar",
             string cArea2 = "Seleccionar", string numero2 = "")
         {
@@ -129,7 +129,7 @@ namespace BT_Selenium.Tasks
                 PressKey.Return(driver, EntrevistaUI.InputTelefono);
         }
 
-        public void IngresosPF(IWebDriver driver, string sector= "Publico", string ingresos = "10000")
+        public static void IngresosPF(IWebDriver driver, string sector= "Publico", string ingresos = "10000")
         {
             //Sector Empleador
             Select.ByText(driver, EntrevistaUI.SelectSectorEmpleador, sector);
@@ -140,13 +140,13 @@ namespace BT_Selenium.Tasks
             PressKey.Return(driver, EntrevistaUI.InputIngresosDepedencia);
         }
 
-        public void SeleccionarCuentaCredito(IWebDriver driver)
+        public static void SeleccionarCuentaCredito(IWebDriver driver)
         {
             Grid.SeleccionarFila(driver, EntrevistaUI.GridCtaDebito, EntrevistaUI.td);
             Click.On(driver, EntrevistaUI.BTNOPELEGIRCTA);
         }
 
-        public void IngresarDocumento(IWebDriver driver, string documento)
+        public static void IngresarDocumento(IWebDriver driver, string documento)
         {
 
             if (documento.Substring(0, 1) == "3")

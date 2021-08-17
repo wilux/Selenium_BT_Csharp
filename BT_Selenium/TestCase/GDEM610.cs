@@ -5,6 +5,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
 using BT_Selenium.Tools;
+using BT_Selenium.Tasks;
 
 namespace BT_Selenium.TestCase
 {
@@ -21,50 +22,46 @@ namespace BT_Selenium.TestCase
         
         public void RF04(string documento, string comentario)
         {
-            Frame frame = new Frame();
-            EntrevistaUI entrevista = new EntrevistaUI();
-            BandejaTareasUI bandejaTareas = new BandejaTareasUI();
-            SimulacionProductosUI simulacionProductos = new SimulacionProductosUI();
 
             //entrevista.irBandejaTareas(driver);//despues Borrar solo prueba
             //Iniciar hasta CUIL/CUIT
 
            
-            entrevista.Iniciar(driver);
+            Entrevista.Iniciar(driver);
 
             ////Seleccionamos tipo CUIT/CUIL e ingresamos documento
-            entrevista.IngresarDocumento(driver, documento);
+            Entrevista.IngresarDocumento(driver, documento);
 
 
             ////Pantalla Entrevista
 
             ////Completamos Datos Contacto
-            entrevista.Completar_DatosContacto(driver);
+            Entrevista.Completar_DatosContacto(driver);
 
             ////Seleccionar Cuenta (Falta logica para ver cual elegir) elijo por defecto la primera
-            entrevista.SeleccionarCuentaCredito(driver);
+            Entrevista.SeleccionarCuentaCredito(driver);
 
 
 
             ////Ingresos y Sector Empleador
-            entrevista.IngresosPF(driver);
+            Entrevista.IngresosPF(driver);
 
 
             ////Confirmar Entrevista
             Click.On(driver, EntrevistaUI.BTNOPCONFIRMAR);
 
             ////Cerrar para continuar siguiente pantalla
-            entrevista.Cerrar(driver);
+            Entrevista.Cerrar(driver);
 
             ////Volvemos a hxwf900 - Bandeja de Entrada de Tareas
-            bandejaTareas.Siguiente(driver);
+            BandejaTareas.Siguiente(driver);
 
             ////Confirmar SI
-            bandejaTareas.Si(driver);
+            BandejaTareas.Si(driver);
 
             //Seleccionar
             //Ejecutar
-            bandejaTareas.Ejecutar(driver);
+            BandejaTareas.Ejecutar(driver);
 
             //Simular
 
@@ -74,10 +71,11 @@ namespace BT_Selenium.TestCase
 
             //WebPanel hBNQFPB3 - Simulación - Venta de Productos
             //Elegimos iframe
-            frame.BuscarFrame(driver, simulacionProductos.SelectPaquete);
+            // frame.BuscarFrame(driver, simulacionProductos.SelectPaquete);
 
             // select the drop down list
-            var element = driver.FindElement(simulacionProductos.SelectPaquete);
+            
+            var element = driver.FindElement(SimulacionProductosUI.SelectPaquete);
             //create select element object 
             var selectElement = new SelectElement(element);
             var index = 0;
@@ -107,15 +105,14 @@ namespace BT_Selenium.TestCase
 
             for (int i = 0; i < paquetes.Count; i++)
             {
-                
-                frame.BuscarFrame(driver, simulacionProductos.SelectPaquete);
-                simulacionProductos.SeleccionarByIndex(driver, simulacionProductos.SelectPaquete, i);
-                driver.FindElement(simulacionProductos.SelectPaquete).SendKeys(Keys.ArrowDown);
-                WaitActions.Wait(driver, 6000);
+
+                //frame.BuscarFrame(driver, simulacionProductos.SelectPaquete);
+                Select.ByIndex(driver, SimulacionProductosUI.SelectPaquete, i);
+                PressKey.ArrowDown(driver, SimulacionProductosUI.SelectPaquete);
+                WaitHandler.Wait(6000);
                 Reporte.Logger(documento + " - " + comentario + " - " + paquetes[i]);
                 Capturar.Pantalla(driver, paquetes[i], documento);
             }
-
 
         }
 

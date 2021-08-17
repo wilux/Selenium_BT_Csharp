@@ -60,7 +60,7 @@ namespace BT_Selenium.Tools
                     driver.SwitchTo().DefaultContent();
                     driver.SwitchTo().Frame(4);
                     driver.SwitchTo().Frame("step" + i);
-                     if (WaitActions.ElementIsPresent(driver, locator))
+                     if (WaitHandler.ElementIsPresent(driver, locator))
                     {
                         string frameActual = FrameActual(driver);
                         return true;
@@ -93,7 +93,7 @@ namespace BT_Selenium.Tools
 
                     driver.SwitchTo().Frame("step"+i);
 
-                    if (WaitActions.ElementIsPresent(driver, locator))
+                    if (WaitHandler.ElementIsPresent(driver, locator))
                     {
                        // string frameActual = FrameActual(driver);
                         return true;
@@ -128,7 +128,7 @@ namespace BT_Selenium.Tools
                     driver.SwitchTo().Frame("step"+i);
 
                     //if (driver.FindElement(locator).Displayed)
-                    if (WaitActions.ElementIsPresent(driver, locator))
+                    if (WaitHandler.ElementIsPresent(driver, locator))
                     {
                         string frameActual = FrameActual(driver);
                         return true;

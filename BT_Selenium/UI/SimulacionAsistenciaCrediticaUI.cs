@@ -12,9 +12,6 @@ namespace BT_Selenium.UI
 
     public class SimulacionAsistenciaCrediticaUI
     {
-        
-
-
         public static By InputVtasAnuales = By.Id("_VTASANUALES"); //10000
         public static By InputPatrimonioNeto = By.Id("_BNQFB11PNT");//10000
         public static By InputResultadoEjerc = By.Id("_BNQFB11REJ");//10000
@@ -25,10 +22,6 @@ namespace BT_Selenium.UI
         public static By BTNOPCERRAR = By.Id("BTNOPCERRAR");
         public static By BTN_SI = By.Id("BTNCONFIRMATION");
         public static By BTN_NO = By.Id("BTNCANCELCONFIRMATION");
-
-        
-
-
     }
 
 

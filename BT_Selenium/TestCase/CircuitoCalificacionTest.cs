@@ -1,17 +1,7 @@
-﻿using BT_Selenium.PageObject;
-using BT_Selenium.Task;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using BT_Selenium.Task;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BT_Selenium.Actions;
-using System.Data.SqlClient;
-using System.Data;
 using BT_Selenium.UI;
-using System.Threading;
+using BT_Selenium.Tasks;
 
 namespace BT_Selenium.TestCase
 {
@@ -23,16 +13,14 @@ namespace BT_Selenium.TestCase
        // [TestCase("BE")]
         public void Calificar(string circuito)
         {
-            EntrevistaUI entrevista = new Entrevista(driver);
-            CalificarTask calificarTask = new CalificarTask(driver);
 
             //Obtengo de DB
             //String cuit = DB.ObtenerCuit();
             //
-            String documento = "30657249765";
+            string documento = "30657249765";
 
             //Iniciar hasta CUIL/CUIT
-            entrevista.Iniciar(driver);
+            Entrevista.Iniciar(driver);
 
             //Quitar // Solo para no hacer todo desde cero
             //Menu ir a...Inicio>WF>BandejaTarea
@@ -40,7 +28,7 @@ namespace BT_Selenium.TestCase
             //Quitar
 
             //Seleccionamos tipo CUIT/CUIL e ingresamos documento
-            entrevista.IngresarDocumento(driver, documento);
+            Entrevista.IngresarDocumento(driver, documento);
 
 
 
@@ -60,7 +48,7 @@ namespace BT_Selenium.TestCase
             //}
 
             //Cuando es BE
-            calificarTask.PJ(circuito);
+            CalificarTask.PJ(driver, circuito);
 
         }
 

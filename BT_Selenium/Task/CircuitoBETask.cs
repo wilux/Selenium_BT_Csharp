@@ -1,23 +1,11 @@
-﻿using BT_Selenium.PageObject;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace BT_Selenium.Task
 {
     public class CircuitoBETask
     {
 
-        public CircuitoBETask(IWebDriver Driver)
-        {
-            driver = Driver;
-        }
 
-
-        public void IniciarCircuito()
+        public static void IniciarCircuito()
         {
 
             //Marcar NO NO

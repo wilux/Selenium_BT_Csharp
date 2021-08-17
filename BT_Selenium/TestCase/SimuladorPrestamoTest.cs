@@ -1,16 +1,6 @@
-﻿using BT_Selenium.Actions;
-using BT_Selenium.PageObject;
-using BT_Selenium.UI;
-using BT_Selenium.Task;
-using BT_Selenium.TestCase;
+﻿using BT_Selenium.Task;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BT_Selenium.TestCase
 {
@@ -27,11 +17,9 @@ namespace BT_Selenium.TestCase
         //[TestCase("40303879618", "50,000.00", "36")]// Con falla (cuil invalido)
         public void Simulador(String documento, String monto, String plazo)
         {
-            //Instancias
-            SimularPrestamoTask simularPrestamoTask = new SimularPrestamoTask(driver);
 
             //Tareas
-            simularPrestamoTask.BI(documento, monto, plazo);
+            SimularPrestamoTask.BI(driver, documento, monto, plazo);
 
 
         }

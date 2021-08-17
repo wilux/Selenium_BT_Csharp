@@ -8,42 +8,42 @@ namespace BT_Selenium.Tasks
 {
     public class BandejaTareas
     {
-        public void BTNOPOINICIAR_Click(IWebDriver driver)
+        public static void BTNOPOINICIAR_Click(IWebDriver driver)
         {
             Click.On(driver, BandejaTareasUI.BTNOPOINICIAR);
         }
 
-        public void Seleccionar(IWebDriver driver)
+        public static void Seleccionar(IWebDriver driver)
         {
             Grid.SeleccionarFila(driver, BandejaTareasUI.Grilla_Tareas, BandejaTareasUI.PrimerTarea);
             Click.On(driver, BandejaTareasUI.PrimerTarea);
         }
 
-        public void Siguiente(IWebDriver driver)
+        public static void Siguiente(IWebDriver driver)
         {
             Seleccionar(driver);
-            WaitActions.Wait(driver, 2000);
+            WaitHandler.Wait(2000);
             Click.On(driver, BandejaTareasUI.BTNOPOSIGUIENTE);
         }
 
-        public void Si(IWebDriver driver)
+        public static void Si(IWebDriver driver)
         {
             Frame.BuscarFrame(driver, BandejaTareasUI.BTNCONFIRMATION);
             Click.On(driver, BandejaTareasUI.BTNCONFIRMATION);
         }
 
-        public void Ejecutar(IWebDriver driver)
+        public static void Ejecutar(IWebDriver driver)
         {
             Seleccionar(driver);
-            WaitActions.Wait(driver, 2000);
-            driver.FindElement(BTNOPOEJECUTAR).Click();
+            WaitHandler.Wait(2000);
+            Click.On(driver, BandejaTareasUI.BTNOPOEJECUTAR);
         }
 
-        public void Tomar(IWebDriver driver)
+        public static void Tomar(IWebDriver driver)
         {
             Seleccionar(driver);
-            WaitActions.Wait(driver, 2000);
-            driver.FindElement(BTNOPOTOMAR).Click();
+            WaitHandler.Wait(2000);
+            Click.On(driver, BandejaTareasUI.BTNOPOTOMAR);
         }
 
     }
