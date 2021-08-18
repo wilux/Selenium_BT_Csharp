@@ -8,13 +8,13 @@ namespace BT_Selenium.Actions
     {
         public static void Simple(IWebDriver driver, By locator)
         {
+            WaitHandler.ElementIsPresent(driver, locator);
             driver.FindElement(locator).Click();
         }
         public static void On(IWebDriver driver, By locator)
         {
             //Frame.BuscarFrame(driver, locator);
-            if
-            (Frame.BuscarFrame(driver, locator))
+            if(Frame.BuscarFrame(driver, locator))
             {
                 driver.FindElement(locator).Click();
             }

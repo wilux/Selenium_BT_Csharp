@@ -7,7 +7,7 @@ namespace BT_Selenium.Actions
     {
         public static void Text(IWebDriver driver, By locator, string text)
         {
-            //Frame.BuscarFrame(driver, locator);
+           // Frame.BuscarFrame(driver, locator);
             driver.FindElement(locator).SendKeys(text);
         }
     }

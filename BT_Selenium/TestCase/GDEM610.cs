@@ -22,11 +22,12 @@ namespace BT_Selenium.TestCase
         
         public void RF04(string documento, string comentario)
         {
+            string gdem = "GDEM610-RF04";
 
             //entrevista.irBandejaTareas(driver);//despues Borrar solo prueba
             //Iniciar hasta CUIL/CUIT
 
-           
+
             Entrevista.Iniciar(driver);
 
             ////Seleccionamos tipo CUIT/CUIL e ingresamos documento
@@ -110,7 +111,7 @@ namespace BT_Selenium.TestCase
                 Select.ByIndex(driver, SimulacionProductosUI.SelectPaquete, i);
                 PressKey.ArrowDown(driver, SimulacionProductosUI.SelectPaquete);
                 WaitHandler.Wait(6000);
-                Reporte.Logger(documento + " - " + comentario + " - " + paquetes[i]);
+                Reporte.Logger(gdem+" - "+documento + " - " + comentario + " - " + paquetes[i]);
                 Capturar.Pantalla(driver, paquetes[i], documento);
             }
 

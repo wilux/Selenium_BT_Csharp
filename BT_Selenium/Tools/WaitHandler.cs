@@ -22,9 +22,11 @@ namespace BT_Selenium.Tools
             try
             {
                 //  wait.Until(e => e.FindElement(locator));
-          
 
-                if (driver.FindElement(locator).Displayed)
+                var elements = driver.FindElements(locator);
+              
+
+                if (elements.Count >= 1)
                 {
                     return true;
                 }
@@ -42,6 +44,20 @@ namespace BT_Selenium.Tools
         {
 
             Thread.Sleep(miliseconds);
+        }
+
+        //Elemento esta visible
+        public static bool IsVisible(IWebDriver driver, By locator)
+        {
+            Frame.BuscarFrame(driver, locator);
+            return driver.FindElement(locator).Displayed;
+        }
+
+        //Elemento esta habilitado
+        public static bool IsEnable(IWebDriver driver, By locator)
+        {
+            Frame.BuscarFrame(driver, locator);
+            return driver.FindElement(locator).Enabled;
         }
 
 

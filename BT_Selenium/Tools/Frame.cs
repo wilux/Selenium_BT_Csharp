@@ -20,10 +20,11 @@ namespace BT_Selenium.Tools
 
         public static int CantidadFrames(IWebDriver driver)
         {
-
+     
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
             object frames = jsExecutor.ExecuteScript("return window.length");
             int cantidad = Convert.ToInt32(frames);
+
             if (cantidad == 0)
             {
                 driver.SwitchTo().DefaultContent();

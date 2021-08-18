@@ -15,10 +15,9 @@ namespace BT_Selenium.Task
         public static void Descartar(IWebDriver driver)
         {
 
-            WaitHandler.ElementIsPresent(driver, BandejaTareasUI.BTNOPDESCARTAR);
-            Click.On(driver, BandejaTareasUI.BTNOPDESCARTAR);
 
-            WaitHandler.ElementIsPresent(driver, BandejaTareasUI.BTNCONFIRMATION);
+            Click.On(driver, BandejaTareasUI.BTNOPDESCARTAR);
+            WaitHandler.Wait(2000);
             Click.On(driver, BandejaTareasUI.BTNCONFIRMATION);
 
         }

@@ -87,11 +87,16 @@
     <Compile Include="Actions\Select.cs" />
     <Compile Include="Actions\Click.cs" />
     <Compile Include="Actions\Enter.cs" />
+    <Compile Include="Task\IdentificacionClienteValidacion.cs" />
+    <Compile Include="Task\IrHasta.cs" />
     <Compile Include="Task\SimulacionProductos.cs" />
     <Compile Include="Task\BandejaTareas.cs" />
     <Compile Include="Task\Entrevista.cs" />
     <Compile Include="Task\Login.cs" />
     <Compile Include="Task\Menu.cs" />
+    <Compile Include="TestCase\Calificar.cs" />
+    <Compile Include="TestCase\Template.cs" />
+    <Compile Include="Tools\Kill.cs" />
     <Compile Include="Tools\DB.cs" />
     <Compile Include="Tools\FrameSanty.cs" />
     <Compile Include="Tools\Frame.cs" />
@@ -116,18 +121,18 @@
     <Compile Include="UI\BandejaTareasUI.cs" />
     <Compile Include="UI\NuevaInstanciaUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Task\CircuitoBETask.cs" />
+    <Compile Include="Task\Otras\CircuitoBETask.cs" />
     <Compile Include="Task\EjecutarPrograma.cs" />
-    <Compile Include="Task\SimularPrestamoBITask.cs" />
-    <Compile Include="Task\CalificarTask.cs" />
+    <Compile Include="Task\Otras\SimularPrestamoBITask.cs" />
+    <Compile Include="Task\Otras\CalificarTask.cs" />
     <Compile Include="Task\DescartarTarea.cs" />
     <Compile Include="TestCase\BaseTest.cs" />
-    <Compile Include="TestCase\CircuitoCalificacionTest.cs" />
-    <Compile Include="TestCase\DbTest.cs" />
-    <Compile Include="TestCase\DescartarTest.cs" />
+    <Compile Include="TestCase\Otras\CircuitoCalificacionTest.cs" />
+    <Compile Include="TestCase\Otras\DbTest.cs" />
+    <Compile Include="TestCase\Otras\DescartarTest.cs" />
     <Compile Include="TestCase\GDEM956.cs" />
     <Compile Include="TestCase\GDEM610.cs" />
-    <Compile Include="TestCase\SimuladorPrestamoTest.cs" />
+    <Compile Include="TestCase\Otras\SimuladorPrestamoTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

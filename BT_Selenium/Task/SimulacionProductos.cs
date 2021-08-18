@@ -35,5 +35,20 @@ namespace BT_Selenium.Tasks
             Select.ByText(driver, SimulacionProductosUI.SelectDestinoFondos, destino);
         }
 
+        public static void CheckCalificacion(IWebDriver driver, string calificacion="BE")
+        {
+            Click.On(driver, SimulacionProductosUI.CheckCalificacion);
+            WaitHandler.Wait(5000);
+            Select.ByValue(driver, SimulacionProductosUI.SelectDestinoFondos, calificacion);
+
+        }
+        public static void Confirmar(IWebDriver driver)
+        {
+            Click.On(driver, SimulacionProductosUI.BTNOPCONFIRMAR);
+            WaitHandler.Wait(3000);
+            Click.On(driver, SimulacionProductosUI.BTN_SI);
+
+        }
+
     }
 }

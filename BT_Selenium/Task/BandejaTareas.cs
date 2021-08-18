@@ -24,6 +24,7 @@ namespace BT_Selenium.Tasks
             Seleccionar(driver);
             WaitHandler.Wait(2000);
             Click.On(driver, BandejaTareasUI.BTNOPOSIGUIENTE);
+            Si(driver);
         }
 
         public static void Si(IWebDriver driver)

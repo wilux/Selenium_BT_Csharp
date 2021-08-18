@@ -21,6 +21,10 @@ namespace BT_Selenium.UI
         public static By BTNOPDESCARTAR = By.Id("BTNOPDESCARTAR");
         public static By BTNOPOINICIAR = By.Id("BTNOPOINICIAR");
         public static By BTNOPOTOMAR = By.Id("BTNOPOTOMAR");
+        public static By InputBuscarAsunto = By.Id("_BASU");
+       //<INPUT id = _ZG1_IMGESTADOIMAGE_0001 type=hidden value =.\images\icono_mail_inprocess.gif name = _ZG1_IMGESTADOIMAGE_0001 > --> sobre con sol .. para ejecutar
+       //<INPUT id= _ZG1_IMGESTADOIMAGE_0001 type= hidden value=.\images\icono_mail_assigned.gif name = _ZG1_IMGESTADOIMAGE_0001 > --->sobre asignado solo ejecutar
+       //<INPUT id=_ZG1_IMGESTADOIMAGE_0001 type=hidden value=.\images\icono_mail_ready.gif name=_ZG1_IMGESTADOIMAGE_0001>   --> sobre cerrado para tomar
 
     }
 }

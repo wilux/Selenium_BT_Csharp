@@ -25,11 +25,18 @@ namespace BT_Selenium.UI
         public static By InputVtasAnterior1 = By.Id("_BNQFB11VA1");// 100.000  //2020
         public static By InputVtasAnterior2 = By.Id("_BNQFB11VA2");// 100.000  //2019
 
+        //Solicitud Asistencia
+        public static By SelectModulo = By.Id("_MODLINESP_P");// 303
+        public static By SelectLinea = By.Id("TIPOPLINESP");// 20
+        public static By InputMonto = By.Id("_BNQFB15MTO");// 100000
+        public static By BTNOPAGREGAR = By.Id("BTNOPAGREGAR");
+        
         //Botonera inferior
         public static By BTN_CalcularAsistencia = By.Id("BTNOPCALCULOASISTENCIA");
         public static By BTN_PerfilRiesgo = By.Id("BTNOPPERFILDERIESGO");
         public static By BTNOPCONFIRMAR = By.Id("BTNOPCONFIRMAR");
         public static By BTNOPCERRAR = By.Id("BTNOPCERRAR");
+
 
 
         //Botones Si/NO

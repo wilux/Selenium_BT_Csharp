@@ -45,6 +45,23 @@ namespace BT_Selenium.UI
         public static By BTN_NO = By.Id("BTNCANCELCONFIRMATION");
         public static By BTNOPCERRAR = By.Id("BTNOPCERRAR");
 
+        //Datos del Negocio 
+        public static By InputFechaNegocio = By.Name("_SNGC60FINI");
+        public static By InputNombreEmpresa = By.Name("_SNGC60RZSO");
+        public static By SelectSegmento = By.Name("_PJSEGMENTO");
+
+
+        // Datos de la Empresa PJ
+        public static By InputRazonSocial = By.Name("_PJRAZS");
+        public static By InputNombreFantasial = By.Name("_SNGC11AUX");
+        public static By SelectNaturalezaJuridica = By.Name("_NJCOD");
+        public static By InputFechaConstitucion = By.Name("_PJFCON");
+        public static By InputNroRegistro = By.Name("_SNGC70VAL");
+
+        //Modelo de Riesgo
+        public static By TexareaObsvaciones = By.Name("_BNQFPA2OBS");
+        
+
         //MsgText
         public static By MsgText = By.ClassName("MsgText");
 
@@ -54,7 +71,10 @@ namespace BT_Selenium.UI
         public static By CampoAcreditaBPN = By.Name("span__ACREDITAENBPN_0001");
         //input hidden _ACREDITAENBPN_0001 SI o NO 
         //span__ACREDITAENBPN_0001
+        //_BNQFPA4EST_0001
 
+        //_BNQFPA2CTA
+        public static By SelectCuentaBT = By.Name("_BNQFPA2CTA");
         public static By SelectSectorEmpleador = By.Name("_BNQFPA2ORD");
         public static By InputIngresosDepedencia = By.Name("_BNQFPA2IRD");
 
