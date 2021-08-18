@@ -1,10 +1,11 @@
-﻿using NUnit.Framework;
-using BT_Selenium.PageObject;
+﻿using BT_Selenium.Tasks;
+using BT_Selenium.Tools;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 using System;
-using BT_Selenium.Handler;
-using BT_Selenium.PageObject.WebPanel;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace BT_Selenium.TestCase
 {
@@ -23,14 +24,19 @@ namespace BT_Selenium.TestCase
         [SetUp]
         public void BeforeBaseTest()
         {
-            var options = new InternetExplorerOptions();
-            options.EnsureCleanSession = true;
-            options.RequireWindowFocus = true;
+            //Mata procesos de IE y Driver antes de empezar.
+            Kill.IE();
+
+            //_ = new InternetExplorerOptions
+            //{
+            //    EnsureCleanSession = true,
+            //    RequireWindowFocus = true
+            //};
             driver = new InternetExplorerDriver("C:\\webdriver\\");
             driver.Navigate().GoToUrl(QaURL);
             driver.Manage().Window.Maximize();
-            LoginPage loginPage = new LoginPage(driver);
-            loginPage.Ingresar();
+            Login.In(driver);
+
 
         }
         [TearDown]
@@ -38,9 +44,6 @@ namespace BT_Selenium.TestCase
         {
             if (driver != null)
             {
-
-                //Capturar.Pantalla(driver, "Fin", "000000000");
-                //driver.Close();
                 driver.Quit();
                 //Console.WriteLine("FIN");
             }

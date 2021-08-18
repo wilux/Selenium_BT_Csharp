@@ -1,16 +1,11 @@
-﻿using BT_Selenium.Handler;
-using BT_Selenium.PageObject;
-using BT_Selenium.PageObject.WebPanel;
-using BT_Selenium.Task;
-using BT_Selenium.TestCase;
+﻿using BT_Selenium.Actions;
+using BT_Selenium.UI;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BT_Selenium.Tools;
+using BT_Selenium.Tasks;
 
 namespace BT_Selenium.TestCase
 {
@@ -27,51 +22,47 @@ namespace BT_Selenium.TestCase
         
         public void RF04(string documento, string comentario)
         {
-            Frame frame = new Frame();
-            Entrevista entrevista = new Entrevista(driver);
-            BandejaTareas bandejaTareas = new BandejaTareas();
-            SimulacionProductos simulacionProductos = new SimulacionProductos();
+            string gdem = "GDEM610-RF04";
 
             //entrevista.irBandejaTareas(driver);//despues Borrar solo prueba
             //Iniciar hasta CUIL/CUIT
 
-           
-            entrevista.Iniciar(driver);
+
+            Entrevista.Iniciar(driver);
 
             ////Seleccionamos tipo CUIT/CUIL e ingresamos documento
-            entrevista.IngresarDocumento(driver, documento);
+            Entrevista.IngresarDocumento(driver, documento);
 
 
             ////Pantalla Entrevista
 
             ////Completamos Datos Contacto
-            entrevista.Completar_DatosContacto(driver);
+            Entrevista.Completar_DatosContacto(driver);
 
             ////Seleccionar Cuenta (Falta logica para ver cual elegir) elijo por defecto la primera
-            entrevista.SeleccionarCuentaCredito(driver);
+            Entrevista.SeleccionarCuentaCredito(driver);
 
 
 
             ////Ingresos y Sector Empleador
-            entrevista.IngresosPF(driver);
+            Entrevista.IngresosPF(driver);
 
 
             ////Confirmar Entrevista
-            driver.FindElement(entrevista.BTNOPCONFIRMAR).Click();
-
+            Click.On(driver, EntrevistaUI.BTNOPCONFIRMAR);
 
             ////Cerrar para continuar siguiente pantalla
-            entrevista.Cerrar(driver);
+            Entrevista.Cerrar(driver);
 
             ////Volvemos a hxwf900 - Bandeja de Entrada de Tareas
-            bandejaTareas.Siguiente(driver);
+            BandejaTareas.Siguiente(driver);
 
             ////Confirmar SI
-            bandejaTareas.Si(driver);
+            BandejaTareas.Si(driver);
 
             //Seleccionar
             //Ejecutar
-            bandejaTareas.Ejecutar(driver);
+            BandejaTareas.Ejecutar(driver);
 
             //Simular
 
@@ -81,10 +72,11 @@ namespace BT_Selenium.TestCase
 
             //WebPanel hBNQFPB3 - Simulación - Venta de Productos
             //Elegimos iframe
-            frame.BuscarFrame(driver, simulacionProductos.SelectPaquete);
+            // frame.BuscarFrame(driver, simulacionProductos.SelectPaquete);
 
             // select the drop down list
-            var element = driver.FindElement(simulacionProductos.SelectPaquete);
+            
+            var element = driver.FindElement(SimulacionProductosUI.SelectPaquete);
             //create select element object 
             var selectElement = new SelectElement(element);
             var index = 0;
@@ -114,15 +106,14 @@ namespace BT_Selenium.TestCase
 
             for (int i = 0; i < paquetes.Count; i++)
             {
-                
-                frame.BuscarFrame(driver, simulacionProductos.SelectPaquete);
-                simulacionProductos.SeleccionarByIndex(driver, simulacionProductos.SelectPaquete, i);
-                driver.FindElement(simulacionProductos.SelectPaquete).SendKeys(Keys.ArrowDown);
-                WaitHandler.Wait(driver, 6000);
-                Reporte.Logger(documento + " - " + comentario + " - " + paquetes[i]);
+
+                //frame.BuscarFrame(driver, simulacionProductos.SelectPaquete);
+                Select.ByIndex(driver, SimulacionProductosUI.SelectPaquete, i);
+                PressKey.ArrowDown(driver, SimulacionProductosUI.SelectPaquete);
+                WaitHandler.Wait(6000);
+                Reporte.Logger(gdem+" - "+documento + " - " + comentario + " - " + paquetes[i]);
                 Capturar.Pantalla(driver, paquetes[i], documento);
             }
-
 
         }
 

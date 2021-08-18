@@ -64,6 +64,7 @@
     <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,46 +79,65 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Handler\DB.cs" />
-    <Compile Include="Handler\Frame.cs" />
-    <Compile Include="Handler\Reporte.cs" />
-    <Compile Include="Handler\Capturar.cs" />
-    <Compile Include="Handler\WaitHandler.cs" />
-    <Compile Include="PageObject\BasePage.cs" />
-    <Compile Include="PageObject\Credenciales.cs" />
-    <Compile Include="PageObject\LoginPage.cs" />
-    <Compile Include="PageObject\PrincipalPage.cs" />
-    <Compile Include="PageObject\WebPanel\AgregarDocumento.cs" />
-    <Compile Include="PageObject\WebPanel\CargaAvanzada.cs" />
-    <Compile Include="PageObject\WebPanel\IdentificacionClienteValidacion.cs" />
-    <Compile Include="PageObject\WebPanel\Documentacion.cs" />
-    <Compile Include="PageObject\WebPanel\DetalleDireccion.cs" />
-    <Compile Include="PageObject\WebPanel\ConsultaBridgerInsight.cs" />
-    <Compile Include="PageObject\WebPanel\ReutilizacionABMProductos.cs" />
-    <Compile Include="PageObject\WebPanel\MatrizRiesgo.cs" />
-    <Compile Include="PageObject\WebPanel\Entrevista.cs" />
-    <Compile Include="PageObject\WebPanel\AsistenciaCrediticia.cs" />
-    <Compile Include="PageObject\WebPanel\SimulacionAsistenciaCreditica.cs" />
-    <Compile Include="PageObject\WebPanel\SimulacionProductos.cs" />
-    <Compile Include="PageObject\WebPanel\BandejaTareas.cs" />
-    <Compile Include="PageObject\WebPanel\NuevaInstancia.cs" />
+    <Compile Include="Actions\Accept.cs" />
+    <Compile Include="Actions\Clear.cs" />
+    <Compile Include="Actions\PressKey.cs" />
+    <Compile Include="Actions\Get.cs" />
+    <Compile Include="Actions\Grid.cs" />
+    <Compile Include="Actions\Select.cs" />
+    <Compile Include="Actions\Click.cs" />
+    <Compile Include="Actions\Enter.cs" />
+    <Compile Include="Task\IdentificacionClienteValidacion.cs" />
+    <Compile Include="Task\IrHasta.cs" />
+    <Compile Include="Task\SimulacionProductos.cs" />
+    <Compile Include="Task\BandejaTareas.cs" />
+    <Compile Include="Task\Entrevista.cs" />
+    <Compile Include="Task\Login.cs" />
+    <Compile Include="Task\Menu.cs" />
+    <Compile Include="TestCase\Calificar.cs" />
+    <Compile Include="TestCase\Template.cs" />
+    <Compile Include="Tools\Kill.cs" />
+    <Compile Include="Tools\DB.cs" />
+    <Compile Include="Tools\FrameSanty.cs" />
+    <Compile Include="Tools\Frame.cs" />
+    <Compile Include="Tools\Reporte.cs" />
+    <Compile Include="Tools\Capturar.cs" />
+    <Compile Include="Tools\WaitHandler.cs" />
+    <Compile Include="Credenciales.cs" />
+    <Compile Include="UI\LoginUI.cs" />
+    <Compile Include="UI\HomeUI.cs" />
+    <Compile Include="UI\AgregarDocumentoUI.cs" />
+    <Compile Include="UI\CargaAvanzadaUI.cs" />
+    <Compile Include="UI\IdentificacionClienteValidacionUI.cs" />
+    <Compile Include="UI\DocumentacionUI.cs" />
+    <Compile Include="UI\DetalleDireccionUI.cs" />
+    <Compile Include="UI\ConsultaBridgerInsightUI.cs" />
+    <Compile Include="UI\ReutilizacionABMProductosUI.cs" />
+    <Compile Include="UI\MatrizRiesgoUI.cs" />
+    <Compile Include="UI\EntrevistaUI.cs" />
+    <Compile Include="UI\AsistenciaCrediticiaUI.cs" />
+    <Compile Include="UI\SimulacionAsistenciaCrediticaUI.cs" />
+    <Compile Include="UI\SimulacionProductosUI.cs" />
+    <Compile Include="UI\BandejaTareasUI.cs" />
+    <Compile Include="UI\NuevaInstanciaUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Task\CircuitoBETask.cs" />
-    <Compile Include="Task\EjecutarProgramaTask.cs" />
-    <Compile Include="Task\SimularPrestamoBITask.cs" />
-    <Compile Include="Task\CalificarTask.cs" />
-    <Compile Include="Task\DescartarTareaTask.cs" />
+    <Compile Include="Task\Otras\CircuitoBETask.cs" />
+    <Compile Include="Task\EjecutarPrograma.cs" />
+    <Compile Include="Task\Otras\SimularPrestamoBITask.cs" />
+    <Compile Include="Task\Otras\CalificarTask.cs" />
+    <Compile Include="Task\DescartarTarea.cs" />
     <Compile Include="TestCase\BaseTest.cs" />
-    <Compile Include="TestCase\CircuitoCalificacionTest.cs" />
-    <Compile Include="TestCase\DbTest.cs" />
-    <Compile Include="TestCase\DescartarTest.cs" />
+    <Compile Include="TestCase\Otras\CircuitoCalificacionTest.cs" />
+    <Compile Include="TestCase\Otras\DbTest.cs" />
+    <Compile Include="TestCase\Otras\DescartarTest.cs" />
     <Compile Include="TestCase\GDEM956.cs" />
     <Compile Include="TestCase\GDEM610.cs" />
-    <Compile Include="TestCase\SimuladorPrestamoTest.cs" />
+    <Compile Include="TestCase\Otras\SimuladorPrestamoTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
