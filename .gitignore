@@ -7,7 +7,7 @@
 *.userosscache
 *.sln.docstates
 
-/BT_Selenium/PageObject/Credenciales.cs
+/BT_Selenium/Credenciales.cs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
