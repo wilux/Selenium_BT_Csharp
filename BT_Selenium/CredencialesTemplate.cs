@@ -9,7 +9,7 @@ namespace BT_Selenium
 {
     public class Credenciales
     {
-        public string usuario = "floresnes";
-        public string password = "Carme2022";
+        public string usuario = "usuario"
+        public string password = "password"
     }
 }
