@@ -87,6 +87,7 @@
     <Compile Include="Actions\Select.cs" />
     <Compile Include="Actions\Click.cs" />
     <Compile Include="Actions\Enter.cs" />
+    <Compile Include="CredencialesTamplate.cs" />
     <Compile Include="Credenciales.cs" />
     <Compile Include="Task\IdentificacionClienteValidacion.cs" />
     <Compile Include="Task\IrHasta.cs" />
