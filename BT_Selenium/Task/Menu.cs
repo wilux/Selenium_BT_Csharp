@@ -16,8 +16,10 @@ namespace BT_Selenium.Task
         public static void Inicio(IWebDriver driver)
         {
 
+
             if (WaitHandler.ElementIsPresent(driver, HomeUI.Inicio) == true)
             {
+
                 Click.Simple(driver, HomeUI.Inicio);
             }
             else

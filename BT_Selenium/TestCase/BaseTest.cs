@@ -3,9 +3,6 @@ using BT_Selenium.Tools;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
-using System;
-using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace BT_Selenium.TestCase
 {
@@ -27,12 +24,13 @@ namespace BT_Selenium.TestCase
             //Mata procesos de IE y Driver antes de empezar.
             Kill.IE();
 
-            //_ = new InternetExplorerOptions
-            //{
-            //    EnsureCleanSession = true,
-            //    RequireWindowFocus = true
-            //};
+            _ = new InternetExplorerOptions
+            {
+                EnsureCleanSession = true,
+                RequireWindowFocus = true
+            };
             driver = new InternetExplorerDriver("C:\\webdriver\\");
+
             driver.Navigate().GoToUrl(QaURL);
             driver.Manage().Window.Maximize();
             Login.In(driver);

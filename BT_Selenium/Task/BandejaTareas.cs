@@ -8,7 +8,9 @@ namespace BT_Selenium.Tasks
 {
     public class BandejaTareas
     {
-        public static void BTNOPOINICIAR_Click(IWebDriver driver)
+
+
+        public static void Iniciar(IWebDriver driver)
         {
             Click.On(driver, BandejaTareasUI.BTNOPOINICIAR);
         }
@@ -29,7 +31,6 @@ namespace BT_Selenium.Tasks
 
         public static void Si(IWebDriver driver)
         {
-            Frame.BuscarFrame(driver, BandejaTareasUI.BTNCONFIRMATION);
             Click.On(driver, BandejaTareasUI.BTNCONFIRMATION);
         }
 

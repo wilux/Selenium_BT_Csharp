@@ -8,6 +8,7 @@ namespace BT_Selenium.Tasks
     public class SimulacionProductos
     {
 
+
         public static void LineaPrestamo(IWebDriver driver, int index = 1)
         {
             Select.ByIndex(driver, SimulacionProductosUI.SelectLineaPrestamo, index);//Elijo la primera disponible.
@@ -48,6 +49,14 @@ namespace BT_Selenium.Tasks
             WaitHandler.Wait(3000);
             Click.On(driver, SimulacionProductosUI.BTN_SI);
 
+        }
+
+        public static void Descartar(IWebDriver driver)
+        {
+
+            Click.On(driver, BandejaTareasUI.BTNOPDESCARTAR);
+            WaitHandler.Wait(3000);
+            Click.On(driver, BandejaTareasUI.BTNCONFIRMATION);
         }
 
     }

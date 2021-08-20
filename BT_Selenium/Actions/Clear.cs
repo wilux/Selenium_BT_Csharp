@@ -8,7 +8,7 @@ namespace BT_Selenium.Actions
     {
         public static void On(IWebDriver driver, By locator)
         {
-            Frame.BuscarFrame(driver, locator);
+            //Frame.BuscarFrame(driver, locator);
             driver.FindElement(locator).Clear();
         }
 

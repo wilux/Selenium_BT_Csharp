@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using BT_Selenium.Tools;
-
+using System;
 
 namespace BT_Selenium.Actions
 {
@@ -11,21 +11,23 @@ namespace BT_Selenium.Actions
             WaitHandler.ElementIsPresent(driver, locator);
             driver.FindElement(locator).Click();
         }
+
+
         public static void On(IWebDriver driver, By locator)
         {
-            //Frame.BuscarFrame(driver, locator);
-            if(Frame.BuscarFrame(driver, locator))
+            try
             {
-                driver.FindElement(locator).Click();
-            }
-            else
-            {
-                if (driver != null)
+                if (Frame.BuscarFrame(driver, locator))
                 {
-                    driver.Quit();
-                    //Console.WriteLine("FIN");
+                    driver.FindElement(locator).Click();
                 }
+
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
 
         }
 

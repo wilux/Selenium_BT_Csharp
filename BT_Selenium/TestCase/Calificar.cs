@@ -15,17 +15,18 @@ namespace BT_Selenium.TestCase
     public class Calificar : BaseTest
     {
 
-        [Test]
+      //  [Test]
         public void CircuitoIN()
         {
             //string gdem = "GDEMXXX-RFXX";
             string documento = "30657249765";
 
-            // IrHasta.SimularProducto(driver, documento);
+            IrHasta.SimularProducto(driver, documento);
             ////Cerrar para continuar siguiente pantalla
-            //Entrevista.Cerrar(driver);
+            Entrevista.Cerrar(driver);
 
-            IrHasta.RetomarTramiteBandeja(driver, documento);
+            //Solo para Retomar en pruebas
+            //IrHasta.RetomarTramiteBandeja(driver, documento);
 
             //Cerrar
             //Seleccionar
@@ -49,7 +50,7 @@ namespace BT_Selenium.TestCase
             SimulacionProductos.CheckCalificacion(driver, "IN");
 
             //Confirmo // Si
-            SimulacionProductos.Confirmar(driver);
+            Confirmar.Si(driver);
             //Espero
             //Tomo
             BandejaTareas.Tomar(driver);
@@ -60,7 +61,7 @@ namespace BT_Selenium.TestCase
             IdentificacionClienteValidacion.CheckGrupo(driver);
             IdentificacionClienteValidacion.CheckSociedad(driver);
             // Confirmar // Si
-            IdentificacionClienteValidacion.Confirmar(driver);
+            Confirmar.Si(driver);
 
 
             //Bandeja otra vez
@@ -73,25 +74,35 @@ namespace BT_Selenium.TestCase
             //Pantalla Asistencia Crediticia - IN
             // Seleccionar Modulo // value 303 soo firma
             // Seleccionar Tipo Operacion // value 20 comercio
-
+            AsistenciaCrediticia.SeleccionarModulo(driver, "303");
+            AsistenciaCrediticia.SeleccionarTipoOP(driver, "20");
             //Confirmar // SI
+            Confirmar.Si(driver);
 
             //Bandeja otr vez
             //Siguiente // Si
             //Tomar
+            BandejaTareas.Siguiente(driver);
+            BandejaTareas.Tomar(driver);
 
             //Pantalla Documentacion
             //Seleccionar fila documentcion  (1 sola para IN)
             //Botn Agregar
+            Documentacion.SeleccionarFila(driver);
+            Documentacion.Agregar(driver);
 
             //Pantalla agregar documento
             //fecha vigencia -> 01012020
             //examinar archivo
             //confirmar
+            AgregarDocumento.FechaVigencia(driver);
+            AgregarDocumento.ElegirArchivo(driver);
+            AgregarDocumento.Confirmar(driver);
 
 
             //vuelta pantalla Docuentacion
             //Confirmar
+            Documentacion.Confirmar(driver);
 
             //Bandeja otra vez
             //Siguiente // Si

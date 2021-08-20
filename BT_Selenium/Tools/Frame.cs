@@ -20,18 +20,27 @@ namespace BT_Selenium.Tools
 
         public static int CantidadFrames(IWebDriver driver)
         {
-     
-            IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
-            object frames = jsExecutor.ExecuteScript("return window.length");
-            int cantidad = Convert.ToInt32(frames);
+            
+           
+            //By finding all the web elements using iframe tag
+            // List<IWebElement> iframeElements = driver.FindElements(By.TagName("iframe"));
+
+                IList<IWebElement> iframeElements = driver.FindElements(By.TagName("iframe"));
+                int cantidad = iframeElements.Count();
+
+            //IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
+            //string frames = jsExecutor.ExecuteScript("return window.length").ToString();
+            //int cantidad = Convert.ToInt32(frames);
 
             if (cantidad == 0)
             {
                 driver.SwitchTo().DefaultContent();
                 IWebElement iframe = driver.FindElement(By.Id("0"));
                 driver.SwitchTo().Frame(iframe);
-                frames = jsExecutor.ExecuteScript("return window.length");
-                cantidad = Convert.ToInt32(frames);
+                //frames = jsExecutor.ExecuteScript("return window.length").ToString();
+                //cantidad = Convert.ToInt32(frames);
+                IList<IWebElement> iframeElements2 = driver.FindElements(By.TagName("iframe"));
+                cantidad = iframeElements2.Count();
 
             }
 
@@ -41,25 +50,22 @@ namespace BT_Selenium.Tools
 
         public static bool BuscarFrame(IWebDriver driver, By locator)
         {
-
-           // BuscarA(driver, locator);
-
-            if (BuscarA(driver, locator) == true)
+            if (FindElementIfExists(driver, locator) == null)
             {
-                return true;
-            }
-            //else if (BuscarB(driver, locator) == true)
-            //{
-            //    return true;
-            //}
-            //else if (BuscarC(driver, locator) == true)
-            //{
-            //    return true;
 
-            //}
+                if (BuscarA(driver, locator) == true)
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+            }
             else
             {
-                return false;
+                return true;
             }
 
 

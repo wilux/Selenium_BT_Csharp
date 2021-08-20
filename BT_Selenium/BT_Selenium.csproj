@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Actions\Accept.cs" />
     <Compile Include="Actions\Clear.cs" />
+    <Compile Include="Actions\Confirmar.cs" />
     <Compile Include="Actions\PressKey.cs" />
     <Compile Include="Actions\Get.cs" />
     <Compile Include="Actions\Grid.cs" />
@@ -89,8 +90,12 @@
     <Compile Include="Actions\Enter.cs" />
     <Compile Include="CredencialesTamplate.cs" />
     <Compile Include="Credenciales.cs" />
+    <Compile Include="Task\AgregarDocumento.cs" />
+    <Compile Include="Task\AsistenciaCrediticia.cs" />
+    <Compile Include="Task\Documentacion.cs" />
     <Compile Include="Task\IdentificacionClienteValidacion.cs" />
     <Compile Include="Task\IrHasta.cs" />
+    <Compile Include="Task\NuevaInstancia.cs" />
     <Compile Include="Task\SimulacionProductos.cs" />
     <Compile Include="Task\BandejaTareas.cs" />
     <Compile Include="Task\Entrevista.cs" />
@@ -137,8 +142,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Doc1_Test.pdf" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
