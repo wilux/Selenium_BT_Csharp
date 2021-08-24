@@ -84,7 +84,7 @@ namespace BT_Selenium.Tools
         {
             int cantidad = CantidadFrames(driver);
 
-            for (int i = 0; i < cantidad + 1; i++)
+            for (int i = 0; i < cantidad + 2; i++)
             {
                 // driver.SwitchTo().DefaultContent();
 

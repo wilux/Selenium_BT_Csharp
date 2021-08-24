@@ -15,20 +15,11 @@ namespace BT_Selenium.Task
 
         public static void Inicio(IWebDriver driver)
         {
-
-
-            if (WaitHandler.ElementIsPresent(driver, HomeUI.Inicio) == true)
-            {
-
-                Click.Simple(driver, HomeUI.Inicio);
-            }
-            else
-            {
-                driver.SwitchTo().Window(driver.WindowHandles[1]);
-                driver.Manage().Window.Maximize();
-                WaitHandler.Wait(5000);
-                Click.Simple(driver, HomeUI.Inicio);
-            }
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
+            driver.Manage().Window.Maximize();
+            //WaitHandler.Wait(5000);
+            WaitHandler.ElementIsPresent(driver, HomeUI.Inicio);
+            Click.Simple(driver, HomeUI.Inicio);
 
         }
 

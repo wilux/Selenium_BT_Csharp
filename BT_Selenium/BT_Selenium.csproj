@@ -79,8 +79,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\BridgerInsight.cs" />
+    <Compile Include="Actions\LegaoDigital.cs" />
     <Compile Include="Actions\Accept.cs" />
+    <Compile Include="Actions\CheckBox.cs" />
     <Compile Include="Actions\Clear.cs" />
+    <Compile Include="Actions\Navegador.cs" />
     <Compile Include="Actions\Confirmar.cs" />
     <Compile Include="Actions\PressKey.cs" />
     <Compile Include="Actions\Get.cs" />
@@ -92,17 +96,30 @@
     <Compile Include="Credenciales.cs" />
     <Compile Include="Task\AgregarDocumento.cs" />
     <Compile Include="Task\AsistenciaCrediticia.cs" />
+    <Compile Include="Task\CargaAvanzada.cs" />
+    <Compile Include="Task\ConsultaBridgerInsight.cs" />
     <Compile Include="Task\Documentacion.cs" />
     <Compile Include="Task\IdentificacionClienteValidacion.cs" />
     <Compile Include="Task\IrHasta.cs" />
+    <Compile Include="Task\MatrizRiesgo.cs" />
     <Compile Include="Task\NuevaInstancia.cs" />
+    <Compile Include="Task\ReutilizacionABMProductos.cs" />
+    <Compile Include="Task\RevisionProductos.cs" />
     <Compile Include="Task\SimulacionProductos.cs" />
     <Compile Include="Task\BandejaTareas.cs" />
     <Compile Include="Task\Entrevista.cs" />
     <Compile Include="Task\Login.cs" />
     <Compile Include="Task\Menu.cs" />
     <Compile Include="TestCase\Calificar.cs" />
+    <Compile Include="Task\ConfirmarInstanciaSuperior.cs" />
+    <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test4.cs" />
+    <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test3.cs" />
+    <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test2.cs" />
+    <Compile Include="TestCase\GDEM956\GDEM956_RF04_Liquidacion.cs" />
+    <Compile Include="TestCase\GDEM956\GDEM956_RF03_Paquete.cs" />
+    <Compile Include="TestCase\GDEM956\GDEM956_RF03_Monoproducto.cs" />
     <Compile Include="TestCase\Template.cs" />
+    <Compile Include="Tools\IterarSelect.cs" />
     <Compile Include="Tools\Kill.cs" />
     <Compile Include="Tools\DB.cs" />
     <Compile Include="Tools\FrameSanty.cs" />
@@ -118,6 +135,7 @@
     <Compile Include="UI\DocumentacionUI.cs" />
     <Compile Include="UI\DetalleDireccionUI.cs" />
     <Compile Include="UI\ConsultaBridgerInsightUI.cs" />
+    <Compile Include="UI\RevisionProductosUI.cs" />
     <Compile Include="UI\ReutilizacionABMProductosUI.cs" />
     <Compile Include="UI\MatrizRiesgoUI.cs" />
     <Compile Include="UI\EntrevistaUI.cs" />
@@ -136,8 +154,8 @@
     <Compile Include="TestCase\Otras\CircuitoCalificacionTest.cs" />
     <Compile Include="TestCase\Otras\DbTest.cs" />
     <Compile Include="TestCase\Otras\DescartarTest.cs" />
-    <Compile Include="TestCase\GDEM956.cs" />
-    <Compile Include="TestCase\GDEM610.cs" />
+    <Compile Include="TestCase\GDEM956\GDEM956_RF02.cs" />
+    <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test1.cs" />
     <Compile Include="TestCase\Otras\SimuladorPrestamoTest.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@ namespace BT_Selenium.Actions
     {
         public static void Simple(IWebDriver driver, By locator)
         {
-            WaitHandler.ElementIsPresent(driver, locator);
+            //WaitHandler.ElementIsPresent(driver, locator);
             driver.FindElement(locator).Click();
         }
 

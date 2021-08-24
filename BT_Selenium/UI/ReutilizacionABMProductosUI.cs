@@ -15,9 +15,11 @@ namespace BT_Selenium.UI
         public static By GRID_TarjetasDebito = By.Id("GRIDGRDTD");
         public static By PrimerTarjeta = By.Id("span__DESCTD_0001");
         public static By BTNOPACEPTARTDNUEVA = By.Id("BTNOPACEPTARTDNUEVA");
+        public static By BTNOPACEPTARTExistente = By.Id("BTNOPACEPTARTDEXISTENTE");
         public static By BTNOPPERFILDERIESGO = By.Id("BTNOPPERFILDERIESGO");
         public static By BTNOPCONFIRMAR = By.Id("BTNOPCONFIRMAR");
         public static By BTNOPCERRAR = By.Id("BTNOPCERRAR");
+        public static By SelectSeguroVida = By.Name("_BNQFPC5SCC");
     }
 
 

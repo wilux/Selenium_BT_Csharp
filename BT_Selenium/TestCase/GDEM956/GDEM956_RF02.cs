@@ -5,11 +5,11 @@ using BT_Selenium.Tools;
 using BT_Selenium.UI;
 using NUnit.Framework;
 
-namespace BT_Selenium.TestCase
+namespace BT_Selenium.TestCase.GDEM956
 {
 
     [TestFixture]
-    public class GDEM956 : BaseTest
+    public class GDEM956_RF02 : BaseTest
     {
         //[TestCase("27174708121")]
         //[TestCase("23255760114")]

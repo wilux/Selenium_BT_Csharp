@@ -24,6 +24,11 @@ namespace BT_Selenium.Tasks
             Click.On(driver, EntrevistaUI.BTNOPCERRAR);
         }
 
+        public static string NroEntrevista(IWebDriver driver)
+        {
+            return Get.InputValue(driver, EntrevistaUI.inputTramite);
+        }
+
 
 
         public static void IraBandejaTareas(IWebDriver driver)
@@ -35,10 +40,9 @@ namespace BT_Selenium.Tasks
 
         public static void Iniciar(IWebDriver driver)
         {
-            WaitHandler.Wait(7000);
-            driver.SwitchTo().Window(driver.WindowHandles[1]);
+           // WaitHandler.Wait(7000);
+           // driver.SwitchTo().Window(driver.WindowHandles[1]);
             driver.Manage().Window.Maximize();
-
 
             //Menu ir a...Inicio>WF>BandejaTarea
             Menu.Inicio(driver);
@@ -225,7 +229,8 @@ namespace BT_Selenium.Tasks
             Enter.Text(driver, EntrevistaUI.InputIngresosDepedencia, ingresosDependencia);
             PressKey.Tab(driver, EntrevistaUI.InputIngresosDepedencia);
 
-            if (ingresosIndependiente != "")
+
+            if (WaitHandler.IsVisible(driver, EntrevistaUI.InputIngresosIndependiente))
             {
                 //Importe Ingresos Independiente
                 Click.On(driver, EntrevistaUI.InputIngresosIndependiente);

@@ -30,10 +30,8 @@ namespace BT_Selenium.TestCase
                 RequireWindowFocus = true
             };
             driver = new InternetExplorerDriver("C:\\webdriver\\");
-
             driver.Navigate().GoToUrl(QaURL);
             driver.Manage().Window.Maximize();
-            Login.In(driver);
 
 
         }

@@ -16,6 +16,8 @@ namespace BT_Selenium.UI
         public static By BTNOPCONFIRMAR = By.Id("BTNOPCONFIRMAR");
         public static By BTNOPCERRAR = By.Id("BTNOPCERRAR");
 
+        public static By Radio_Si = By.Id("_ACTUALIZALEGAJOMR");//value S o N
+        
 
     }
 

@@ -21,6 +21,14 @@ namespace BT_Selenium.Tasks
             Click.On(driver, BandejaTareasUI.PrimerTarea);
         }
 
+
+        public static void Filtrar(IWebDriver driver, string nroEntrevista)
+        {
+            Click.On(driver, BandejaTareasUI.InputBuscarAsunto);
+            Enter.Text(driver, BandejaTareasUI.InputBuscarAsunto, nroEntrevista);
+            PressKey.Return(driver, BandejaTareasUI.InputBuscarAsunto);
+        }
+
         public static void Siguiente(IWebDriver driver)
         {
             Seleccionar(driver);

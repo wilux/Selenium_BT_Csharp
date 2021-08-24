@@ -11,6 +11,11 @@ namespace BT_Selenium.Actions
             driver.FindElement(locator).SendKeys(Keys.Return);
         }
 
+        public static void F5(IWebDriver driver)
+        {
+            driver.FindElement(By.XPath("//body")).SendKeys(Keys.F5);
+        }
+
         public static void Tab(IWebDriver driver, By locator)
         {
             Frame.BuscarFrame(driver, locator);

@@ -21,7 +21,7 @@ namespace BT_Selenium.Tools
             // wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
             try
             {
-                //  wait.Until(e => e.FindElement(locator));
+                 wait.Until(e => e.FindElement(locator));
 
                 var elements = driver.FindElements(locator);
               
