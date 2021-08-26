@@ -15,5 +15,15 @@ namespace BT_Selenium.Actions
             }
             catch { }
         }
-    }
+
+        public static void Cerrar(IWebDriver driver)
+        {
+            if (driver != null)
+            {
+                driver.Quit();
+
+            }
+        }
+
+}
 }

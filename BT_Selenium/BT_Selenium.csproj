@@ -77,10 +77,16 @@
     <Reference Include="WebDriver.Support, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.Support.3.141.0\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL">
+      <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions\BridgerInsight.cs" />
-    <Compile Include="Actions\LegaoDigital.cs" />
+    <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test5_todo.cs" />
+    <Compile Include="TestCase\BridgerInsightTest.cs" />
+    <Compile Include="TestCase\Legajo.cs" />
+    <Compile Include="Tools\BridgerInsight.cs" />
+    <Compile Include="Tools\LegajoDigital.cs" />
     <Compile Include="Actions\Accept.cs" />
     <Compile Include="Actions\CheckBox.cs" />
     <Compile Include="Actions\Clear.cs" />
@@ -114,7 +120,8 @@
     <Compile Include="Task\ConfirmarInstanciaSuperior.cs" />
     <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test4.cs" />
     <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test3.cs" />
-    <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test2.cs" />
+    <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test1.cs" />
+    <Compile Include="TestCase\CargaDocumentos.cs" />
     <Compile Include="TestCase\GDEM956\GDEM956_RF04_Liquidacion.cs" />
     <Compile Include="TestCase\GDEM956\GDEM956_RF03_Paquete.cs" />
     <Compile Include="TestCase\GDEM956\GDEM956_RF03_Monoproducto.cs" />
@@ -122,7 +129,6 @@
     <Compile Include="Tools\IterarSelect.cs" />
     <Compile Include="Tools\Kill.cs" />
     <Compile Include="Tools\DB.cs" />
-    <Compile Include="Tools\FrameSanty.cs" />
     <Compile Include="Tools\Frame.cs" />
     <Compile Include="Tools\Reporte.cs" />
     <Compile Include="Tools\Capturar.cs" />
@@ -155,7 +161,7 @@
     <Compile Include="TestCase\Otras\DbTest.cs" />
     <Compile Include="TestCase\Otras\DescartarTest.cs" />
     <Compile Include="TestCase\GDEM956\GDEM956_RF02.cs" />
-    <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test1.cs" />
+    <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test5.cs" />
     <Compile Include="TestCase\Otras\SimuladorPrestamoTest.cs" />
   </ItemGroup>
   <ItemGroup>

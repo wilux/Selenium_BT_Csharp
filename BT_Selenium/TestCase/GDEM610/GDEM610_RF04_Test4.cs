@@ -68,9 +68,9 @@ namespace BT_Selenium.TestCase.GDEM610
             //Simular
             BandejaTareas.Ejecutar(driver);
             SimulacionProductos.Paquete(driver);
-            WaitHandler.Wait(5000);
+            WaitHandler.Wait(driver, 5);
             SimulacionProductos.CheckPrestamo(driver);
-            WaitHandler.Wait(5000);
+            WaitHandler.Wait(driver, 5);
             Capturar.Pantalla(driver, "Test4", documento);
             nroEntrevista = Entrevista.NroEntrevista(driver);
         }

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsInput.Native;
+using WindowsInput;
 
 namespace BT_Selenium.UI
 {
@@ -17,14 +19,33 @@ namespace BT_Selenium.UI
 
         public static void Confirmar(IWebDriver driver)
         {
-            Click.On(driver, MatrizRiesgoUI.BTNOPCONFIRMAR);
-            WaitHandler.Wait(2000);
+            if (WaitHandler.IsEnable(driver, MatrizRiesgoUI.BTNOPCONFIRMAR)) {
+                //Ctrol + enter
+                WaitHandler.Wait(driver, 2);
+                InputSimulator sim = new InputSimulator();
+                sim.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.RETURN);
+                //Click.On(driver, MatrizRiesgoUI.BTNOPCONFIRMAR);
+                WaitHandler.Wait(driver, 2);
+            }
 
         }
 
+        public static void Si(IWebDriver driver)
+        {
+            WaitHandler.Wait(driver, 2);
+            Click.On(driver, MatrizRiesgoUI.Radio_Si);
+            WaitHandler.Wait(driver, 2);
+
+        }
+
+
         public static void Cerrar(IWebDriver driver)
         {
-            Click.On(driver, MatrizRiesgoUI.BTNOPCERRAR);
+            //Ctrol + E
+            InputSimulator sim = new InputSimulator();
+            sim.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_E);
+
+            //Click.On(driver, MatrizRiesgoUI.BTNOPCERRAR);
 
         }
 

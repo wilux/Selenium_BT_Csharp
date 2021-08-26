@@ -1,6 +1,7 @@
 ﻿using BT_Selenium.Tasks;
 using BT_Selenium.Tools;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 
@@ -16,11 +17,20 @@ namespace BT_Selenium.TestCase
         protected string QaURL = "http://btwebqa.ar.bpn/BTWeb/hlogin.aspx";
         protected string DfURL = "";
         protected string ProdURL = "";
-
+        private bool stop;
 
         [SetUp]
         public void BeforeBaseTest()
         {
+            if (stop)
+            {
+                try
+                {
+                    Assert.Inconclusive("Un test anterior falló.");
+                }
+                catch { }
+            }
+
             //Mata procesos de IE y Driver antes de empezar.
             Kill.IE();
 
@@ -32,17 +42,30 @@ namespace BT_Selenium.TestCase
             driver = new InternetExplorerDriver("C:\\webdriver\\");
             driver.Navigate().GoToUrl(QaURL);
             driver.Manage().Window.Maximize();
+            //Login.In(driver);
+
 
 
         }
         [TearDown]
         public void AfterBaseTest()
         {
-            if (driver != null)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
-                driver.Quit();
-                //Console.WriteLine("FIN");
+                stop = true;
+                //Reporte.Logger(test + "Nro Entrevista: " + nroEntrevista);
+                //if (driver != null)
+                //{
+                //    driver.Quit();
+
+                //}
             }
+
+            //if (driver != null)
+            //{
+            //    driver.Quit();
+            //    //Console.WriteLine("FIN");
+            //}
         }
     }
 }

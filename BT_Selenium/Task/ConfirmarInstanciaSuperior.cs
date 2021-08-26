@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using BT_Selenium.Tools;
 using BT_Selenium.Tasks;
 using BT_Selenium.Task;
+using OpenQA.Selenium.Interactions;
 
 namespace BT_Selenium.TestCase
 {
@@ -23,8 +24,11 @@ namespace BT_Selenium.TestCase
             Menu.WorkFlow(driver);
             Menu.BandejaTareas(driver);
 
+
             //bandeja
+            BandejaTareas.Filtrar(driver, documento);
             BandejaTareas.Tomar(driver);
+
 
             //Gerente
             RevisionProductos.Observaciones(driver);
@@ -36,12 +40,26 @@ namespace BT_Selenium.TestCase
         {
             Login.As(driver, usuario);
 
+            Menu.Inicio(driver);
+            Menu.WorkFlow(driver);
+            Menu.BandejaTareas(driver);
+
+
+            //bandeja
+            BandejaTareas.Filtrar(driver, documento);
+            BandejaTareas.Tomar(driver);
+
             RevisionProductos.Observaciones(driver);
             RevisionProductos.Confirmar(driver);
             RevisionProductos.PerfilRiesgo(driver);
+            MatrizRiesgo.Si(driver);
+            MatrizRiesgo.Confirmar(driver);
+            MatrizRiesgo.Cerrar(driver);
             //En perfil riesgo aceptar y cerrar
             //Liquidar
             RevisionProductos.Liquidar(driver);
+            Entrevista.Cerrar(driver);
+           // RevisionProductos.Finalizar(driver);
 
         }
     }

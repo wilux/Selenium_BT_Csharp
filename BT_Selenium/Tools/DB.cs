@@ -30,7 +30,7 @@ namespace BT_Selenium.Tools
             {
                 connection.Open();
                 command.ExecuteNonQuery();
-                Console.WriteLine("Records Inserted Successfully");
+                Console.WriteLine("Se insertartó correctamente: "+ sql);
             }
             catch (SqlException e)
             {

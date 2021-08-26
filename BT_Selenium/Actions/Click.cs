@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using BT_Selenium.Tools;
 using System;
+using NUnit.Framework;
+using System.Threading;
 
 namespace BT_Selenium.Actions
 {
@@ -8,7 +10,7 @@ namespace BT_Selenium.Actions
     {
         public static void Simple(IWebDriver driver, By locator)
         {
-            //WaitHandler.ElementIsPresent(driver, locator);
+
             driver.FindElement(locator).Click();
         }
 
@@ -25,7 +27,8 @@ namespace BT_Selenium.Actions
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                TestContext.Write(e);
+                Thread.CurrentThread.Abort();
             }
 
 

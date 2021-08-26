@@ -11,19 +11,24 @@ namespace BT_Selenium.Tasks
         {
             DB.CambiarUsuario(user);
 
-            Credenciales credenciales = new Credenciales();
-            if (credenciales.usuario != "" && credenciales.password != "")
+            if (driver != null)
             {
-                Enter.Text(driver, LoginUI.UserInput, credenciales.usuario);
-                Click.Simple(driver, LoginUI.PasswordInput);
-                Enter.Text(driver, LoginUI.PasswordInput, credenciales.password);
-                Click.Simple(driver, LoginUI.LoginButton);
-            }
-            else
-            {
-                if (driver != null)
+                Credenciales credenciales = new Credenciales();
+                if (credenciales.usuario != "" && credenciales.password != "")
                 {
-                    driver.Quit();
+                    Enter.Text(driver, LoginUI.UserInput, credenciales.usuario);
+                    Click.Simple(driver, LoginUI.PasswordInput);
+                    Enter.Text(driver, LoginUI.PasswordInput, credenciales.password);
+                    Click.Simple(driver, LoginUI.LoginButton);
+                    driver.SwitchTo().Window(driver.WindowHandles[1]);
+                    driver.Manage().Window.Maximize();
+                }
+                else
+                {
+                    if (driver != null)
+                    {
+                        driver.Quit();
+                    }
                 }
             }
         }

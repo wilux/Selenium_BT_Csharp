@@ -53,7 +53,7 @@ namespace BT_Selenium.Tools
             if (FindElementIfExists(driver, locator) == null)
             {
 
-                if (BuscarA(driver, locator) == true)
+                if (Buscar(driver, locator) == true)
                 {
                     return true;
                 }
@@ -65,6 +65,7 @@ namespace BT_Selenium.Tools
             }
             else
             {
+               
                 return true;
             }
 
@@ -80,7 +81,7 @@ namespace BT_Selenium.Tools
 
 
         //Metodo que cambia al frame que contiene el elemento buscado.
-        public static bool BuscarA(IWebDriver driver, By locator)
+        public static bool Buscar(IWebDriver driver, By locator)
         {
             int cantidad = CantidadFrames(driver);
 
@@ -109,74 +110,6 @@ namespace BT_Selenium.Tools
             return false;
 
         }//Fin 
-
-
-
-        public static bool BuscarB(IWebDriver driver, By locator)
-        {
-            int cantidad = CantidadFrames(driver);
-
-            for (int i = 0; i < cantidad; i++)
-            {
-
-
-                try
-                {
-                    driver.SwitchTo().ParentFrame();
-
-                    driver.SwitchTo().Frame("step" + i);
-
-                    if (driver.FindElement(locator).Displayed)
-                    {
-                        // string frameActual = FrameActual(driver);
-                        return true;
-
-
-                    }
-
-                }
-                catch { continue; }
-            }
-
-            return false;
-        }//Fin 
-
-
-        public static bool BuscarC(IWebDriver driver, By locator)
-        {
-            int cantidad = CantidadFrames(driver);
-
-            for (int i = 0; i < cantidad; i++)
-            {
-
-
-                try
-                {
-                    driver.SwitchTo().DefaultContent();
-                    IWebElement iframe = driver.FindElement(By.Id("0"));
-                    driver.SwitchTo().Frame(iframe);
-
-                    //Pasamos al Frame step1
-
-                    driver.SwitchTo().Frame("step" + i);
-
-                    //if (driver.FindElement(locator).Displayed)
-                    if (driver.FindElement(locator).Displayed)
-                    {
-                        string frameActual = FrameActual(driver);
-                        return true;
-
-
-                    }
-
-                }
-                catch { continue; }
-            }
-
-            return false;
-        }//Fin 
-
-
 
     }
 }

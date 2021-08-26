@@ -13,14 +13,14 @@ namespace BT_Selenium.UI
     public class RevisionProductosUI
     {
 
-        public static By TextObservaciones = By.Id("_BNQFPC5OBS");
+        public static By TextObservaciones = By.Name("_BNQFPC5OBS");
         public static By BTNOPCONFIRMAR = By.Id("BTNOPCONFIRMAR");
         public static By BTNOPRECHAZAR = By.Id("BTNOPRECHAZAR");
         public static By BTNOPPERFILDERIESGO = By.Id("BTNOPPERFILDERIESGO");
         public static By BTNOPLIQUIDAR = By.Id("BTNOPLIQUIDAR");
-        //BTNOPRECHAZAR
-        //BTNOPPERFILDERIESGO
-        //BTNOPLIQUIDAR
+        public static By BTN_SI = By.Id("BTNCONFIRMATION");
+        public static By BTN_NO = By.Id("BTNCANCELCONFIRMATION");
+
     }
 
 

@@ -16,15 +16,15 @@ namespace BT_Selenium.Tools
         //Reotorna true si se encuentra el elemento en un maximo de 10 segundos, sino retorna false
         public static bool ElementIsPresent(IWebDriver driver, By locator)
         {
-    
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             // wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
             try
             {
-                 wait.Until(e => e.FindElement(locator));
+                wait.Until(e => e.FindElement(locator));
 
                 var elements = driver.FindElements(locator);
-              
+
 
                 if (elements.Count >= 1)
                 {
@@ -37,20 +37,31 @@ namespace BT_Selenium.Tools
             }
             catch { return false; }
 
-            
         }
         //Esperar un tiempo arbitrario
-        public static void Wait(int miliseconds, int maxTimeOutSeconds = 60)
+        public static void Wait(IWebDriver driver, int segundos)
         {
+            Thread.Sleep(segundos * 1000);
 
-            Thread.Sleep(miliseconds);
+        }
+
+        public static void Elemento(IWebDriver driver, By locator, int segundos=20)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(segundos));
+            IWebElement firstResult = wait.Until(e => e.FindElement(locator));
         }
 
         //Elemento esta visible
         public static bool IsVisible(IWebDriver driver, By locator)
         {
-            Frame.BuscarFrame(driver, locator);
-            return driver.FindElement(locator).Displayed;
+            if (Frame.BuscarFrame(driver, locator))
+            {
+                return driver.FindElement(locator).Displayed;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //Elemento esta habilitado

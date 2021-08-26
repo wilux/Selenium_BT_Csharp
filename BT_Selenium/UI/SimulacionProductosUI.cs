@@ -13,8 +13,11 @@ namespace BT_Selenium.UI
 
     public class SimulacionProductosUI
     { 
-        //MsgText
-        public static By MsgText = By.ClassName("MsgText");
+        //Mensajes
+        public static By MsgTextArriba = By.ClassName("MsgText");
+        public static By MsgTextMedio = By.ClassName("HTMLTXTTEXT1");
+        public static By MsgTextAbajo = By.ClassName("HTMLTXTTEXT5");
+
         public static By SelectPaquete = By.Name("_JBNYC5PQTE");
         public static By SelectLineaPrestamo = By.Name("_LINEA");
         public static By InputMonto = By.Name("_BNQFPC5MTO"); 

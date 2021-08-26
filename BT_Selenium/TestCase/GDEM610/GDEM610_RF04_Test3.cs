@@ -27,7 +27,6 @@ namespace BT_Selenium.TestCase.GDEM610
         protected string test = "Test2";
         protected string nroEntrevista = "";
 
-
         [Test, Order(1)]
         public void Home()
         {
@@ -70,7 +69,7 @@ namespace BT_Selenium.TestCase.GDEM610
             //Simular
             BandejaTareas.Ejecutar(driver);
             SimulacionProductos.PaqueteNombre(driver, producto); //20/1
-            WaitHandler.Wait(5000);
+            WaitHandler.Wait(driver, 5);
             Capturar.Pantalla(driver, "Test3", documento);
             mensajeObtenido = SimulacionProductos.GetMensaje(driver);
             SimulacionProductos.UnCheckPrestamo(driver);

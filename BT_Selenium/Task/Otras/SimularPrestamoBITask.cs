@@ -66,7 +66,7 @@ namespace BT_Selenium.Task
             SimulacionProductos.LineaPrestamo(driver);
 
             //Pause
-            WaitHandler.Wait(5000);
+            WaitHandler.Wait(driver, 5);
 
             //Monto _BNQFPC5MTO
             SimulacionProductos.MontoPrestamo(driver, monto);

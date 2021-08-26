@@ -1,11 +1,14 @@
 ﻿using BT_Selenium.Actions;
 using BT_Selenium.Tools;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BT_Selenium.UI
@@ -17,8 +20,12 @@ namespace BT_Selenium.UI
 
         public static void Confirmar(IWebDriver driver)
         {
-            Click.On(driver, RevisionProductosUI.BTNOPCONFIRMAR);
-            WaitHandler.Wait(2000);
+            if (WaitHandler.IsEnable(driver, RevisionProductosUI.BTNOPCONFIRMAR)) {
+                Click.On(driver, RevisionProductosUI.BTNOPCONFIRMAR);
+                WaitHandler.Wait(driver, 3);
+                Click.On(driver, RevisionProductosUI.BTN_SI);
+                WaitHandler.Wait(driver, 3);
+            }
 
         }
 
@@ -40,11 +47,14 @@ namespace BT_Selenium.UI
         }
 
         public static void Observaciones(IWebDriver driver, string text="Test QA")
+
         {
+            //4 tabs
+
+            Click.On(driver, RevisionProductosUI.TextObservaciones);
             Enter.Text(driver, RevisionProductosUI.TextObservaciones, text);
 
         }
-
 
     }
 

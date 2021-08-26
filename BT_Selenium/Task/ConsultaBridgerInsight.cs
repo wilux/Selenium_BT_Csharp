@@ -11,14 +11,14 @@ namespace BT_Selenium.UI
         public static void BuscarBridger(IWebDriver driver)
         {
             Click.On(driver, ConsultaBridgerInsightUI.BTNOPBUSCARBRIDGER);
-            WaitHandler.Wait(5000);
+            WaitHandler.Wait(driver, 5);
 
         }
 
         public static void Imprimir(IWebDriver driver)
         {
             Click.On(driver, ConsultaBridgerInsightUI.BTN_SinCoincidencia);
-            WaitHandler.Wait(5000);
+            WaitHandler.Wait(driver, 3);
 
         }
 
@@ -28,9 +28,9 @@ namespace BT_Selenium.UI
         {
             
             Navegador.Back(driver);
-            WaitHandler.Wait(5000);
+            WaitHandler.Wait(driver, 5);
             Navegador.Back(driver);
-            WaitHandler.Wait(5000);
+            WaitHandler.Wait(driver, 5);
 
         }
 
@@ -39,7 +39,7 @@ namespace BT_Selenium.UI
             driver.SwitchTo().ParentFrame();
             driver.SwitchTo().Frame("step2");
             Click.On(driver, ConsultaBridgerInsightUI.BTNOPCERRAR);
-            WaitHandler.Wait(3000);
+            WaitHandler.Wait(driver, 3);
 
         }
 

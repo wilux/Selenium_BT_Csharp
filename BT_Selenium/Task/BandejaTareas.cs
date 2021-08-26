@@ -32,7 +32,7 @@ namespace BT_Selenium.Tasks
         public static void Siguiente(IWebDriver driver)
         {
             Seleccionar(driver);
-            WaitHandler.Wait(2000);
+            WaitHandler.Wait(driver, 2);
             Click.On(driver, BandejaTareasUI.BTNOPOSIGUIENTE);
             Si(driver);
         }
@@ -45,15 +45,54 @@ namespace BT_Selenium.Tasks
         public static void Ejecutar(IWebDriver driver)
         {
             Seleccionar(driver);
-            WaitHandler.Wait(2000);
+            WaitHandler.Wait(driver, 2); 
             Click.On(driver, BandejaTareasUI.BTNOPOEJECUTAR);
         }
 
         public static void Tomar(IWebDriver driver)
         {
             Seleccionar(driver);
-            WaitHandler.Wait(2000);
+            WaitHandler.Wait(driver, 2);
             Click.On(driver, BandejaTareasUI.BTNOPOTOMAR);
+
+            if (BandejaTareas.GetMensaje(driver) != "")
+            {
+                Click.On(driver, BandejaTareasUI.BTNOPOEJECUTAR);
+            }
+            WaitHandler.Wait(driver, 2);
+        }
+
+        public static string GetMensaje(IWebDriver driver)
+        {
+            try
+            {
+                Frame.BuscarFrame(driver, SimulacionProductosUI.MsgTextArriba);
+                return Get.SpanText(driver, SimulacionProductosUI.MsgTextArriba);
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public static void Avanzar(IWebDriver driver)
+        {
+            By img = By.Id("_ZG1_IMGESTADOIMAGE_0001");
+
+            Seleccionar(driver);
+            //
+            if (Get.ImgSrc(driver, img) == "http://btwebqa.ar.bpn/BTWeb/images/icono_mail_inprocess.gif" || Get.ImgSrc(driver, img) == "http://btwebqa.ar.bpn/BTWeb/images/icono_mail_assigned.gif") 
+                {
+                Ejecutar(driver);
+                WaitHandler.Wait(driver, 2);
+                Si(driver);
+
+            }else
+            {
+                Tomar(driver);
+                WaitHandler.Wait(driver, 2);
+                Si(driver);
+            }
         }
 
     }

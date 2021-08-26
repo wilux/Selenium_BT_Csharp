@@ -9,9 +9,23 @@ namespace BT_Selenium.Tasks
 {
     public class Entrevista
     {
+
         public  Entrevista (IWebDriver driver)
         {
             Frame.BuscarFrame(driver, EntrevistaUI.BTNOPCONFIRMAR);
+        }
+
+        //Incia una entrevitsa, completa los datos basicos.
+        public static void Completar(IWebDriver driver, string documento)
+        {
+            Entrevista.Iniciar(driver);
+            Entrevista.IngresarDocumento(driver, documento);
+            Entrevista.Completar_DatosContacto(driver);
+            Entrevista.SeleccionarCuentaCredito(driver);
+            Entrevista.IngresosPF(driver);
+            Entrevista.Confirmar(driver);
+            WaitHandler.Wait(driver, 5);
+            Entrevista.Cerrar(driver);
         }
 
         public static void Confirmar(IWebDriver driver)
@@ -195,46 +209,46 @@ namespace BT_Selenium.Tasks
 
 
             //Campos Telefonico 1
-            if (Get.InputValue(driver, EntrevistaUI.SelectCodigoArea) == "" ||
-                Get.InputValue(driver, EntrevistaUI.InputTelefono) == "")
-            {
-                Select.ByText(driver, EntrevistaUI.SelectTelefono, telefono);
-                Select.ByText(driver, EntrevistaUI.SelectCodigoArea, cArea);
-                //Escribimos un numero telefonico 1 
-                Click.On(driver, EntrevistaUI.InputTelefono);
-                Enter.Text(driver, EntrevistaUI.InputTelefono, numero);
-                PressKey.Return(driver, EntrevistaUI.InputTelefono);
-            }
+            WaitHandler.Wait(driver, 5);
+            Select.ByText(driver, EntrevistaUI.SelectTelefono, telefono);
+            Select.ByText(driver, EntrevistaUI.SelectCodigoArea, cArea);
+            //Escribimos un numero telefonico 1 
+            Click.On(driver, EntrevistaUI.InputTelefono);
+            Enter.Text(driver, EntrevistaUI.InputTelefono, numero);
+            PressKey.Return(driver, EntrevistaUI.InputTelefono);
+
+
             //Campos Telefonico 2
-            if (Get.InputValue(driver, EntrevistaUI.SelectCodigoArea2) == "" ||
-                Get.InputValue(driver, EntrevistaUI.InputTelefono2) == "")
-                Select.ByText(driver, EntrevistaUI.SelectTelefono2, telefono2);
-                Select.ByText(driver, EntrevistaUI.SelectCodigoArea2, cArea2);
-                //Numero telefonico 2 (Lo dejo vacio)
-                Click.On(driver, EntrevistaUI.InputTelefono);
-                Enter.Text(driver, EntrevistaUI.InputTelefono, numero2);
-                PressKey.Return(driver, EntrevistaUI.InputTelefono);
+            WaitHandler.Wait(driver, 7);
+            Select.ByText(driver, EntrevistaUI.SelectTelefono2, telefono2);
+            Select.ByText(driver, EntrevistaUI.SelectCodigoArea2, cArea2);
+            //Escribimos un numero telefonico 2 
+            Enter.Text(driver, EntrevistaUI.InputTelefono2, numero2);
+            PressKey.Return(driver, EntrevistaUI.InputTelefono2);
+
+
         }
 
         public static void IngresosPF(IWebDriver driver, string sector= "Publico", 
-            string ingresosDependencia = "20000", string ingresosIndependiente ="20000")
+            string ingresosDependencia = "500000", string ingresosIndependiente = "500000")
         {
-            WaitHandler.Wait(5000);
+            //WaitHandler.Wait(driver, 5);
 
             //Sector Empleador
             Select.ByText(driver, EntrevistaUI.SelectSectorEmpleador, sector);
 
             //Importe Ingresos en Depedencia
-            Click.On(driver, EntrevistaUI.InputIngresosDepedencia);
-            Enter.Text(driver, EntrevistaUI.InputIngresosDepedencia, ingresosDependencia);
+            //Enter.Text(driver, EntrevistaUI.InputIngresosDepedencia, ingresosDependencia);
+            Enter.JSTextById(driver, "_BNQFPA2IRD", ingresosDependencia);
             PressKey.Tab(driver, EntrevistaUI.InputIngresosDepedencia);
 
 
             if (WaitHandler.IsVisible(driver, EntrevistaUI.InputIngresosIndependiente))
             {
+                //_BNQFPA2IIN
                 //Importe Ingresos Independiente
-                Click.On(driver, EntrevistaUI.InputIngresosIndependiente);
-                Enter.Text(driver, EntrevistaUI.InputIngresosIndependiente, ingresosIndependiente);
+                //Enter.Text(driver, EntrevistaUI.InputIngresosIndependiente, ingresosIndependiente);
+                Enter.JSTextById(driver, "_BNQFPA2IIN", ingresosDependencia);
                 PressKey.Tab(driver, EntrevistaUI.InputIngresosIndependiente);
             }
         }
@@ -247,6 +261,9 @@ namespace BT_Selenium.Tasks
             if (WaitHandler.ElementIsPresent(driver, EntrevistaUI.BTNOPELEGIRCTA))
             {
                 Click.On(driver, EntrevistaUI.BTNOPELEGIRCTA);
+            }else if (WaitHandler.ElementIsPresent(driver, EntrevistaUI.BTNOPCAMBIARCTA))
+            {
+               
             }
             else
             {   //Cuenta Nueva Select

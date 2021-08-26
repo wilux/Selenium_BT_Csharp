@@ -81,5 +81,13 @@ namespace BT_Selenium.Task
             //BandejaTareas.Ejecutar(driver);
 
         }
+
+        public static void BandejaDeTareas(IWebDriver driver)
+        {
+            Menu.Inicio(driver);
+            Menu.WorkFlow(driver);
+            Menu.BandejaTareas(driver);
+        }
+
     }
 }

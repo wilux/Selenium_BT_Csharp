@@ -17,16 +17,21 @@ namespace BT_Selenium.UI
 
         public static void OrigenFondos(IWebDriver driver)
         {
-                Click.On(driver, CargaAvanzadaUI.inputOrigenFondos);
-                Enter.Text(driver, CargaAvanzadaUI.inputOrigenFondos, "haberes");
+             if (WaitHandler.IsVisible(driver, CargaAvanzadaUI.inputOrigenFondos) 
+                && Get.InputValue(driver, CargaAvanzadaUI.inputOrigenFondos) == "")
 
+                {
+                    Click.On(driver, CargaAvanzadaUI.inputOrigenFondos);
+                    Enter.Text(driver, CargaAvanzadaUI.inputOrigenFondos, "haberes");
+                }
+            
         }
 
         public static void Aceptar(IWebDriver driver)
         {
 
             Click.On(driver, CargaAvanzadaUI.BTNOPACEPTAR);
-            WaitHandler.Wait(3000);
+            WaitHandler.Wait(driver, 3);
             Click.On(driver, CargaAvanzadaUI.BTN_SI);
 
         }

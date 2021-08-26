@@ -89,7 +89,7 @@ namespace BT_Selenium.TestCase
             //Seleccionar fila documentcion  (1 sola para IN)
             //Botn Agregar
             Documentacion.SeleccionarFila(driver);
-            Documentacion.Agregar(driver);
+            //Documentacion.Agregar(driver);
 
             //Pantalla agregar documento
             //fecha vigencia -> 01012020

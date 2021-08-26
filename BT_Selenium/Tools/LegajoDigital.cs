@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace BT_Selenium.Actions
+namespace BT_Selenium.Tools
 {
     public class LegajoDigital
     {

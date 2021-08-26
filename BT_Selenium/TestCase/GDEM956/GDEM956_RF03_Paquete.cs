@@ -47,7 +47,7 @@ namespace BT_Selenium.TestCase.GDEM956
             {
                 Assert.IsTrue(false);
             }
-            WaitHandler.Wait(5000);
+            WaitHandler.Wait(driver, 5);
             Capturar.Pantalla(driver, test, documento);
 
             nroEntrevista = Entrevista.NroEntrevista(driver);

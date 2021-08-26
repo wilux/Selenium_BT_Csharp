@@ -1,4 +1,5 @@
 ﻿using BT_Selenium.Tools;
+using BT_Selenium.UI;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -8,13 +9,30 @@ namespace BT_Selenium.Actions
 {
     public class Get
     {
-        
+        public static string ImgSrc(IWebDriver driver, By locator)
+        {
+            Frame.BuscarFrame(driver, locator);
+
+            var element = driver.FindElement(By.XPath("//img[@id='_ZG1_IMGESTADOIMAGE_0001']"));
+            string imageSrc = element.GetAttribute("src");
+
+            return imageSrc;
+         }
+
         public static string SpanText(IWebDriver driver, By locator)
         {
             Frame.BuscarFrame(driver, locator);
             IWebElement l = driver.FindElement(locator);
             return l.Text;
         }
+
+        public static string SelectValue(IWebDriver driver, By locator)
+        {
+            Frame.BuscarFrame(driver, locator);
+            return driver.FindElement(locator).GetAttribute("value");
+        }
+
+
 
         public static string InputValue(IWebDriver driver, By locator)
         {
