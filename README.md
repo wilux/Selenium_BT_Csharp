@@ -38,8 +38,8 @@ Ya dentro de NuGet, saldra una advertencia que dice "Faltan algunos paquetes NuG
 
 | Librerias | Documentación |
 | ------ | ------ |
-| Nunit | [https://docs.nunit.org/][PlDb] |
-| Selenium | [https://www.selenium.dev/documentation/][PlGh] |
+| Nunit | [https://docs.nunit.org/] |
+| Selenium | [https://www.selenium.dev/documentation/] |
 
 
 ## License
