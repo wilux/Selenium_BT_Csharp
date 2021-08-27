@@ -20,6 +20,11 @@ namespace BT_Selenium.Tasks
                 return "";
             }
         }
+        public static bool ValidarProducto(IWebDriver driver, string producto)
+        {
+
+            return Get.SelectElementContainsItemText(driver, SimulacionProductosUI.SelectPaquete, producto);
+        }
 
         public static void LineaPrestamo(IWebDriver driver, int index = 1)
         {

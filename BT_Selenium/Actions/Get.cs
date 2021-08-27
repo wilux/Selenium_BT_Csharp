@@ -2,6 +2,7 @@
 using BT_Selenium.UI;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
 
@@ -32,6 +33,25 @@ namespace BT_Selenium.Actions
             return driver.FindElement(locator).GetAttribute("value");
         }
 
+        public static bool SelectElementContainsItemText(IWebDriver driver, By locator, string itemText)
+        {
+            IWebElement Options = driver.FindElement(locator);
+            SelectElement selElem = new SelectElement(Options);
+
+            bool found = false;
+
+            for (int i = 0; i < selElem.Options.Count; i++)
+            {
+                var blah = selElem.Options[i].Text;
+                if (selElem.Options[i].Text.Equals(itemText))
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            return found;
+        }
 
 
         public static string InputValue(IWebDriver driver, By locator)

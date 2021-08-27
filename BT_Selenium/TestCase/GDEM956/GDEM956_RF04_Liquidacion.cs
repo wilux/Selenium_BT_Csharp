@@ -24,6 +24,7 @@ namespace BT_Selenium.TestCase.GDEM956
         {
 
             LegajoDigital.Completar(documento);
+            
             Login.As(driver, "liriac");
 
             //Menu
@@ -39,10 +40,23 @@ namespace BT_Selenium.TestCase.GDEM956
             //Gerente
             RevisionProductos.Observaciones(driver);
             RevisionProductos.Confirmar(driver);
-            Capturar.Pantalla(driver, "InstanciaSuperior", documento);
+
+            //Consulto en BD estado 
+            //Obtener numero de entrevista
+            string nroEntrevista = Entrevista.NroEntrevista(driver);
+            string consulta = $"select * from bnqfpa2 where BNQFPA2Nro='{nroEntrevista}'";
+            string estado = DB.ObtenerValorCampo(consulta, "BNQFPA2ACD");
+
+            if (estado == "X")
+            {
+                Assert.IsFalse(WaitHandler.IsEnable(driver, RevisionProductosUI.BTNOPLIQUIDAR));
+            }
+            else
+            {
+                Assert.IsTrue(WaitHandler.IsEnable(driver, RevisionProductosUI.BTNOPLIQUIDAR));
+            }
 
 
-            
         }
 
        

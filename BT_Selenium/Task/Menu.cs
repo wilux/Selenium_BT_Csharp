@@ -26,7 +26,7 @@ namespace BT_Selenium.Task
             catch
             {
                 Login.In(driver);
-                driver.SwitchTo().Window(driver.WindowHandles[1]);
+                
             }
             try
             {

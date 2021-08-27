@@ -85,6 +85,7 @@
     <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test5_todo.cs" />
     <Compile Include="TestCase\BridgerInsightTest.cs" />
     <Compile Include="TestCase\Legajo.cs" />
+    <Compile Include="TestCase\EntrevistaTest.cs" />
     <Compile Include="Tools\BridgerInsight.cs" />
     <Compile Include="Tools\LegajoDigital.cs" />
     <Compile Include="Actions\Accept.cs" />
@@ -123,8 +124,7 @@
     <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test1.cs" />
     <Compile Include="TestCase\CargaDocumentos.cs" />
     <Compile Include="TestCase\GDEM956\GDEM956_RF04_Liquidacion.cs" />
-    <Compile Include="TestCase\GDEM956\GDEM956_RF03_Paquete.cs" />
-    <Compile Include="TestCase\GDEM956\GDEM956_RF03_Monoproducto.cs" />
+    <Compile Include="TestCase\GDEM956\GDEM956_RF03.cs" />
     <Compile Include="TestCase\Template.cs" />
     <Compile Include="Tools\IterarSelect.cs" />
     <Compile Include="Tools\Kill.cs" />

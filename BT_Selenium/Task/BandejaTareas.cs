@@ -9,7 +9,6 @@ namespace BT_Selenium.Tasks
     public class BandejaTareas
     {
 
-
         public static void Iniciar(IWebDriver driver)
         {
             Click.On(driver, BandejaTareasUI.BTNOPOINICIAR);
@@ -75,19 +74,42 @@ namespace BT_Selenium.Tasks
             }
         }
 
+
+        ///BTWeb/.\images\icono_mail_inprocess.gif  -> Siguiente o Ejecutar(Probar ambos, Primero intentar siguiente siempre)
+        ///BTWeb/.\images\icono_mail_assigned.gif --> Solo Ejecutar
+        ///BTWeb/.\images\icono_mail_ready.gif --> Tomar
         public static void Avanzar(IWebDriver driver)
         {
             By img = By.Id("_ZG1_IMGESTADOIMAGE_0001");
 
             Seleccionar(driver);
             //
-            if (Get.ImgSrc(driver, img) == "http://btwebqa.ar.bpn/BTWeb/images/icono_mail_inprocess.gif" || Get.ImgSrc(driver, img) == "http://btwebqa.ar.bpn/BTWeb/images/icono_mail_assigned.gif") 
+            if (Get.ImgSrc(driver, img) == "http://btwebqa.ar.bpn/BTWeb/images/icono_mail_inprocess.gif") 
                 {
+                Siguiente(driver);
+                WaitHandler.Wait(driver, 2);
+                Si(driver);
+                //Salto mensaje y no se puede Siguiente entonces Ejecutar
+                if (GetMensaje(driver) != "")
+                {
+                    Ejecutar(driver);
+                    WaitHandler.Wait(driver, 2);
+                    Si(driver);
+                }
+                else
+                {
+                    Ejecutar(driver);
+                    WaitHandler.Wait(driver, 2);
+                    Si(driver);
+                }
+
+            }else if (Get.ImgSrc(driver, img) == "http://btwebqa.ar.bpn/BTWeb/images/icono_mail_assigned.gif")
+            {
                 Ejecutar(driver);
                 WaitHandler.Wait(driver, 2);
                 Si(driver);
-
-            }else
+            }
+            else
             {
                 Tomar(driver);
                 WaitHandler.Wait(driver, 2);

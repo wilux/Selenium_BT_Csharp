@@ -205,11 +205,12 @@ namespace BT_Selenium.Tasks
             if (Get.InputValue(driver, EntrevistaUI.InputMail) == "")
             {
                 Click.On(driver, EntrevistaUI.NoMail);
+                WaitHandler.Wait(driver, 5);
             }
 
 
             //Campos Telefonico 1
-            WaitHandler.Wait(driver, 5);
+
             Select.ByText(driver, EntrevistaUI.SelectTelefono, telefono);
             Select.ByText(driver, EntrevistaUI.SelectCodigoArea, cArea);
             //Escribimos un numero telefonico 1 
@@ -218,13 +219,14 @@ namespace BT_Selenium.Tasks
             PressKey.Return(driver, EntrevistaUI.InputTelefono);
 
 
-            //Campos Telefonico 2
+            //Campos Telefonico 2 // Dejamos vacio por defecto
             WaitHandler.Wait(driver, 7);
-            Select.ByText(driver, EntrevistaUI.SelectTelefono2, telefono2);
-            Select.ByText(driver, EntrevistaUI.SelectCodigoArea2, cArea2);
+            Select.ByIndex(driver, EntrevistaUI.SelectTelefono2, 0);
+            Select.ByIndex(driver, EntrevistaUI.SelectCodigoArea2, 0);
             //Escribimos un numero telefonico 2 
-            Enter.Text(driver, EntrevistaUI.InputTelefono2, numero2);
-            PressKey.Return(driver, EntrevistaUI.InputTelefono2);
+            //Enter.Text(driver, EntrevistaUI.InputTelefono2, numero2);
+            //PressKey.Return(driver, EntrevistaUI.InputTelefono2);
+            Clear.On(driver, EntrevistaUI.InputTelefono2);
 
 
         }
@@ -232,7 +234,7 @@ namespace BT_Selenium.Tasks
         public static void IngresosPF(IWebDriver driver, string sector= "Publico", 
             string ingresosDependencia = "500000", string ingresosIndependiente = "500000")
         {
-            //WaitHandler.Wait(driver, 5);
+            WaitHandler.Wait(driver, 5);
 
             //Sector Empleador
             Select.ByText(driver, EntrevistaUI.SelectSectorEmpleador, sector);
@@ -248,22 +250,22 @@ namespace BT_Selenium.Tasks
                 //_BNQFPA2IIN
                 //Importe Ingresos Independiente
                 //Enter.Text(driver, EntrevistaUI.InputIngresosIndependiente, ingresosIndependiente);
-                Enter.JSTextById(driver, "_BNQFPA2IIN", ingresosDependencia);
+                Enter.JSTextById(driver, "_BNQFPA2IIN", ingresosIndependiente);
                 PressKey.Tab(driver, EntrevistaUI.InputIngresosIndependiente);
             }
         }
 
         public static void SeleccionarCuentaCredito(IWebDriver driver)
         {
-
-            Grid.SeleccionarFila(driver, EntrevistaUI.GridCtaDebito, EntrevistaUI.td);
+            WaitHandler.Wait(driver, 5);
+            Grid.SeleccionarFila(driver, EntrevistaUI.GridCtaCredito, EntrevistaUI.td);
             //Grid.SeleccionarFila(driver, EntrevistaUI.PrimerFila);
-            if (WaitHandler.ElementIsPresent(driver, EntrevistaUI.BTNOPELEGIRCTA))
+            if (WaitHandler.IsVisible(driver, EntrevistaUI.BTNOPELEGIRCTA))
             {
                 Click.On(driver, EntrevistaUI.BTNOPELEGIRCTA);
-            }else if (WaitHandler.ElementIsPresent(driver, EntrevistaUI.BTNOPCAMBIARCTA))
+            }else if (WaitHandler.IsVisible(driver, EntrevistaUI.BTNOPCAMBIARCTA))
             {
-               
+               //No hacer nada
             }
             else
             {   //Cuenta Nueva Select

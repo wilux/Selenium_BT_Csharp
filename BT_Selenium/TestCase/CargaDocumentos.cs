@@ -11,7 +11,7 @@ namespace BT_Selenium.TestCase
     [TestFixture]
     public class CargaDocumentos : BaseTest
     {
-        [TestCase("27307925597")]
+      //  [TestCase("27307925597")]
 
         public void RF02(string documento)
         {
@@ -27,11 +27,6 @@ namespace BT_Selenium.TestCase
             //Documentacion.SeleccionarFila(driver);
             //Documentacion.Agregar(driver);
             AgregarDocumento.Auto(driver);
-         
-
-             
-
-
         }
 
     }

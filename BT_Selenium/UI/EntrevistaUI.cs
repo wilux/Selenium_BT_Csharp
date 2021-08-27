@@ -38,7 +38,7 @@ namespace BT_Selenium.UI
         public static By SelectCodigoArea2 = By.Name("_CODIGODEAERAT2");
         public static By InputTelefono = By.Name("_BNQFPA2TE1");
         public static By InputTelefono2 = By.Name("_BNQFPA2TE2");
-        public static By GridCtaDebito = By.Id("GRIDACRED");
+        public static By GridCtaCredito = By.Id("GRIDACRED");
 
         public static By BTNOPCAMBIARCTA = By.Id("BTNOPCAMBIARCTA");
         public static By BTNOPELEGIRCTA = By.Id("BTNOPELEGIRCTA");

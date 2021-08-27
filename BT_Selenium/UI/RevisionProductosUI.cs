@@ -20,6 +20,7 @@ namespace BT_Selenium.UI
         public static By BTNOPLIQUIDAR = By.Id("BTNOPLIQUIDAR");
         public static By BTN_SI = By.Id("BTNCONFIRMATION");
         public static By BTN_NO = By.Id("BTNCANCELCONFIRMATION");
+        public static By Check_CAUSD = By.Id("_CA_DOLARES");
 
     }
 

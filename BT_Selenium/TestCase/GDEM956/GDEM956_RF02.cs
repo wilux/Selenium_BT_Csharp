@@ -20,9 +20,8 @@ namespace BT_Selenium.TestCase.GDEM956
     {
         [TestCase("20133286838", ExpectedResult = "X")]
         [TestCase("23255760114", ExpectedResult = "S")]
-        [TestCase("20133286838", ExpectedResult = "X")]
-        [TestCase("23255760114", ExpectedResult = "S")]
-        //[TestCase("20133286838")]
+        [TestCase("20209502209", ExpectedResult = "S")]
+        [TestCase("27925159900", ExpectedResult = "X")]
         public string RF02(string documento)
         {
 
@@ -46,7 +45,7 @@ namespace BT_Selenium.TestCase.GDEM956
             Entrevista.IngresosPF(driver);
 
             ////Confirmar Entrevista
-            Click.On(driver, EntrevistaUI.BTNOPCONFIRMAR);
+            Entrevista.Confirmar(driver);
 
             //Obtener numero de entrevista
             string nroEntrevista = Entrevista.NroEntrevista(driver);
@@ -59,15 +58,13 @@ namespace BT_Selenium.TestCase.GDEM956
             //Reporte
             Reporte.Logger(gdem+" - "+"CUIL: " +documento +" "+ "Entrevista Nro: "+ nroEntrevista + " - " + " Estado: "+estado +" Mensaje: "+ mensaje);
 
-            Assert.IsTrue(estado != " ");
+            //Assert.IsTrue(estado != " ");
 
             Navegador.Cerrar(driver);
-            TestContext.Write(estado);
+            TestContext.Write("Cuil: "+documento + " Obtuvo: "+ estado);
 
-            //Devuelvo resultado para comprar con el esperado
+            //Devuelvo resultado para comparar con si el resultado es el esperado o no.
             return estado;
-
-
 
         }
 

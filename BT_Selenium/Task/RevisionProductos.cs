@@ -46,6 +46,12 @@ namespace BT_Selenium.UI
 
         }
 
+        public static void CheckCAUSD(IWebDriver driver)
+        {
+            Get.InputValue(driver, RevisionProductosUI.Check_CAUSD);
+
+        }
+
         public static void Observaciones(IWebDriver driver, string text="Test QA")
 
         {
