@@ -4,6 +4,7 @@ using BT_Selenium.Tools;
 using BT_Selenium.UI;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
+using System.Linq;
 using System.Threading;
 
 namespace BT_Selenium.Task
@@ -20,9 +21,12 @@ namespace BT_Selenium.Task
         public static void Inicio(IWebDriver driver)
         {
 
-                Login.In(driver);
-                //driver.Manage().Window.Maximize();
-                Click.Simple(driver, HomeUI.Inicio);
+            //Login.In(driver);
+            WaitHandler.Wait(driver, 5);
+            driver.SwitchTo().Window(driver.WindowHandles.Last());
+            driver.Manage().Window.Maximize();
+           
+            Click.Simple(driver, HomeUI.Inicio);
         }
 
         public static void WorkFlow(IWebDriver driver)

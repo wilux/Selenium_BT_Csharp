@@ -22,8 +22,8 @@ namespace BT_Selenium.Tasks
                     Click.Simple(driver, LoginUI.PasswordInput);
                     Enter.Text(driver, LoginUI.PasswordInput, credenciales.password);
                     Click.Simple(driver, LoginUI.LoginButton);
-                    driver.SwitchTo().Window(driver.WindowHandles[1]);
-                    driver.Manage().Window.Maximize();
+                    //driver.SwitchTo().Window(driver.WindowHandles[1]);
+                    //driver.Manage().Window.Maximize();
                 }
                 else
                 {
@@ -45,7 +45,7 @@ namespace BT_Selenium.Tasks
                 Enter.Text(driver, LoginUI.PasswordInput, credenciales.password);
                 Click.Simple(driver, LoginUI.LoginButton);
                 //Prueba para error aleatorio de incio
-                WaitHandler.Wait(driver, 6);
+                //WaitHandler.Wait(driver, 6);
                 //driver.SwitchTo().Window(driver.WindowHandles[1]);
             }
         }
