@@ -127,7 +127,6 @@
     <Compile Include="TestCase\GDEM956\GDEM956_RF03.cs" />
     <Compile Include="TestCase\Template.cs" />
     <Compile Include="Tools\IterarSelect.cs" />
-    <Compile Include="Tools\Kill.cs" />
     <Compile Include="Tools\DB.cs" />
     <Compile Include="Tools\Frame.cs" />
     <Compile Include="Tools\Reporte.cs" />

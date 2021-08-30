@@ -45,27 +45,8 @@ namespace BT_Selenium.Tasks
                 Enter.Text(driver, LoginUI.PasswordInput, credenciales.password);
                 Click.Simple(driver, LoginUI.LoginButton);
                 //Prueba para error aleatorio de incio
-                WaitHandler.Wait(driver, 3);
-                try
-                {
-                    driver.SwitchTo().Window(driver.WindowHandles[1]);
-                }
-                catch (Exception e)
-                {
-                    TestContext.Write(e);
-                    driver.Close();
-                    driver.SwitchTo().Window(driver.WindowHandles[0]);
-                    driver.Navigate().Refresh();
-                    In(driver);
-                }
-            }
-            else
-            {
-                TestContext.Write("No hay credenciales");
-                if (driver != null)
-                {
-                    driver.Quit();
-                }
+                WaitHandler.Wait(driver, 6);
+                //driver.SwitchTo().Window(driver.WindowHandles[1]);
             }
         }
     }

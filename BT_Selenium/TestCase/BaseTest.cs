@@ -4,6 +4,8 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
+using System;
 
 namespace BT_Selenium.TestCase
 {
@@ -22,6 +24,7 @@ namespace BT_Selenium.TestCase
         [SetUp]
         public void BeforeBaseTest()
         {
+
             if (stop)
             {
                 try
@@ -31,15 +34,19 @@ namespace BT_Selenium.TestCase
                 catch { }
             }
 
-            //Mata procesos de IE y Driver antes de empezar.
-            Kill.IE();
-
             _ = new InternetExplorerOptions
             {
+
                 EnsureCleanSession = true,
                 RequireWindowFocus = true
             };
-            driver = new InternetExplorerDriver("C:\\webdriver\\");
+            //Local
+            //driver = new InternetExplorerDriver("C:\\webdriver\\");
+            //Remote
+            InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
+            driver = new RemoteWebDriver(new Uri("http://192.168.23.16:4444/wd/hub"), internetExplorerOptions);
+
+
             driver.Navigate().GoToUrl(QaURL);
             driver.Manage().Window.Maximize();
             //Login.In(driver);
@@ -61,11 +68,11 @@ namespace BT_Selenium.TestCase
                 //}
             }
 
-            //if (driver != null)
-            //{
-            //    driver.Quit();
-            //    //Console.WriteLine("FIN");
-            //}
+            if (driver != null)
+            {
+                driver.Quit();
+                //Console.WriteLine("FIN");
+            }
         }
     }
 }

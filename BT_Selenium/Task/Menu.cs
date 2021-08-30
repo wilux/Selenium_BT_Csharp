@@ -19,25 +19,9 @@ namespace BT_Selenium.Task
 
         public static void Inicio(IWebDriver driver)
         {
-            try
-            {
-                driver.SwitchTo().Window(driver.WindowHandles[1]);
-            }
-            catch
-            {
+
                 Login.In(driver);
-                
-            }
-            try
-            {
-                WaitHandler.Elemento(driver, HomeUI.Logo);
-            }
-            catch
-            {
-                Kill.IE();
-                Thread.CurrentThread.Abort();
-            }
-                driver.Manage().Window.Maximize();
+                //driver.Manage().Window.Maximize();
                 Click.Simple(driver, HomeUI.Inicio);
         }
 
