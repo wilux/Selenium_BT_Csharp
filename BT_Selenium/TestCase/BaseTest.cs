@@ -35,8 +35,6 @@ namespace BT_Selenium.TestCase
                 catch { }
             }
 
-            //Mata procesos de IE y Driver antes de empezar.
-            Kill.IE();
 
             //    EnsureCleanSession = true,
             //    RequireWindowFocus = true
