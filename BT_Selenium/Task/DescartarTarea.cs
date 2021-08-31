@@ -17,7 +17,7 @@ namespace BT_Selenium.Task
 
 
             Click.On(driver, BandejaTareasUI.BTNOPDESCARTAR);
-            WaitHandler.Wait(2000);
+            WaitHandler.Wait(driver, 2);
             Click.On(driver, BandejaTareasUI.BTNCONFIRMATION);
 
         }

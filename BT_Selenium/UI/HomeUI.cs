@@ -12,7 +12,7 @@ namespace BT_Selenium.UI
 
         //Localizadores
 
-
+        public static By Logo = By.Id("logo");
         //Menu General
         public static By Menu = By.Id("menuBase");
         //Acceso

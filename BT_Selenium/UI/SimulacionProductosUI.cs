@@ -13,8 +13,11 @@ namespace BT_Selenium.UI
 
     public class SimulacionProductosUI
     { 
-        //MsgText
-        public static By MsgText = By.ClassName("MsgText");
+        //Mensajes
+        public static By MsgTextArriba = By.ClassName("MsgText");
+        public static By MsgTextMedio = By.ClassName("HTMLTXTTEXT1");
+        public static By MsgTextAbajo = By.ClassName("HTMLTXTTEXT5");
+
         public static By SelectPaquete = By.Name("_JBNYC5PQTE");
         public static By SelectLineaPrestamo = By.Name("_LINEA");
         public static By InputMonto = By.Name("_BNQFPC5MTO"); 
@@ -31,6 +34,12 @@ namespace BT_Selenium.UI
         public static By ValorTem = By.Name("_BNQFPC5TEM");
         public static By ValorTea = By.Name("_BNQFPC5TEA");
         public static By CheckCalificacion = By.Name("_BNQFPC5CBE");
+        public static By CheckPrestamo = By.Name("_BNQFPC5PP");
+        public static By CheckTarjeta = By.Name("_BNQFPC5TC");
+        public static By CheckCtaCte = By.Name("_CTACTE");
+        public static By CheckTC1= By.Name("_TCSEL_0001");
+        public static By CheckTC2 = By.Name("_TCSEL_0002");
+        public static By BTNOPPAQUETIZAR = By.Id("BTNOPPAQUETIZAR");
         public static By SelectCircuito = By.Name("_CICUITOS_CALIF_E");
         public static By BTNOPADHESION_SERVICIOS = By.Name("BTNOPADHESION_SERVICIOS");
         public static By BTNOPCERRAR = By.Id("BTNOPCERRAR");

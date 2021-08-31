@@ -23,7 +23,8 @@ namespace BT_Selenium.Tools
 
         public static void Logger(string lines)
         {
-            string path = "C:\\Users\\floresnes\\Pictures\\";
+            Credenciales credenciales = new Credenciales();
+            string path = $"C:\\Users\\{credenciales.usuario}\\Pictures\\";
             VerifyDir(path);
             string fileName = DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + "_Logs.txt";
             try

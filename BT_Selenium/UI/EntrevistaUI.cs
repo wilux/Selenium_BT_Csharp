@@ -38,7 +38,9 @@ namespace BT_Selenium.UI
         public static By SelectCodigoArea2 = By.Name("_CODIGODEAERAT2");
         public static By InputTelefono = By.Name("_BNQFPA2TE1");
         public static By InputTelefono2 = By.Name("_BNQFPA2TE2");
-        public static By GridCtaDebito = By.Id("GRIDACRED");
+        public static By GridCtaCredito = By.Id("GRIDACRED");
+
+        public static By BTNOPCAMBIARCTA = By.Id("BTNOPCAMBIARCTA");
         public static By BTNOPELEGIRCTA = By.Id("BTNOPELEGIRCTA");
         public static By BTNOPCONFIRMAR = By.Id("BTNOPCONFIRMAR");
         public static By BTN_SI = By.Id("BTNCONFIRMATION");
@@ -65,10 +67,13 @@ namespace BT_Selenium.UI
         //MsgText
         public static By MsgText = By.ClassName("MsgText");
 
+        //Cuenta Credito
         public static By tabla_HTMLTBLCAT245 = By.Id("HTMLTBLCAT245");
         public static By GRIDACRED = By.Id("GRIDACRED");
         public static By td = By.TagName("td");
         public static By CampoAcreditaBPN = By.Name("span__ACREDITAENBPN_0001");
+        public static By PrimerFila = By.Name("span__BNQFPA4CTA_0001");
+        //span__BNQFPA4CTA_0001
         //input hidden _ACREDITAENBPN_0001 SI o NO 
         //span__ACREDITAENBPN_0001
         //_BNQFPA4EST_0001
@@ -77,6 +82,8 @@ namespace BT_Selenium.UI
         public static By SelectCuentaBT = By.Name("_BNQFPA2CTA");
         public static By SelectSectorEmpleador = By.Name("_BNQFPA2ORD");
         public static By InputIngresosDepedencia = By.Name("_BNQFPA2IRD");
+        public static By InputIngresosIndependiente = By.Name("_BNQFPA2IIN");
+       
 
         public static By TipoPersona = By.Id("_PETIPO");
 

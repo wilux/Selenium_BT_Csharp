@@ -10,6 +10,24 @@ namespace BT_Selenium.Tasks
     public class Entrevista
     {
 
+        public  Entrevista (IWebDriver driver)
+        {
+            Frame.BuscarFrame(driver, EntrevistaUI.BTNOPCONFIRMAR);
+        }
+
+        //Incia una entrevitsa, completa los datos basicos.
+        public static void Completar(IWebDriver driver, string documento)
+        {
+            Entrevista.Iniciar(driver);
+            Entrevista.IngresarDocumento(driver, documento);
+            Entrevista.Completar_DatosContacto(driver);
+            Entrevista.SeleccionarCuentaCredito(driver);
+            Entrevista.IngresosPF(driver);
+            Entrevista.Confirmar(driver);
+            WaitHandler.Wait(driver, 5);
+            Entrevista.Cerrar(driver);
+        }
+
         public static void Confirmar(IWebDriver driver)
         {
             Click.On(driver, EntrevistaUI.BTNOPCONFIRMAR);
@@ -18,6 +36,11 @@ namespace BT_Selenium.Tasks
         public static void Cerrar(IWebDriver driver)
         {
             Click.On(driver, EntrevistaUI.BTNOPCERRAR);
+        }
+
+        public static string NroEntrevista(IWebDriver driver)
+        {
+            return Get.InputValue(driver, EntrevistaUI.inputTramite);
         }
 
 
@@ -31,10 +54,9 @@ namespace BT_Selenium.Tasks
 
         public static void Iniciar(IWebDriver driver)
         {
-            WaitHandler.Wait(7000);
-            driver.SwitchTo().Window(driver.WindowHandles[1]);
+           // WaitHandler.Wait(7000);
+           // driver.SwitchTo().Window(driver.WindowHandles[1]);
             driver.Manage().Window.Maximize();
-
 
             //Menu ir a...Inicio>WF>BandejaTarea
             Menu.Inicio(driver);
@@ -45,12 +67,11 @@ namespace BT_Selenium.Tasks
             //Iniciamos Nueva Tarea en Bandeja de tareas
 
             //Iniciar instancia
+            BandejaTareas.Iniciar(driver);
             
-            Click.On(driver, BandejaTareasUI.BTNOPOINICIAR);
+            NuevaInstancia.Entrevista(driver);
 
-            //Elegimos Instancia
-            Click.On(driver, NuevaInstanciaUI.Entrevista_Identificacion);
-            Click.On(driver, NuevaInstanciaUI.BTNOPOINICIAR);
+
         }
 
 
@@ -184,47 +205,67 @@ namespace BT_Selenium.Tasks
             if (Get.InputValue(driver, EntrevistaUI.InputMail) == "")
             {
                 Click.On(driver, EntrevistaUI.NoMail);
+                WaitHandler.Wait(driver, 5);
             }
 
 
             //Campos Telefonico 1
-            if (Get.InputValue(driver, EntrevistaUI.SelectCodigoArea) == "")
-            {
-                Select.ByText(driver, EntrevistaUI.SelectTelefono, telefono);
-                Select.ByText(driver, EntrevistaUI.SelectCodigoArea, cArea);
-                //Escribimos un numero telefonico 1 
-                Click.On(driver, EntrevistaUI.InputTelefono);
-                Enter.Text(driver, EntrevistaUI.InputTelefono, numero);
-                PressKey.Return(driver, EntrevistaUI.InputTelefono);
-            }
-            //Campos Telefonico 2
-            if (Get.InputValue(driver, EntrevistaUI.SelectCodigoArea2) == "")
-                Select.ByText(driver, EntrevistaUI.SelectTelefono2, telefono2);
-                Select.ByText(driver, EntrevistaUI.SelectCodigoArea2, cArea2);
-                //Numero telefonico 2 (Lo dejo vacio)
-                Click.On(driver, EntrevistaUI.InputTelefono);
-                Enter.Text(driver, EntrevistaUI.InputTelefono, numero2);
-                PressKey.Return(driver, EntrevistaUI.InputTelefono);
+
+            Select.ByText(driver, EntrevistaUI.SelectTelefono, telefono);
+            Select.ByText(driver, EntrevistaUI.SelectCodigoArea, cArea);
+            //Escribimos un numero telefonico 1 
+            Click.On(driver, EntrevistaUI.InputTelefono);
+            Enter.Text(driver, EntrevistaUI.InputTelefono, numero);
+            PressKey.Return(driver, EntrevistaUI.InputTelefono);
+
+
+            //Campos Telefonico 2 // Dejamos vacio por defecto
+            WaitHandler.Wait(driver, 7);
+            Select.ByIndex(driver, EntrevistaUI.SelectTelefono2, 0);
+            Select.ByIndex(driver, EntrevistaUI.SelectCodigoArea2, 0);
+            //Escribimos un numero telefonico 2 
+            //Enter.Text(driver, EntrevistaUI.InputTelefono2, numero2);
+            //PressKey.Return(driver, EntrevistaUI.InputTelefono2);
+            Clear.On(driver, EntrevistaUI.InputTelefono2);
+
+
         }
 
-        public static void IngresosPF(IWebDriver driver, string sector= "Publico", string ingresos = "10000")
+        public static void IngresosPF(IWebDriver driver, string sector= "Publico", 
+            string ingresosDependencia = "500000", string ingresosIndependiente = "500000")
         {
+            WaitHandler.Wait(driver, 5);
+
             //Sector Empleador
             Select.ByText(driver, EntrevistaUI.SelectSectorEmpleador, sector);
 
             //Importe Ingresos en Depedencia
-            Click.On(driver, EntrevistaUI.InputIngresosDepedencia);
-            Enter.Text(driver, EntrevistaUI.InputIngresosDepedencia, ingresos);
-            PressKey.Return(driver, EntrevistaUI.InputIngresosDepedencia);
+            //Enter.Text(driver, EntrevistaUI.InputIngresosDepedencia, ingresosDependencia);
+            Enter.JSTextById(driver, "_BNQFPA2IRD", ingresosDependencia);
+            PressKey.Tab(driver, EntrevistaUI.InputIngresosDepedencia);
+
+
+            if (WaitHandler.IsVisible(driver, EntrevistaUI.InputIngresosIndependiente))
+            {
+                //_BNQFPA2IIN
+                //Importe Ingresos Independiente
+                //Enter.Text(driver, EntrevistaUI.InputIngresosIndependiente, ingresosIndependiente);
+                Enter.JSTextById(driver, "_BNQFPA2IIN", ingresosIndependiente);
+                PressKey.Tab(driver, EntrevistaUI.InputIngresosIndependiente);
+            }
         }
 
         public static void SeleccionarCuentaCredito(IWebDriver driver)
         {
-            
-            Grid.SeleccionarFila(driver, EntrevistaUI.GridCtaDebito, EntrevistaUI.td);
-            if (WaitHandler.ElementIsPresent(driver, EntrevistaUI.BTNOPELEGIRCTA))
+            WaitHandler.Wait(driver, 5);
+            Grid.SeleccionarFila(driver, EntrevistaUI.GridCtaCredito, EntrevistaUI.td);
+            //Grid.SeleccionarFila(driver, EntrevistaUI.PrimerFila);
+            if (WaitHandler.IsVisible(driver, EntrevistaUI.BTNOPELEGIRCTA))
             {
                 Click.On(driver, EntrevistaUI.BTNOPELEGIRCTA);
+            }else if (WaitHandler.IsVisible(driver, EntrevistaUI.BTNOPCAMBIARCTA))
+            {
+               //No hacer nada
             }
             else
             {   //Cuenta Nueva Select
