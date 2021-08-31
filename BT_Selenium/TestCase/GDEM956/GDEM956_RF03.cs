@@ -37,7 +37,6 @@ namespace BT_Selenium.TestCase.GDEM956
             Entrevista.Confirmar(driver);
             Entrevista.Cerrar(driver);
 
-
             BandejaTareas.Avanzar(driver);
 
             //Obtener numero de entrevista

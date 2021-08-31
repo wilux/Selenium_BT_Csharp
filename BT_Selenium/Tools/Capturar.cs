@@ -12,9 +12,12 @@ namespace BT_Selenium.Tools
         //Capture
         //capture screenshot along file name
 
-        public static void Pantalla(IWebDriver driver, string pantalla, string cuil)
-        {
-            string fileName = @"C:\\Users\\floresnes\\Pictures\\" +cuil+"_"+ DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() +"_"+ pantalla + "_" +".jpg";
+        public static void Pantalla(IWebDriver driver, string pantalla, string cuil) 
+        { 
+       Credenciales credenciales = new Credenciales();
+
+            
+            string fileName = $"C:\\Users\\{credenciales.usuario}\\Pictures\\" + cuil+"_"+ DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() +"_"+ pantalla + "_" +".jpg";
 
             ((ITakesScreenshot)driver)
                 .GetScreenshot().SaveAsFile(fileName, ScreenshotImageFormat.Jpeg);

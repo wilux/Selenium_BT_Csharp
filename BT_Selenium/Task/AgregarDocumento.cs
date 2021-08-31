@@ -85,8 +85,9 @@ namespace BT_Selenium.UI
         {
             //The first step gets the base directory and the file
             //string file = AppDomain.CurrentDomain.BaseDirectory + "\\" + "Doc1_Test.pdf";
+            Credenciales credenciales = new Credenciales();
 
-                string file = @"C:\Users\floresnes\Documents\Doc1_Test.pdf";
+            string file = $"C:\\Users\\{credenciales.usuario}\\Documents\\Doc1_Test.pdf";
                 Frame.BuscarFrame(driver, AgregarDocumentoUI.inputBuscarArchivo);
                 Enter.Text(driver, AgregarDocumentoUI.inputBuscarArchivo, file);
 

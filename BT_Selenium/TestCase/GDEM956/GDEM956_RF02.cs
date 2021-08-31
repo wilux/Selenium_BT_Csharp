@@ -1,8 +1,6 @@
 ﻿using BT_Selenium.Actions;
-using BT_Selenium.Task;
 using BT_Selenium.Tasks;
 using BT_Selenium.Tools;
-using BT_Selenium.UI;
 using NUnit.Framework;
 
 namespace BT_Selenium.TestCase.GDEM956
@@ -30,7 +28,7 @@ namespace BT_Selenium.TestCase.GDEM956
             //Iniciar hasta CUIL/CUIT
             Entrevista.Iniciar(driver);
             Entrevista.IngresarDocumento(driver, documento);
-
+            
             ////Pantalla Entrevista
 
             ///Completar Datos que falten
@@ -46,7 +44,7 @@ namespace BT_Selenium.TestCase.GDEM956
 
             ////Confirmar Entrevista
             Entrevista.Confirmar(driver);
-
+            
             //Obtener numero de entrevista
             string nroEntrevista = Entrevista.NroEntrevista(driver);
 
@@ -57,8 +55,6 @@ namespace BT_Selenium.TestCase.GDEM956
 
             //Reporte
             Reporte.Logger(gdem+" - "+"CUIL: " +documento +" "+ "Entrevista Nro: "+ nroEntrevista + " - " + " Estado: "+estado +" Mensaje: "+ mensaje);
-
-            //Assert.IsTrue(estado != " ");
 
             Navegador.Cerrar(driver);
             TestContext.Write("Cuil: "+documento + " Obtuvo: "+ estado);

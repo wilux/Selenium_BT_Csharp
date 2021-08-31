@@ -120,8 +120,8 @@ namespace BT_Selenium.Tools
 
         public static void CambiarUsuario(string usuario)
         {
-            
-            string sql = $"UPDATE J055XZ SET J055XZUsr='{usuario}' WHERE J055XZUad='floresnes'";
+            Credenciales credenciales = new Credenciales();
+            string sql = $"UPDATE J055XZ SET J055XZUsr='{usuario}' WHERE J055XZUad='{credenciales.usuario}'";
             ejecutarQuery(sql);
 
 
