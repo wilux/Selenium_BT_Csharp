@@ -1,6 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using BT_Selenium.Task;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 
@@ -17,13 +19,18 @@ namespace BT_Selenium.Tools
         public static bool ElementIsPresent(IWebDriver driver, By locator)
         {
 
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            // wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            //WebPanel.Wait(driver);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+
+
             try
             {
+
+
                 wait.Until(e => e.FindElement(locator));
 
-                var elements = driver.FindElements(locator);
+                ReadOnlyCollection<IWebElement> elements = driver.FindElements(locator);
 
 
                 if (elements.Count >= 1)
@@ -39,7 +46,7 @@ namespace BT_Selenium.Tools
 
         }
         //Esperar un tiempo arbitrario
-        public static void Wait(IWebDriver driver, int segundos)
+        public static void Wait(int segundos)
         {
             Thread.Sleep(segundos * 1000);
 
@@ -56,7 +63,12 @@ namespace BT_Selenium.Tools
         {
             if (Frame.BuscarFrame(driver, locator))
             {
-                return driver.FindElement(locator).Displayed;
+                try
+                {
+                    return driver.FindElement(locator).Displayed;
+                }
+                catch { return false; }
+                
             }
             else
             {

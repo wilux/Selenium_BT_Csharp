@@ -1,7 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using BT_Selenium.Task;
+using OpenQA.Selenium;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 
@@ -17,6 +19,8 @@ namespace BT_Selenium.Tools
 
             return currentFrame;
         }
+
+
 
         public static int CantidadFrames(IWebDriver driver)
         {
@@ -50,6 +54,7 @@ namespace BT_Selenium.Tools
 
         public static bool BuscarFrame(IWebDriver driver, By locator)
         {
+
             if (FindElementIfExists(driver, locator) == null)
             {
 
@@ -60,7 +65,14 @@ namespace BT_Selenium.Tools
 
                 else
                 {
-                    return false;
+                    if (BuscarB(driver, locator) == true)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
             else
@@ -74,8 +86,19 @@ namespace BT_Selenium.Tools
 
         public static IWebElement FindElementIfExists(this IWebDriver driver, By by)
         {
-            var elements = driver.FindElements(by);
-            return (elements.Count >= 1) ? elements.First() : null;
+            IWebElement element;
+            while (true)
+            {
+                try
+                {
+                    IList<IWebElement> elements = driver.FindElements(by);
+                    element = (elements.Count >= 1) ? elements.First() : null;
+                    break;
+                }
+                catch { continue; }
+            }
+
+            return element;
         }
 
 
@@ -85,7 +108,7 @@ namespace BT_Selenium.Tools
         {
             int cantidad = CantidadFrames(driver);
 
-            for (int i = 0; i < cantidad + 2; i++)
+            for (int i = 0; i < cantidad + 1; i++)
             {
                 // driver.SwitchTo().DefaultContent();
 
@@ -94,12 +117,49 @@ namespace BT_Selenium.Tools
                     driver.SwitchTo().DefaultContent();
                     driver.SwitchTo().Frame(4);
                     driver.SwitchTo().Frame("step" + i);
+                    if (FindElementIfExists(driver, locator) != null && driver.FindElement(locator).Displayed)
+                    {
+                        //string frameActual = FrameActual(driver);
+                        return true;
+
+
+                    }
+
+                }
+                catch { continue; }
+            }
+
+
+            return false;
+
+        }//Fin 
+
+
+        public static bool BuscarB(IWebDriver driver, By locator)
+        {
+            int cantidad = CantidadFrames(driver);
+           // string frameActual = FrameActual(driver);
+            for (int i = 0; i < cantidad + 1; i++)
+            {
+           
+                try
+                {
+                    driver.SwitchTo().DefaultContent();
+                    IWebElement iframe = driver.FindElement(By.Id("0"));
+                    driver.SwitchTo().Frame(iframe);
+                    driver.SwitchTo().Frame("step" + i);
                     if (FindElementIfExists(driver, locator) != null)
                     {
                         //string frameActual = FrameActual(driver);
                         return true;
 
 
+                    }
+                    else
+                    {
+
+                        driver.SwitchTo().ParentFrame();
+                        driver.SwitchTo().Frame("step" + i);
                     }
 
                 }

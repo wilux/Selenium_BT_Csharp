@@ -17,13 +17,15 @@ namespace BT_Selenium.UI
         public static By inputApellido = By.Id("_BNQFPA2APE");
         public static By inputNombre = By.Id("_BNQFPA2NOM"); 
         public static By inputFechaNac = By.Id("_BNQFPA2FNA");
-        public static By SelectCapacidadLegal = By.Id("_PFCAPL");
-        public static By SelectSexo = By.Id("_BNQFPA2SEX");
-        public static By SelectNacionalidad = By.Id("_PFPNAC");
-        public static By SelectPaisCiudadania = By.Id("_PAIS");
-        public static By SelectProvincia = By.Id("_SNGC11DPTO");
-        public static By inputLocalidad = By.Id("_SNGC11PROV");//326 Neuquen
-        public static By SelectOcupacion = By.Id("_SNGC60OCUP");
+        public static By inputFechaIngresoPais = By.Id("_SNGC11DAT2");
+        public static By SelectCapacidadLegal = By.Name("_PFCAPL");
+        public static By SelectEstadoCivil = By.Name("_BNQFPA2ECI");
+        public static By SelectSexo = By.Name("_BNQFPA2SEX");
+        public static By SelectNacionalidad = By.Name("_PFPNAC");
+        public static By SelectPaisCiudadania = By.Name("_PAIS");
+        public static By SelectProvincia = By.Name("_SNGC11DPTO");
+        public static By inputLocalidad = By.Name("_SNGC11PROV");//326 Neuquen
+        public static By SelectOcupacion = By.Name("_SNGC60OCUP");
         public static By BTNOPDOMICILIOREAL = By.Id("BTNOPDOMICILIOREAL");
         public static By CampoDomicilio = By.Id("span__BNQFPA2DOM");
         public static By InputDomicilio = By.Id("_BNQFPA2DOM");
@@ -49,6 +51,7 @@ namespace BT_Selenium.UI
 
         //Datos del Negocio 
         public static By InputFechaNegocio = By.Name("_SNGC60FINI");
+        public static By inputActividad = By.Name("_ACTCOD1");
         public static By InputNombreEmpresa = By.Name("_SNGC60RZSO");
         public static By SelectSegmento = By.Name("_PJSEGMENTO");
 
@@ -71,8 +74,8 @@ namespace BT_Selenium.UI
         public static By tabla_HTMLTBLCAT245 = By.Id("HTMLTBLCAT245");
         public static By GRIDACRED = By.Id("GRIDACRED");
         public static By td = By.TagName("td");
-        public static By CampoAcreditaBPN = By.Name("span__ACREDITAENBPN_0001");
-        public static By PrimerFila = By.Name("span__BNQFPA4CTA_0001");
+        public static By CampoAcreditaBPN = By.Id("span__ACREDITAENBPN_0001");
+        public static By PrimerFila = By.Id("span__BNQFPA4CTA_0001");
         //span__BNQFPA4CTA_0001
         //input hidden _ACREDITAENBPN_0001 SI o NO 
         //span__ACREDITAENBPN_0001

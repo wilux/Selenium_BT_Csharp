@@ -9,7 +9,7 @@ using BT_Selenium.Tasks;
 using BT_Selenium.Task;
 using OpenQA.Selenium.Interactions;
 
-namespace BT_Selenium.TestCase
+namespace BT_Selenium.Task
 {
 
     public class ConfirmarInstanciaSuperior

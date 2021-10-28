@@ -3,7 +3,7 @@ using BT_Selenium.Actions;
 using BT_Selenium.UI;
 using BT_Selenium.Tools;
 
-namespace BT_Selenium.Tasks
+namespace BT_Selenium.Task
 {
     public class SimulacionProductos
     {
@@ -30,7 +30,7 @@ namespace BT_Selenium.Tasks
         {
             Select.ByIndex(driver, SimulacionProductosUI.SelectLineaPrestamo, index);//Elijo la primera disponible.
             PressKey.Return(driver, SimulacionProductosUI.SelectLineaPrestamo);
-            WaitHandler.Wait(driver, 8);
+            WaitHandler.Wait(8);
         }
 
         public static void Paquete(IWebDriver driver, int index = 1)
@@ -70,7 +70,7 @@ namespace BT_Selenium.Tasks
         {
             CheckBox.Check(driver, SimulacionProductosUI.CheckCalificacion);
             //Click.On(driver, SimulacionProductosUI.CheckCalificacion);
-            WaitHandler.Wait(driver, 5);
+            WaitHandler.Wait(5);
             Select.ByValue(driver, SimulacionProductosUI.SelectDestinoFondos, calificacion);
 
         }
@@ -79,21 +79,21 @@ namespace BT_Selenium.Tasks
         {
 
             CheckBox.Check(driver, SimulacionProductosUI.CheckPrestamo);
-            WaitHandler.Wait(driver, 8);
+            WaitHandler.Wait(8);
 
         }
 
         public static void UnCheckPrestamo(IWebDriver driver)
         {
             CheckBox.UnCheck(driver, SimulacionProductosUI.CheckPrestamo);
-            WaitHandler.Wait(driver, 8);
+            WaitHandler.Wait(8);
 
         }
 
         public static void Paquetizar(IWebDriver driver)
         {
             Click.On(driver, SimulacionProductosUI.BTNOPPAQUETIZAR);
-            WaitHandler.Wait(driver, 5);
+            WaitHandler.Wait(5);
 
         }
 
@@ -112,7 +112,7 @@ namespace BT_Selenium.Tasks
         public static void Confirmar(IWebDriver driver)
         {
             Click.On(driver, SimulacionProductosUI.BTNOPCONFIRMAR);
-            WaitHandler.Wait(driver, 3);
+            WaitHandler.Wait(3);
             Click.On(driver, SimulacionProductosUI.BTN_SI);
 
         }
@@ -121,8 +121,19 @@ namespace BT_Selenium.Tasks
         {
 
             Click.On(driver, BandejaTareasUI.BTNOPDESCARTAR);
-            WaitHandler.Wait(driver, 3);
+            WaitHandler.Wait(3);
             Click.On(driver, BandejaTareasUI.BTNCONFIRMATION);
+        }
+
+
+        public static bool CategoriaAcuerdo(IWebDriver driver)
+        {
+            if (driver.FindElement(SimulacionProductosUI.tablaAcuerdo).Displayed)
+            { return true; }
+            else
+            {
+                return false;
+            }
         }
 
     }

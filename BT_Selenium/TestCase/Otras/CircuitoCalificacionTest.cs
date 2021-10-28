@@ -1,7 +1,5 @@
 ﻿using BT_Selenium.Task;
-using System;
-using BT_Selenium.UI;
-using BT_Selenium.Tasks;
+
 
 namespace BT_Selenium.TestCase
 {
@@ -29,7 +27,6 @@ namespace BT_Selenium.TestCase
 
             //Seleccionamos tipo CUIT/CUIL e ingresamos documento
             Entrevista.IngresarDocumento(driver, documento);
-
 
 
             //Corregir validacion para tipo de persona

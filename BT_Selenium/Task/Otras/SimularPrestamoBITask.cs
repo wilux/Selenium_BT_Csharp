@@ -17,7 +17,7 @@ namespace BT_Selenium.Task
       public static void BI(IWebDriver driver, String documento,String monto, String plazo)
         {
             
-
+           
             //Iniciar hasta CUIL/CUIT
             Entrevista.Iniciar(driver);
 
@@ -28,14 +28,14 @@ namespace BT_Selenium.Task
             //Pantalla Entrevista
 
             //Completamos Datos Contacto
-            Entrevista.Completar_DatosContacto(driver);
+            Entrevista.DatosContacto(driver);
 
             //Seleccionar Cuenta (Falta logica para ver cual elegir) elijo por defecto la primera
-            Entrevista.SeleccionarCuentaCredito(driver);
+            Entrevista.BuscarCuenta(driver);
 
 
             //Ingresos y Sector Empleador
-            Entrevista.IngresosPF(driver);
+            Entrevista.Ingresos(driver);
 
             //Confirmar Entrevista
             Entrevista.Confirmar(driver);
@@ -66,7 +66,7 @@ namespace BT_Selenium.Task
             SimulacionProductos.LineaPrestamo(driver);
 
             //Pause
-            WaitHandler.Wait(driver, 5);
+            WaitHandler.Wait(5);
 
             //Monto _BNQFPC5MTO
             SimulacionProductos.MontoPrestamo(driver, monto);

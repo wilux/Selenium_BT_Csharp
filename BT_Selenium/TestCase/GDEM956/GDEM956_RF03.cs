@@ -1,11 +1,7 @@
-﻿using BT_Selenium.Actions;
-using BT_Selenium.UI;
+﻿
 using NUnit.Framework;
-using BT_Selenium.Tools;
-using BT_Selenium.Tasks;
-using OpenQA.Selenium.IE;
-using OpenQA.Selenium;
-using NUnit.Framework.Interfaces;
+using BT_Selenium.Task;
+
 
 namespace BT_Selenium.TestCase.GDEM956
 {
@@ -16,26 +12,43 @@ namespace BT_Selenium.TestCase.GDEM956
     // Si tiene X y muestra CAUSD la prueba falla. -> No debe mostrar CAUSD
 
 
-    [TestFixture, Description("Simula CA USD Monoproducto")]
+    //[TestFixture, Description("Simula CA USD Monoproducto")]
     public class GDEM956_RF03 : BaseTest
     {
-        [TestCase("20133286838")]//X
-        [TestCase("23255760114")]//S
-        public void Monoproudcto(string documento)
+
+        //Ante de empezar todas las pruebas
+        [OneTimeSetUp]
+        public void Before()
         {
-            string monoproducto = "CA. COMUN U$S";
-            string paquete = "BPN SELECTO";
+            Login.As(driver, "dechands");
+
+        }
+
+
+
+
+        //[TestCase("20351785846", TestName = "Test1", Category = "Datos Validos")]
+        //[TestCase("20351785846")]//Conjunta todos S
+        //[TestCase("20351785846")]//Conjunta Alguno N
+        public void Simulacion(string documento)
+        {
+            string monoproducto = "CA. COMUN U$S"; //value 12
+            string paquete = "BPN CLASICO"; // value 1
 
             Entrevista.Iniciar(driver);
             Entrevista.IngresarDocumento(driver, documento);
 
+
             ////Pantalla Entrevista
             ////Completamos Datos Contacto
-            Entrevista.Completar_DatosContacto(driver);
-            Entrevista.SeleccionarCuentaCredito(driver);
-            Entrevista.IngresosPF(driver);
+            Entrevista.DatosContacto(driver);
+            Entrevista.BuscarCuenta(driver);
+            Entrevista.Ingresos(driver);
             Entrevista.Confirmar(driver);
             Entrevista.Cerrar(driver);
+
+            //Borrar//
+            //Entrevista.IraBandejaTareas(driver);
 
             BandejaTareas.Avanzar(driver);
 
@@ -43,7 +56,10 @@ namespace BT_Selenium.TestCase.GDEM956
             string nroEntrevista = Entrevista.NroEntrevista(driver);
             //Consultar DB 
             string consulta = $"select * from bnqfpa2 where BNQFPA2Nro='{nroEntrevista}'";
-            string estado = DB.ObtenerValorCampo(consulta, "BNQFPA2ACD");
+            //string estado = DB.ObtenerValorCampo(consulta, "BNQFPA2ACD");
+
+            //Borrar
+            string estado = "S";
 
             if (estado == "X")
             {
@@ -59,7 +75,25 @@ namespace BT_Selenium.TestCase.GDEM956
             
         }
 
-       
+        //Al finalizar una prueba individual
+        //[TearDown]
+        //public void AfterTest()
+        //{
+
+        //}
+
+        //Al finalizar todas las pruebas
+        //[OneTimeTearDown]
+        //public void After()
+        //{
+        //    try
+        //    {
+ 
+        //    }
+        //    catch { }
+        //}
+
+
     }
 
 }

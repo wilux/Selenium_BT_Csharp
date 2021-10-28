@@ -29,21 +29,21 @@ namespace BT_Selenium.TestCase.GDEM610
         protected string mensajeEsperado = "Ya tiene Cta.Cte con acuerdo Vigente. La 20-5 será creada sin acuerdo";
         protected string mensajeObtenido = "";
 
-        [TestCase("20133286838", "CTA.CORRIENTE USF")]
+       // [TestCase("20133286838", "CTA.CORRIENTE USF")]
         public void RF04(string documento, string producto)
         {
             // 1.-Login
             Login.As(driver, usuarioPlataforma);
 
             //2.-Iniciar Entrevista y Completar
-            Entrevista.Completar(driver, documento);
+            Entrevista.Completar(driver);
 
             //3 .-Simular
             BandejaTareas.Filtrar(driver, documento);
             BandejaTareas.Siguiente(driver);
             BandejaTareas.Ejecutar(driver);
             SimulacionProductos.PaqueteNombre(driver, producto);
-            WaitHandler.Wait(driver, 5);
+            WaitHandler.Wait(5);
             Capturar.Pantalla(driver, test, documento);
             mensajeObtenido = SimulacionProductos.GetMensaje(driver);
             SimulacionProductos.UnCheckPrestamo(driver);

@@ -8,14 +8,14 @@ namespace BT_Selenium.Actions
         public static void Si(IWebDriver driver)
         {
             Click.On(driver, By.Id("BTNOPCONFIRMAR"));
-            WaitHandler.Wait(driver, 3);
+            WaitHandler.Wait(3);
             Click.On(driver, By.Id("BTNCONFIRMATION"));
         }
 
         public static void No(IWebDriver driver)
         {
             Click.On(driver, By.Id("BTNOPCONFIRMAR"));
-            WaitHandler.Wait(driver, 3);
+            WaitHandler.Wait(3);
             Click.On(driver, By.Id("BTNCANCELCONFIRMATION"));
         }
     }

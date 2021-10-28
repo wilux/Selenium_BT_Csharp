@@ -1,5 +1,5 @@
 ﻿using BT_Selenium.Actions;
-using BT_Selenium.Tasks;
+using BT_Selenium.Task;
 using BT_Selenium.Tools;
 using NUnit.Framework;
 
@@ -16,10 +16,10 @@ namespace BT_Selenium.TestCase.GDEM956
     [TestFixture]
     public class GDEM956_RF02 : BaseTest
     {
-        [TestCase("20133286838", ExpectedResult = "X")]
-        [TestCase("23255760114", ExpectedResult = "S")]
-        [TestCase("20209502209", ExpectedResult = "S")]
-        [TestCase("27925159900", ExpectedResult = "X")]
+        //[TestCase("20133286838", ExpectedResult = "X")]
+        //[TestCase("23255760114", ExpectedResult = "S")]
+        //[TestCase("20209502209", ExpectedResult = "S")]
+        //[TestCase("27925159900", ExpectedResult = "X")]
         public string RF02(string documento)
         {
 
@@ -28,19 +28,19 @@ namespace BT_Selenium.TestCase.GDEM956
             //Iniciar hasta CUIL/CUIT
             Entrevista.Iniciar(driver);
             Entrevista.IngresarDocumento(driver, documento);
-            
+
             ////Pantalla Entrevista
 
             ///Completar Datos que falten
-            Entrevista.Completar_DatosPersonales(driver);
-            Entrevista.Completar_DatosContacto(driver);
-            Entrevista.Completar_Ocupacion(driver);
+            Entrevista.DatosPersonales(driver);
+            Entrevista.Ocupacion(driver);
+            Entrevista.DatosContacto(driver);
 
             ////Seleccionar Cuenta
-            Entrevista.SeleccionarCuentaCredito(driver);
+            Entrevista.BuscarCuenta(driver);
 
             ////Ingresos
-            Entrevista.IngresosPF(driver);
+            Entrevista.Ingresos(driver);
 
             ////Confirmar Entrevista
             Entrevista.Confirmar(driver);

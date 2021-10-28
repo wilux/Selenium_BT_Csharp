@@ -48,7 +48,7 @@ namespace BT_Selenium.Tools
                 //frame.BuscarFrame(driver, simulacionProductos.SelectPaquete);
                 Select.ByIndex(driver, SimulacionProductosUI.SelectPaquete, i);
                 PressKey.ArrowDown(driver, SimulacionProductosUI.SelectPaquete);
-                WaitHandler.Wait(driver, 6);
+                WaitHandler.Wait(6);
                 //Reporte.Logger(gdem + " - " + documento + " - " + comentario + " - " + paquetes[i]);
                 //Capturar.Pantalla(driver, paquetes[i], documento);
             }

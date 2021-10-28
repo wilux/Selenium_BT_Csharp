@@ -4,8 +4,9 @@ using BT_Selenium.UI;
 using BT_Selenium.Tools;
 using NUnit.Framework;
 using System;
+using BT_Selenium.Task;
 
-namespace BT_Selenium.Tasks
+namespace BT_Selenium.Task
 {
     public class Login
     {
@@ -22,6 +23,7 @@ namespace BT_Selenium.Tasks
                     Click.Simple(driver, LoginUI.PasswordInput);
                     Enter.Text(driver, LoginUI.PasswordInput, credenciales.password);
                     Click.Simple(driver, LoginUI.LoginButton);
+                    WaitHandler.Wait(2);
                     driver.SwitchTo().Window(driver.WindowHandles[1]);
                     driver.Manage().Window.Maximize();
                 }
@@ -44,19 +46,19 @@ namespace BT_Selenium.Tasks
                 Click.Simple(driver, LoginUI.PasswordInput);
                 Enter.Text(driver, LoginUI.PasswordInput, credenciales.password);
                 Click.Simple(driver, LoginUI.LoginButton);
-                //Prueba para error aleatorio de incio
-                WaitHandler.Wait(driver, 3);
+                WaitHandler.Wait(2);
                 try
                 {
                     driver.SwitchTo().Window(driver.WindowHandles[1]);
+                    driver.Manage().Window.Maximize();
                 }
                 catch (Exception e)
                 {
                     TestContext.Write(e);
-                    driver.Close();
-                    driver.SwitchTo().Window(driver.WindowHandles[0]);
-                    driver.Navigate().Refresh();
-                    In(driver);
+                    if (driver != null)
+                    {
+                        driver.Quit();
+                    }
                 }
             }
             else

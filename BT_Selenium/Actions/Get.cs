@@ -1,9 +1,12 @@
-﻿using BT_Selenium.Tools;
+﻿using BT_Selenium.Task;
+using BT_Selenium.Tools;
 using BT_Selenium.UI;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace BT_Selenium.Actions
@@ -20,6 +23,37 @@ namespace BT_Selenium.Actions
             return imageSrc;
          }
 
+        public static string InputValue(IWebDriver driver, By locator)
+        {
+            try
+            {
+                Thread.Sleep(200);
+                if (Frame.BuscarFrame(driver, locator))
+                {
+                    IWebElement element = driver.FindElement(locator);
+                    string value = element.GetAttribute("value");
+                    return value;
+                }
+                else
+                {
+                    return null;
+                }
+            }catch { return null; }
+
+        }
+
+        public static string InputValue2(IWebDriver driver, By locator)
+        {
+            try
+            {
+                IWebElement element = driver.FindElement(locator);
+                string value = element.GetAttribute("value");
+                return value.Normalize();
+            }
+            catch { return null; }
+
+        }
+
         public static string SpanText(IWebDriver driver, By locator)
         {
             Frame.BuscarFrame(driver, locator);
@@ -29,9 +63,32 @@ namespace BT_Selenium.Actions
 
         public static string SelectValue(IWebDriver driver, By locator)
         {
-            Frame.BuscarFrame(driver, locator);
+            string valor ="";
+            WaitHandler.ElementIsPresent(driver, locator);
+            if (Frame.BuscarFrame(driver, locator))
+            {
+                while (true)
+                {
+                    try
+                    {
+                        valor = driver.FindElement(locator).GetAttribute("value");
+                        break;
+                    }
+                    catch { continue; }
+                }
+            }
+
+            return valor;
+
+        }
+
+        public static string SelectValue2(IWebDriver driver, By locator)
+        {
             return driver.FindElement(locator).GetAttribute("value");
         }
+
+
+
 
         public static bool SelectElementContainsItemText(IWebDriver driver, By locator, string itemText)
         {
@@ -54,21 +111,21 @@ namespace BT_Selenium.Actions
         }
 
 
-        public static string InputValue(IWebDriver driver, By locator)
+        public static string InputValue3(IWebDriver driver, By locator)
         {
             Frame.BuscarFrame(driver, locator);
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
             string text = "";
-            By hiddenInputId = locator;
-            if (hiddenInputId == null)
+            //By hiddenInputId = locator;
+            if (locator == null)
                 Assert.True(false, "Cannot find hiddenReportID");
 
-            IWebElement hiddenInputIdElement = driver.FindElement(hiddenInputId);
+            IWebElement hiddenInputIdElement = driver.FindElement(locator);
             string hiddenInputIdValue = string.Empty;
             int numberTest = 10;
             for (int i = 0; i < numberTest; i++)
             {
-                hiddenInputIdElement = driver.FindElement(hiddenInputId);
+                hiddenInputIdElement = driver.FindElement(locator);
                 hiddenInputIdValue = hiddenInputIdElement.GetAttribute("value");
                 text = (string)jsExecutor.ExecuteScript("return arguments[0].value", hiddenInputIdElement);
                 if (string.IsNullOrEmpty(hiddenInputIdValue))

@@ -26,47 +26,47 @@ namespace BT_Selenium.TestCase.GDEM610
         protected string nroEntrevista = "";
 
 
-        [Test, Order(1)]
-        public void BBSEntrevista()
-        {
-            Login.As(driver, usuarioPlataforma);
-            Entrevista.Iniciar(driver);
-            Entrevista.IngresarDocumento(driver, documento);
+       // [Test, Order(1)]
+       // public void BBSEntrevista()
+       // {
+       //     Login.As(driver, usuarioPlataforma);
+       //     Entrevista.Iniciar(driver);
+       //     Entrevista.IngresarDocumento(driver, documento);
 
-            ////Pantalla Entrevista
-            Entrevista.Completar_DatosContacto(driver);
-            Entrevista.SeleccionarCuentaCredito(driver);
-            Entrevista.IngresosPF(driver);
-            Entrevista.Confirmar(driver);
-
-
-            WaitHandler.Wait(driver, 5);
-            Entrevista.Cerrar(driver);
-            WaitHandler.Wait(driver, 5);
-
-       }
+       //     ////Pantalla Entrevista
+       //     Entrevista.Completar_DatosContacto(driver);
+       //     Entrevista.SeleccionarCuentaCredito(driver);
+       //     Entrevista.IngresosPF(driver);
+       //     Entrevista.Confirmar(driver);
 
 
-        [Test, Order(2)]
-        public void BSimularProducto()
-        {
-            Login.As(driver, usuarioPlataforma);
+       //     WaitHandler.Wait(driver, 5);
+       //     Entrevista.Cerrar(driver);
+       //     WaitHandler.Wait(driver, 5);
 
-            string mensajeEsperado = "";
-            string mensajeObtenido = "";
-            //bandeja tarjetas
-            IrHasta.BandejaDeTareas(driver);
-            BandejaTareas.Filtrar(driver, documento);
-            BandejaTareas.Siguiente(driver);
-            BandejaTareas.Ejecutar(driver);
+       //}
 
-            //Simular
-            WaitHandler.Wait(driver, 5);
-            Capturar.Pantalla(driver, test, documento);
-            Reporte.Logger("Prueba: " + test + "Cliente CUIL: " + documento + "Mensaje obtenido: " + mensajeObtenido);
-            mensajeObtenido = SimulacionProductos.GetMensaje(driver);
-            Assert.That(mensajeObtenido, Is.EqualTo(mensajeEsperado));
-        }
+
+       // [Test, Order(2)]
+       // public void BSimularProducto()
+       // {
+       //     Login.As(driver, usuarioPlataforma);
+
+       //     string mensajeEsperado = "";
+       //     string mensajeObtenido = "";
+       //     //bandeja tarjetas
+       //     IrHasta.BandejaDeTareas(driver);
+       //     BandejaTareas.Filtrar(driver, documento);
+       //     BandejaTareas.Siguiente(driver);
+       //     BandejaTareas.Ejecutar(driver);
+
+       //     //Simular
+       //     WaitHandler.Wait(driver, 5);
+       //     Capturar.Pantalla(driver, test, documento);
+       //     Reporte.Logger("Prueba: " + test + "Cliente CUIL: " + documento + "Mensaje obtenido: " + mensajeObtenido);
+       //     mensajeObtenido = SimulacionProductos.GetMensaje(driver);
+       //     Assert.That(mensajeObtenido, Is.EqualTo(mensajeEsperado));
+       // }
 
     }
 

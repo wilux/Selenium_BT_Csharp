@@ -9,8 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsInput.Native;
 using WindowsInput;
+using BT_Selenium.UI;
 
-namespace BT_Selenium.UI
+namespace BT_Selenium.Task
 {
     //Simulación - Venta de Productos
 
@@ -21,20 +22,20 @@ namespace BT_Selenium.UI
         {
             if (WaitHandler.IsEnable(driver, MatrizRiesgoUI.BTNOPCONFIRMAR)) {
                 //Ctrol + enter
-                WaitHandler.Wait(driver, 2);
+                WaitHandler.Wait(2);
                 InputSimulator sim = new InputSimulator();
                 sim.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.RETURN);
                 //Click.On(driver, MatrizRiesgoUI.BTNOPCONFIRMAR);
-                WaitHandler.Wait(driver, 2);
+                WaitHandler.Wait(2);
             }
 
         }
 
         public static void Si(IWebDriver driver)
         {
-            WaitHandler.Wait(driver, 2);
+            WaitHandler.Wait(2);
             Click.On(driver, MatrizRiesgoUI.Radio_Si);
-            WaitHandler.Wait(driver, 2);
+            WaitHandler.Wait(2);
 
         }
 

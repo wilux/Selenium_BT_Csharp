@@ -1,8 +1,9 @@
 ﻿using BT_Selenium.Actions;
 using BT_Selenium.Tools;
+using BT_Selenium.UI;
 using OpenQA.Selenium;
 
-namespace BT_Selenium.UI
+namespace BT_Selenium.Task
 {
     //Documentacion - Calificacion Empresas
     public class Documentacion
@@ -43,7 +44,7 @@ namespace BT_Selenium.UI
 
         public static void Agregar(IWebDriver driver)
         {
-            WaitHandler.Wait(driver, 3);
+            WaitHandler.Wait(3);
             Click.On(driver, DocumentacionUI.BTNOPAGREGAR);
 
         }

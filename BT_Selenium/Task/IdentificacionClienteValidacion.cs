@@ -15,7 +15,7 @@ namespace BT_Selenium.Task
         public static void Confirmar(IWebDriver driver)
         {
             Click.On(driver, IdentificacionClienteValidacionUI.BTNOPCONFIRMAR);
-            WaitHandler.Wait(driver, 3);
+            WaitHandler.Wait(3);
             Click.On(driver, IdentificacionClienteValidacionUI.BTN_SI);
 
         }

@@ -25,6 +25,11 @@ namespace BT_Selenium.Tools
             string query = sql;
             SqlCommand command = new SqlCommand(query, connection);
 
+            try
+            {
+                connection.Close();
+            }
+            catch { }
 
             try
             {

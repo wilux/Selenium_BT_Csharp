@@ -28,113 +28,113 @@ namespace BT_Selenium.TestCase.GDEM610
         protected string test = "Test5";
 
 
-        [Test, Order(1)]
-        public void ALogin()
-        {
-            Login.As(driver, usuarioPlataforma);
+      //  [Test, Order(1)]
+      //  public void ALogin()
+      //  {
+      //      Login.As(driver, usuarioPlataforma);
 
 
-            //WaitHandler.Wait(5000);
-            //Entrevista.Cerrar(driver);
+      //      //WaitHandler.Wait(5000);
+      //      //Entrevista.Cerrar(driver);
 
-        }
-        [Test, Order(2)]
-        public void BBSEntrevista()
-        {
-            Login.As(driver, usuarioPlataforma);
-            Entrevista.Iniciar(driver);
-            Entrevista.IngresarDocumento(driver, documento);
+      //  }
+      //  [Test, Order(2)]
+      //  public void BBSEntrevista()
+      //  {
+      //      Login.As(driver, usuarioPlataforma);
+      //      Entrevista.Iniciar(driver);
+      //      Entrevista.IngresarDocumento(driver, documento);
 
-            ////Pantalla Entrevista
-            Entrevista.Completar_DatosContacto(driver);
-            Entrevista.SeleccionarCuentaCredito(driver);
-            Entrevista.IngresosPF(driver);
-            Entrevista.Confirmar(driver);
-            WaitHandler.Wait(driver, 5);
-            Entrevista.Cerrar(driver);
+      //      ////Pantalla Entrevista
+      //      Entrevista.Completar_DatosContacto(driver);
+      //      Entrevista.SeleccionarCuentaCredito(driver);
+      //      Entrevista.IngresosPF(driver);
+      //      Entrevista.Confirmar(driver);
+      //      WaitHandler.Wait(driver, 5);
+      //      Entrevista.Cerrar(driver);
             
 
-        }
+      //  }
 
-            [Test, Order(3)]
-        public void BSimularProducto()
-        {
-            Login.As(driver, usuarioPlataforma);
+      //      [Test, Order(3)]
+      //  public void BSimularProducto()
+      //  {
+      //      Login.As(driver, usuarioPlataforma);
 
-            string mensajeEsperado = "Ya tiene Cta.Cte con acuerdo Vigente. La 20-5 será creada sin acuerdo";
-            string mensajeObtenido = "";
-            //bandeja tarjetas
-            IrHasta.BandejaDeTareas(driver);
-            BandejaTareas.Filtrar(driver, documento);
-            BandejaTareas.Avanzar(driver);
+      //      string mensajeEsperado = "Ya tiene Cta.Cte con acuerdo Vigente. La 20-5 será creada sin acuerdo";
+      //      string mensajeObtenido = "";
+      //      //bandeja tarjetas
+      //      IrHasta.BandejaDeTareas(driver);
+      //      BandejaTareas.Filtrar(driver, documento);
+      //      BandejaTareas.Avanzar(driver);
 
-            //Simular
-            SimulacionProductos.PaqueteNombre(driver, producto);
-            WaitHandler.Wait(driver, 5);
-            Capturar.Pantalla(driver, test, documento);
-            mensajeObtenido = SimulacionProductos.GetMensaje(driver);
-            SimulacionProductos.UnCheckPrestamo(driver);
-            SimulacionProductos.Confirmar(driver);
-            Assert.That(mensajeObtenido, Is.EqualTo(mensajeEsperado));
-        }
+      //      //Simular
+      //      SimulacionProductos.PaqueteNombre(driver, producto);
+      //      WaitHandler.Wait(driver, 5);
+      //      Capturar.Pantalla(driver, test, documento);
+      //      mensajeObtenido = SimulacionProductos.GetMensaje(driver);
+      //      SimulacionProductos.UnCheckPrestamo(driver);
+      //      SimulacionProductos.Confirmar(driver);
+      //      Assert.That(mensajeObtenido, Is.EqualTo(mensajeEsperado));
+      //  }
 
-        [Test, Order(4)]
-        public void Carga_Avanzada()
-        {
-            Login.As(driver, usuarioPlataforma);
-            IrHasta.BandejaDeTareas(driver);
-            BandejaTareas.Filtrar(driver, documento);
+      //  [Test, Order(4)]
+      //  public void Carga_Avanzada()
+      //  {
+      //      Login.As(driver, usuarioPlataforma);
+      //      IrHasta.BandejaDeTareas(driver);
+      //      BandejaTareas.Filtrar(driver, documento);
 
-            //Bandeja Tareas
-            BandejaTareas.Tomar(driver);
+      //      //Bandeja Tareas
+      //      BandejaTareas.Tomar(driver);
 
-            //Pantalla Carga Avanzada
-            //Setea consulta Bridger Insight
-            BridgerInsight.Consultar(documento, usuarioPlataforma);
-            CargaAvanzada.OrigenFondos(driver);
-            CargaAvanzada.Aceptar(driver);
-        }
+      //      //Pantalla Carga Avanzada
+      //      //Setea consulta Bridger Insight
+      //      BridgerInsight.Consultar(documento, usuarioPlataforma);
+      //      CargaAvanzada.OrigenFondos(driver);
+      //      CargaAvanzada.Aceptar(driver);
+      //  }
 
-        [Test, Order(5)]
-        public void DReutilizacionProducto()
-        {
-            Login.As(driver, usuarioPlataforma);
-            IrHasta.BandejaDeTareas(driver);
-            BandejaTareas.Filtrar(driver, documento);
+      //  [Test, Order(5)]
+      //  public void DReutilizacionProducto()
+      //  {
+      //      Login.As(driver, usuarioPlataforma);
+      //      IrHasta.BandejaDeTareas(driver);
+      //      BandejaTareas.Filtrar(driver, documento);
 
-            //Bandeja Tareas
-            BandejaTareas.Tomar(driver);
+      //      //Bandeja Tareas
+      //      BandejaTareas.Tomar(driver);
 
-            //Pantalla Reutilizacion Productos
-            ReutilizacionABMProductos.SeleccionarSeguroVida(driver);
-            ReutilizacionABMProductos.SeleccionarTarjeta(driver);
-            ReutilizacionABMProductos.Aceptar(driver);
-            ReutilizacionABMProductos.PerfilRiesgo(driver);
-            MatrizRiesgo.Confirmar(driver);
-            MatrizRiesgo.Cerrar(driver);
-        }
+      //      //Pantalla Reutilizacion Productos
+      //      ReutilizacionABMProductos.SeleccionarSeguroVida(driver);
+      //      ReutilizacionABMProductos.SeleccionarTarjeta(driver);
+      //      ReutilizacionABMProductos.Aceptar(driver);
+      //      ReutilizacionABMProductos.PerfilRiesgo(driver);
+      //      MatrizRiesgo.Confirmar(driver);
+      //      MatrizRiesgo.Cerrar(driver);
+      //  }
 
 
-        [Test, Order(6)]
-        public void EConfirmacionGerente()
-        {
+      //  [Test, Order(6)]
+      //  public void EConfirmacionGerente()
+      //  {
            
-            //ConfirmarInstanciaSuperior.Gerente(driver, documento, usuarioGerentea);
-        }
+      //      //ConfirmarInstanciaSuperior.Gerente(driver, documento, usuarioGerentea);
+      //  }
 
-        [Test, Order(7)]
-        public void FConfirmacionCreditos()
-        {
-            ConfirmarInstanciaSuperior.Creditos(driver, documento, usuarioCreditos);
-        }
+      //  [Test, Order(7)]
+      //  public void FConfirmacionCreditos()
+      //  {
+      //      ConfirmarInstanciaSuperior.Creditos(driver, documento, usuarioCreditos);
+      //  }
 
-      //  [Test, Order(9)]
-        public void ComprobarAcuerdo()
-        {
+      ////  [Test, Order(9)]
+      //  public void ComprobarAcuerdo()
+      //  {
            
-            //Consultar la DB si el acuerdo modulo 49 esta dado de baja
+      //      //Consultar la DB si el acuerdo modulo 49 esta dado de baja
 
-        }
+      //  }
 
 
         

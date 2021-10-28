@@ -9,8 +9,16 @@ namespace BT_Selenium.Actions
         public static void SeleccionarFila(IWebDriver driver, By locator, By fila)
         {
             Frame.BuscarFrame(driver, locator);
-            IWebElement webElement = driver.FindElement(locator);
-            webElement.FindElement(fila).Click();
+            while (true)
+            {
+                try
+                {
+                    IWebElement webElement = driver.FindElement(locator);
+                    webElement.FindElement(fila).Click();
+                    break;
+                }
+                catch { continue; }
+            }
         }
 
     }

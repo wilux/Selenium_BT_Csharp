@@ -1,71 +1,38 @@
 ﻿using BT_Selenium.Actions;
 using BT_Selenium.Tasks;
-using BT_Selenium.Tools;
 using BT_Selenium.UI;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BT_Selenium.Task
 {
    public class IrHasta
     {
-        public static void SimularProducto(IWebDriver driver, string documento)
+        public static void SimularProducto(IWebDriver driver, string documento, string ingresos)
         {
-
+            //Iniciar hasta CUIL/CUIT
             Entrevista.Iniciar(driver);
-
-            ////Seleccionamos tipo CUIT/CUIL e ingresamos documento
             Entrevista.IngresarDocumento(driver, documento);
 
-
             ////Pantalla Entrevista
-
-            //Completar Datos empresa si es PJ
-            if (documento[0] == "3"[0])
-            {
-                Entrevista.Completar_DatosEmpresa(driver);
-            }
-
-            //Completar Datos del Negocio
-
-
-            ////Completamos Datos Contacto
-            Entrevista.Completar_DatosContacto(driver);
-
-            if (documento[0] != "3"[0])
-            {
-                ////Seleccionar Cuenta (Falta logica para ver cual elegir) elijo por defecto la primera
-                Entrevista.SeleccionarCuentaCredito(driver);
-
-                ////Ingresos y Sector Empleador
-                Entrevista.IngresosPF(driver);
-            }
-
-
-
-
-
+            ///Completar Datos que falten
+            Entrevista.DatosPersonales(driver);
+            Entrevista.Ocupacion(driver);
+            Entrevista.DatosContacto(driver);
+            ////Seleccionar Cuenta
+            Entrevista.BuscarCuenta(driver);
+            ////Ingresos
+            Entrevista.Ingresos(driver, ingresos);
             ////Confirmar Entrevista
-            Click.On(driver, EntrevistaUI.BTNOPCONFIRMAR);
-
-            ////Cerrar para continuar siguiente pantalla
+            Entrevista.Confirmar(driver);
+            string nroEntrevista = Entrevista.NroEntrevista(driver);
+            //Cerrar
             Entrevista.Cerrar(driver);
 
-            ////Volvemos a hxwf900 - Bandeja de Entrada de Tareas
+            //Retomar
+            BandejaTareas.Filtrar(driver, nroEntrevista);
             BandejaTareas.Siguiente(driver);
-
-            ////Confirmar SI
-            BandejaTareas.Si(driver);
-
-            //Seleccionar
-            //Ejecutar
             BandejaTareas.Ejecutar(driver);
-
-            //Simular
         }
 
         //Busca el ultimo tramite por cuil/cuit ingresado para continuarlo.

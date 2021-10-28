@@ -1,4 +1,5 @@
 ﻿using BT_Selenium.Actions;
+using BT_Selenium.UI;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BT_Selenium.UI
+namespace BT_Selenium.Task
 {
     /*
      * Clase que representa el webpanel hxwf901 - Iniciar Instancia de Proceso

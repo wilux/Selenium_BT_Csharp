@@ -1,12 +1,6 @@
-﻿using BT_Selenium.Actions;
-using BT_Selenium.UI;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System.Collections.Generic;
-using BT_Selenium.Tools;
-using BT_Selenium.Tasks;
+﻿using NUnit.Framework;
 using BT_Selenium.Task;
+
 
 namespace BT_Selenium.TestCase
 {
@@ -14,35 +8,54 @@ namespace BT_Selenium.TestCase
     [TestFixture]
     public class EntrevistaTest : BaseTest
     {
-        //Prueba de Pantalla Entrevista
 
-       // [TestCase("20133286838")]
-        [TestCase("20209502209")]
-        public void RFXX(string documento)
+        //Ante de empezar todas las pruebas
+        [OneTimeSetUp]
+        public void Before()
         {
-         
+            Login.In(driver);
+        }
+
+        //Prueba de Pantalla Entrevista
+        //Tiempo que demora en completar datos
+
+         [TestCase("23179516314")]
+        //[TestCase("1010198")]
+        public void Completar(string documento)
+        {
+
             ////Iniciar hasta CUIL/CUIT
             //Entrevista.Iniciar(driver);
             //Entrevista.IngresarDocumento(driver, documento);
 
-            ////Pantalla Entrevista
+            //Pantalla Entrevista
             IrHasta.BandejaDeTareas(driver);
             BandejaTareas.Filtrar(driver, documento);
-            BandejaTareas.Avanzar(driver);
-            ///Completar Datos que falten
-            Entrevista.Completar_DatosPersonales(driver);
-            Entrevista.Completar_DatosContacto(driver);
-            Entrevista.Completar_Ocupacion(driver);
+            BandejaTareas.Ejecutar(driver);
+            Entrevista.DatosPersonales(driver);
+            Entrevista.Ocupacion(driver);
+            Entrevista.DatosContacto(driver);
 
-            ////Seleccionar Cuenta
-            Entrevista.SeleccionarCuentaCredito(driver);
+            //Seleccionar Cuenta
+            Entrevista.BuscarCuenta(driver);
 
-            ////Ingresos
-            Entrevista.IngresosPF(driver);
+            //Ingresos
+            Entrevista.Ingresos(driver);
+
 
             ////Confirmar Entrevista
-            //Entrevista.Confirmar(driver);
+            Entrevista.Confirmar(driver);
 
+        }
+
+        [OneTimeTearDown]
+        public void After()
+        {
+            try
+            {
+
+            }
+            catch { }
         }
 
     }

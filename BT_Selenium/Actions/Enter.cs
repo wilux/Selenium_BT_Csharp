@@ -1,7 +1,9 @@
-﻿using BT_Selenium.Tools;
+﻿using BT_Selenium.Task;
+using BT_Selenium.Tools;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Threading;
 
 namespace BT_Selenium.Actions
 {
@@ -9,8 +11,15 @@ namespace BT_Selenium.Actions
     {
         public static void Text(IWebDriver driver, By locator, string text)
         {
+            Thread.Sleep(200);
 
-           driver.FindElement(locator).SendKeys(text);
+            try
+            {
+                driver.FindElement(locator).Clear();
+                driver.FindElement(locator).SendKeys(text);
+            }
+            catch {}
+            Thread.Sleep(200);
         }
 
 

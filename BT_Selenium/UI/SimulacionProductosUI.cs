@@ -44,6 +44,14 @@ namespace BT_Selenium.UI
         public static By BTNOPADHESION_SERVICIOS = By.Name("BTNOPADHESION_SERVICIOS");
         public static By BTNOPCERRAR = By.Id("BTNOPCERRAR");
 
+        //Categoria Acuerdo BI
+        public static By tablaAcuerdo = By.Id("TBL118");
+        public static By spanTituloAcc = By.Id("HTMLTXTTITLE395");
+        public static By checkActualizarAcc = By.Id("_ACTUALIZAACC");
+        public static By inputMontoActualAcc = By.Id("span__JBNYC5ACIM");
+        public static By inputMontoNuevoAcc = By.Id("_JBNYC5ACIM_NUEVO");
+
+
     }
 
 }

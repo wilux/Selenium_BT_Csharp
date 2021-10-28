@@ -1,17 +1,11 @@
 ﻿using BT_Selenium.Actions;
 using BT_Selenium.Tools;
+using BT_Selenium.UI;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace BT_Selenium.UI
+
+namespace BT_Selenium.Task
 {
     //Simulación - Venta de Productos
 
@@ -22,9 +16,9 @@ namespace BT_Selenium.UI
         {
             if (WaitHandler.IsEnable(driver, RevisionProductosUI.BTNOPCONFIRMAR)) {
                 Click.On(driver, RevisionProductosUI.BTNOPCONFIRMAR);
-                WaitHandler.Wait(driver, 3);
+                WaitHandler.Wait(3);
                 Click.On(driver, RevisionProductosUI.BTN_SI);
-                WaitHandler.Wait(driver, 3);
+                WaitHandler.Wait(3);
             }
 
         }

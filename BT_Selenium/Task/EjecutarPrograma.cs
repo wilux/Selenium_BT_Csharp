@@ -1,4 +1,5 @@
 ﻿using BT_Selenium.Actions;
+using BT_Selenium.Tools;
 using BT_Selenium.UI;
 using OpenQA.Selenium;
 
@@ -12,10 +13,15 @@ namespace BT_Selenium.Task
 
       public static void Ejecutar(IWebDriver driver, string programa)
         {
+            WaitHandler.Wait(5);
             Menu.Ejecutar(driver);
-            //Abrir programa (Iniciar Entrevista)
+            //Pasamos al Frame principal/activo
+            IWebElement iframe = driver.FindElement(By.Id("0"));
+            driver.SwitchTo().Frame(iframe);
+            driver.SwitchTo().Frame("step1");
             Enter.Text(driver, HomeUI._PROGRAMA, programa);
-            Click.On(driver, HomeUI.BTNOPCONFIRMAR);
+            Click.Simple(driver, HomeUI.BTNOPCONFIRMAR);
+            WaitHandler.Wait(2);
         }
     }
 }

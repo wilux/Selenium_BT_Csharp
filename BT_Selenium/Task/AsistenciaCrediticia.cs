@@ -23,7 +23,7 @@ namespace BT_Selenium.Tasks
         public static void Confirmar(IWebDriver driver)
         {
             Click.On(driver, AsistenciaCrediticiaUI.BTNOPCONFIRMAR);
-            WaitHandler.Wait(driver, 3);
+            WaitHandler.Wait(3);
             Click.On(driver, AsistenciaCrediticiaUI.BTN_SI);
 
         }

@@ -11,6 +11,16 @@ namespace BT_Selenium.Actions
             driver.FindElement(locator).SendKeys(Keys.Return);
         }
 
+        public static void Backspace(IWebDriver driver, By locator)
+        {
+            driver.FindElement(locator).SendKeys(Keys.Backspace);
+        }
+
+        public static void Detelete(IWebDriver driver, By locator)
+        {
+            driver.FindElement(locator).SendKeys(Keys.Delete);
+        }
+
         public static void F5(IWebDriver driver)
         {
             driver.FindElement(By.XPath("//body")).SendKeys(Keys.F5);

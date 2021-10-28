@@ -1,27 +1,47 @@
-﻿using BT_Selenium.Actions;
-using BT_Selenium.UI;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System.Collections.Generic;
-using BT_Selenium.Tools;
-using BT_Selenium.Tasks;
+﻿using NUnit.Framework;
+using BT_Selenium.Task;
 
 namespace BT_Selenium.TestCase
 {
 
     [TestFixture]
-    public class Template : BaseTest
-    {   
-        //Descomentar el que se usara
+    public class TemplateTest : BaseTest
+    {
+
+        //Ante de empezar todas las pruebas
+        [OneTimeSetUp]
+        public void Before()
+        {
+            Login.In(driver);
+        }
+
+        //Descomentar el que se usará
 
         //[TestCase("20303879618")]    --> Mas de uno
-        //[TestCase] --> Un solo caso
-        public void RFXX(string documento, string comentario)
+        //[Test] --> Un solo caso
+        public void TestXX()
         {
-            //string gdem = "GDEMXXX-RFXX";
+
 
         }
+
+        //Al finalizar una prueba individual (cuando hay mas de una)
+        //[TearDown]
+        //public void AfterTest()
+        //{
+
+        //}
+
+        ////Al finalizar todas las pruebas (cuando es mas de una)
+        //[OneTimeTearDown]
+        //public void After()
+        //{
+        //    try
+        //    {
+
+        //    }
+        //    catch { }
+        //}
 
     }
 }

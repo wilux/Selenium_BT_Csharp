@@ -21,7 +21,7 @@ namespace BT_Selenium.TestCase
             //string gdem = "GDEMXXX-RFXX";
             string documento = "30657249765";
 
-            IrHasta.SimularProducto(driver, documento);
+           // IrHasta.SimularProducto(driver, documento);
             ////Cerrar para continuar siguiente pantalla
             Entrevista.Cerrar(driver);
 

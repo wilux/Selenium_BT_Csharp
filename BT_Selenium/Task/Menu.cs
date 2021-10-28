@@ -5,6 +5,8 @@ using BT_Selenium.UI;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 using System.Threading;
+using WindowsInput;
+using WindowsInput.Native;
 
 namespace BT_Selenium.Task
 {
@@ -13,32 +15,28 @@ namespace BT_Selenium.Task
         
         public static void Ejecutar(IWebDriver driver)
         {
+            Click.Simple(driver, HomeUI.Accesos);
+            WaitHandler.Wait( 1);
             Click.Simple(driver, HomeUI.Ejecutar);
 
         }
 
         public static void Inicio(IWebDriver driver)
         {
-            try
-            {
-                driver.SwitchTo().Window(driver.WindowHandles[1]);
-            }
-            catch
-            {
-                Login.In(driver);
-                
-            }
-            try
-            {
-                WaitHandler.Elemento(driver, HomeUI.Logo);
-            }
-            catch
-            {
-                Kill.IE();
-                Thread.CurrentThread.Abort();
-            }
-                driver.Manage().Window.Maximize();
-                Click.Simple(driver, HomeUI.Inicio);
+             while (true)
+             {
+                     try
+                  {
+                      Click.Simple(driver, HomeUI.Inicio);
+                         break;
+                       }
+                      catch
+                      {
+                       driver.SwitchTo().Window(driver.WindowHandles[0]);
+                      driver.Manage().Window.Maximize();
+                    continue;
+                      }
+                }
         }
 
         public static void WorkFlow(IWebDriver driver)

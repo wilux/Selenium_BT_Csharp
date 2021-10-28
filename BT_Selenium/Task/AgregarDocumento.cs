@@ -1,10 +1,11 @@
 ﻿using BT_Selenium.Actions;
 using BT_Selenium.Tools;
+using BT_Selenium.UI;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace BT_Selenium.UI
+namespace BT_Selenium.Task
 {
     //Pantalla Agregar Documento - 
     public class AgregarDocumento
@@ -56,7 +57,7 @@ namespace BT_Selenium.UI
                 
                 if (i < 10)
                 {
-                    WaitHandler.Wait(driver, 2);
+                    WaitHandler.Wait(2);
                     Documentacion.SeleccionarFila(driver, "0" + i.ToString());
                     Documentacion.Agregar(driver);
                 }
@@ -75,7 +76,7 @@ namespace BT_Selenium.UI
         }
         public static void FechaVigencia(IWebDriver driver, string fecha="01012020")
         {
-            WaitHandler.Wait(driver, 3);
+            WaitHandler.Wait(3);
             Frame.BuscarFrame(driver, AgregarDocumentoUI.inputFecha);
             Enter.Text(driver, AgregarDocumentoUI.inputFecha, fecha);
 

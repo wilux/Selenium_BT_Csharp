@@ -1,8 +1,9 @@
 ﻿using BT_Selenium.Actions;
 using BT_Selenium.Tools;
+using BT_Selenium.UI;
 using OpenQA.Selenium;
 
-namespace BT_Selenium.UI
+namespace BT_Selenium.Task
 {
     //Consulta WC - BridgerInsight
     public class ConsultaBridgerInsight
@@ -11,14 +12,14 @@ namespace BT_Selenium.UI
         public static void BuscarBridger(IWebDriver driver)
         {
             Click.On(driver, ConsultaBridgerInsightUI.BTNOPBUSCARBRIDGER);
-            WaitHandler.Wait(driver, 5);
+            WaitHandler.Wait(5);
 
         }
 
         public static void Imprimir(IWebDriver driver)
         {
             Click.On(driver, ConsultaBridgerInsightUI.BTN_SinCoincidencia);
-            WaitHandler.Wait(driver, 3);
+            WaitHandler.Wait(3);
 
         }
 
@@ -28,9 +29,9 @@ namespace BT_Selenium.UI
         {
             
             Navegador.Back(driver);
-            WaitHandler.Wait(driver, 5);
+            WaitHandler.Wait(5);
             Navegador.Back(driver);
-            WaitHandler.Wait(driver, 5);
+            WaitHandler.Wait(5);
 
         }
 
@@ -39,7 +40,7 @@ namespace BT_Selenium.UI
             driver.SwitchTo().ParentFrame();
             driver.SwitchTo().Frame("step2");
             Click.On(driver, ConsultaBridgerInsightUI.BTNOPCERRAR);
-            WaitHandler.Wait(driver, 3);
+            WaitHandler.Wait(3);
 
         }
 

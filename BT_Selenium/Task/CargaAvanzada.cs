@@ -1,9 +1,10 @@
 ﻿using BT_Selenium.Actions;
 using BT_Selenium.Tools;
+using BT_Selenium.UI;
 using OpenQA.Selenium;
 using System;
 
-namespace BT_Selenium.UI
+namespace BT_Selenium.Task
 {
     //Pantalla Carga Avanzada
     public class CargaAvanzada
@@ -31,7 +32,7 @@ namespace BT_Selenium.UI
         {
 
             Click.On(driver, CargaAvanzadaUI.BTNOPACEPTAR);
-            WaitHandler.Wait(driver, 3);
+            WaitHandler.Wait(3);
             Click.On(driver, CargaAvanzadaUI.BTN_SI);
 
         }

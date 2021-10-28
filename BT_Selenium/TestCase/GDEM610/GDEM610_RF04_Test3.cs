@@ -27,57 +27,57 @@ namespace BT_Selenium.TestCase.GDEM610
         protected string test = "Test2";
         protected string nroEntrevista = "";
 
-        [Test, Order(1)]
-        public void Home()
-        {
-            _ = new InternetExplorerOptions
-            {
-                EnsureCleanSession = true,
-                RequireWindowFocus = true
-            };
+        //[Test, Order(1)]
+        //public void Home()
+        //{
+        //    _ = new InternetExplorerOptions
+        //    {
+        //        EnsureCleanSession = true,
+        //        RequireWindowFocus = true
+        //    };
 
-            //driver = new InternetExplorerDriver("C:\\webdriver\\");
-            driver.Navigate().GoToUrl(QaURL);
-            driver.Manage().Window.Maximize();
+        //    //driver = new InternetExplorerDriver("C:\\webdriver\\");
+        //    driver.Navigate().GoToUrl(QaURL);
+        //    driver.Manage().Window.Maximize();
 
-            Login.As(driver, usuario);
+        //    Login.As(driver, usuario);
 
-        }
+        //}
 
-        [Test, Order(2)]
-        public void IniciarEntrevista()
-        {
-            Entrevista.Iniciar(driver);
-            Entrevista.IngresarDocumento(driver, documento);
+        //[Test, Order(2)]
+        //public void IniciarEntrevista()
+        //{
+        //    Entrevista.Iniciar(driver);
+        //    Entrevista.IngresarDocumento(driver, documento);
 
-            ////Pantalla Entrevista
-            ////Completamos Datos Contacto
-            Entrevista.Completar_DatosContacto(driver);
-            Entrevista.SeleccionarCuentaCredito(driver);
-            Entrevista.IngresosPF(driver);
-            Entrevista.Confirmar(driver);
-            Entrevista.Cerrar(driver);
-        }
+        //    ////Pantalla Entrevista
+        //    ////Completamos Datos Contacto
+        //    Entrevista.Completar_DatosContacto(driver);
+        //    Entrevista.SeleccionarCuentaCredito(driver);
+        //    Entrevista.IngresosPF(driver);
+        //    Entrevista.Confirmar(driver);
+        //    Entrevista.Cerrar(driver);
+        //}
 
 
 
-        [Test, Order(3)]
-        public void SimularProducto()
-        {
-            string mensajeEsperado = "";
-            string mensajeObtenido = "";
-            //Simular
-            BandejaTareas.Ejecutar(driver);
-            SimulacionProductos.PaqueteNombre(driver, producto); //20/1
-            WaitHandler.Wait(driver, 5);
-            Capturar.Pantalla(driver, "Test3", documento);
-            mensajeObtenido = SimulacionProductos.GetMensaje(driver);
-            SimulacionProductos.UnCheckPrestamo(driver);
-            bool boton = WaitHandler.IsEnable(driver, SimulacionProductosUI.BTNOPCONFIRMAR);
-            //Exito si Hay mensaje (ver mensaje) y si el boton esta deshabilitado
-            nroEntrevista = Entrevista.NroEntrevista(driver);
-            Assert.IsTrue(mensajeEsperado != mensajeObtenido && boton == false);
-        }
+        //[Test, Order(3)]
+        //public void SimularProducto()
+        //{
+        //    string mensajeEsperado = "";
+        //    string mensajeObtenido = "";
+        //    //Simular
+        //    BandejaTareas.Ejecutar(driver);
+        //    SimulacionProductos.PaqueteNombre(driver, producto); //20/1
+        //    WaitHandler.Wait(driver, 5);
+        //    Capturar.Pantalla(driver, "Test3", documento);
+        //    mensajeObtenido = SimulacionProductos.GetMensaje(driver);
+        //    SimulacionProductos.UnCheckPrestamo(driver);
+        //    bool boton = WaitHandler.IsEnable(driver, SimulacionProductosUI.BTNOPCONFIRMAR);
+        //    //Exito si Hay mensaje (ver mensaje) y si el boton esta deshabilitado
+        //    nroEntrevista = Entrevista.NroEntrevista(driver);
+        //    Assert.IsTrue(mensajeEsperado != mensajeObtenido && boton == false);
+        //}
 
 
 
