@@ -32,7 +32,7 @@ namespace BT_Selenium.Tools
                 try
                 {
 
-                    if (segundosTranscurridos == segundos)
+                    if (segundosTranscurridos >= segundos)
                     {
                         timer.Stop();
                         break;
