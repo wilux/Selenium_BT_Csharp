@@ -19,7 +19,7 @@ namespace BT_Selenium.TestCase
         //Prueba de Pantalla Entrevista
         //Tiempo que demora en completar datos
 
-         [TestCase("23179516314")]
+       //  [TestCase("23179516314")]
         //[TestCase("1010198")]
         public void Completar(string documento)
         {

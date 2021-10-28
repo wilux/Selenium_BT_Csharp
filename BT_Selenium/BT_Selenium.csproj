@@ -416,6 +416,7 @@
   <ItemGroup>
     <Compile Include="Task\DetalleDireccion.cs" />
     <Compile Include="Task\WebPanel.cs" />
+    <Compile Include="TestCase\TestMenu.cs" />
     <Compile Include="TestCase\HTestCausd.cs" />
     <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test5_todo.cs" />
     <Compile Include="TestCase\BridgerInsightTest.cs" />

@@ -23,9 +23,9 @@ namespace BT_Selenium.Task
                     Click.Simple(driver, LoginUI.PasswordInput);
                     Enter.Text(driver, LoginUI.PasswordInput, credenciales.password);
                     Click.Simple(driver, LoginUI.LoginButton);
-                    WaitHandler.Wait(2);
-                    driver.SwitchTo().Window(driver.WindowHandles[1]);
-                    driver.Manage().Window.Maximize();
+                    //WaitHandler.Wait(2);
+                    //driver.SwitchTo().Window(driver.WindowHandles[1]);
+                    //driver.Manage().Window.Maximize();
                 }
                 else
                 {
@@ -46,20 +46,20 @@ namespace BT_Selenium.Task
                 Click.Simple(driver, LoginUI.PasswordInput);
                 Enter.Text(driver, LoginUI.PasswordInput, credenciales.password);
                 Click.Simple(driver, LoginUI.LoginButton);
-                WaitHandler.Wait(2);
-                try
-                {
-                    driver.SwitchTo().Window(driver.WindowHandles[1]);
-                    driver.Manage().Window.Maximize();
-                }
-                catch (Exception e)
-                {
-                    TestContext.Write(e);
-                    if (driver != null)
-                    {
-                        driver.Quit();
-                    }
-                }
+               // WaitHandler.Wait(2);
+                //try
+                //{
+                //    driver.SwitchTo().Window(driver.WindowHandles[1]);
+                //    driver.Manage().Window.Maximize();
+                //}
+                //catch (Exception e)
+                //{
+                //    TestContext.Write(e);
+                //    if (driver != null)
+                //    {
+                //        driver.Quit();
+                //    }
+                //}
             }
             else
             {

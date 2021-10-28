@@ -16,7 +16,7 @@ namespace BT_Selenium.TestCase
         //Descomentar el que se usara
 
         //[TestCase("20303879618")]    --> Mas de uno
-       [TestCase] 
+     //  [TestCase] 
         public void RFXX()
         {
             LegajoDigital.Completar("27170462926");

@@ -4,6 +4,7 @@ using BT_Selenium.Tools;
 using BT_Selenium.UI;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
+using System;
 using System.Threading;
 using WindowsInput;
 using WindowsInput.Native;
@@ -15,9 +16,17 @@ namespace BT_Selenium.Task
         
         public static void Ejecutar(IWebDriver driver)
         {
-            Click.Simple(driver, HomeUI.Accesos);
-            WaitHandler.Wait( 1);
-            Click.Simple(driver, HomeUI.Ejecutar);
+            if (WaitHandler.SwichToWindowsUrl(driver))
+            {
+                Click.Simple(driver, HomeUI.Accesos);
+                WaitHandler.Wait(1);
+                Click.Simple(driver, HomeUI.Ejecutar);
+            }
+            else
+            {
+                Console.WriteLine(driver.Url);
+            }
+
 
         }
 

@@ -11,8 +11,14 @@ namespace BT_Selenium.Actions
     {
         public static void Simple(IWebDriver driver, By locator)
         {
-
-         driver.FindElement(locator).Click();
+            if (WaitHandler.ElementIsPresent(driver, locator, 10))
+            {
+                driver.FindElement(locator).Click();
+            }
+            else
+            {
+                Console.WriteLine("No se encontro: " + locator);
+            }
 
         }
 

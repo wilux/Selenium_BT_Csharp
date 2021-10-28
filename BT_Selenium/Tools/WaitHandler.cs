@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
@@ -16,33 +17,41 @@ namespace BT_Selenium.Tools
     {
         //Metodo para esperar por un elemento presente en la pagina web
         //Reotorna true si se encuentra el elemento en un maximo de 10 segundos, sino retorna false
-        public static bool ElementIsPresent(IWebDriver driver, By locator)
+        public static bool ElementIsPresent(IWebDriver driver, By locator, int segundos=60)
         {
 
-            //WebPanel.Wait(driver);
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
-            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            var timer = new Stopwatch();
+            timer.Start();
 
-
-            try
+            while (true)
             {
 
+                TimeSpan timeTaken = timer.Elapsed;
+                int segundosTranscurridos = (int)(timeTaken.TotalSeconds);
 
-                wait.Until(e => e.FindElement(locator));
-
-                ReadOnlyCollection<IWebElement> elements = driver.FindElements(locator);
-
-
-                if (elements.Count >= 1)
+                try
                 {
-                    return true;
+
+                    if (segundosTranscurridos == segundos)
+                    {
+                        timer.Stop();
+                        break;
+                    }
+                    var elements = driver.FindElements(locator);
+                    if (elements.Count >= 1)
+                    {
+                        timer.Stop();
+                        break;
+                    }
                 }
-                else
-                {
-                    return false;
-                }
+                catch { continue; }
+
+
             }
-            catch { return false; }
+
+            return true;
+
+
 
         }
         //Esperar un tiempo arbitrario
@@ -81,6 +90,33 @@ namespace BT_Selenium.Tools
         {
             Frame.BuscarFrame(driver, locator);
             return driver.FindElement(locator).Enabled;
+        }
+
+
+        public  static bool SwichToWindowsUrl(IWebDriver driver, String url= "http://btwebqa.ar.bpn/BTWeb/realIndex.html")
+        {
+            String currentURL = "";
+            int sizeWindows = driver.WindowHandles.Count;
+
+            for (int i = 0; i <= sizeWindows; i++)
+            {
+                currentURL = driver.Url;
+                if (currentURL == url)
+                {
+                    return true;
+                }
+                else
+                {
+                    try
+                    {
+                        driver.SwitchTo().Window(driver.WindowHandles[i]);
+                    }
+                    catch { continue; }
+                    
+                }
+                
+            }
+            return false;
         }
 
 
