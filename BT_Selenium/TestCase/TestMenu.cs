@@ -19,6 +19,8 @@ namespace BT_Selenium.TestCase
             EjecutarPrograma.Ejecutar(driver, "hbnqfx23");
 
             Console.WriteLine(currentURL);
+
+            Assert.That(currentURL == "http://btwebqa.ar.bpn/BTWeb/realIndex.html");
         }
 
     }

@@ -36,12 +36,12 @@ namespace BT_Selenium.TestCase
                 _ = new InternetExplorerOptions
                 {
                     EnsureCleanSession = true,
-                    RequireWindowFocus = true
+                    RequireWindowFocus = false //true
                 };
                 driver = new InternetExplorerDriver("C:\\webdriver\\");
                 driver.Navigate().GoToUrl(QaURL);
-                driver.Manage().Window.Maximize();
-
+                
+            
 
                 //To create report directory and add HTML report into it // _ddMMyyyy_hhmmss
                 string name = TestContext.CurrentContext.Test.ClassName + DateTime.Now.ToString("_ddMMyyyy_hhmmss");

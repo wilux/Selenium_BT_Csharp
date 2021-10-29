@@ -8,6 +8,8 @@
 *.sln.docstates
 
 /BT_Selenium/Credenciales.cs
+/BT_Selenium/Defect_Screenshots/
+/BT_Selenium/Test_Execution_Reports/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

@@ -18,7 +18,7 @@ namespace BT_Selenium.TestCase
             Login.In(driver);
         }
 
-        [Test]
+      //  [Test]
         public void Buscar()
         {
            // IrHasta.SimularProducto(driver, documento);
