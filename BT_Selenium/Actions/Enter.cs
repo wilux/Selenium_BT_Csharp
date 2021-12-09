@@ -11,21 +11,21 @@ namespace BT_Selenium.Actions
     {
         public static void Text(IWebDriver driver, By locator, string text)
         {
-            Thread.Sleep(200);
-
+            //if (Frame.BuscarFrame(driver, locator))
+            if (WaitHandler.ElementIsPresent(driver, locator) && driver.FindElement(locator).Displayed)
             try
             {
                 driver.FindElement(locator).Clear();
                 driver.FindElement(locator).SendKeys(text);
             }
             catch {}
-            Thread.Sleep(200);
+       
         }
 
 
         public static void JSTextById(IWebDriver driver, string locator, string text)
         {
-  
+     
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
             jsExecutor.ExecuteScript($"document.getElementById('{locator}').value='{text}';");
 

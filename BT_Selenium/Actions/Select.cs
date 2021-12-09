@@ -13,7 +13,7 @@ namespace BT_Selenium.Actions
         public static void ByText(IWebDriver driver, By select, string text)
         {
 
-            if (Frame.BuscarFrame(driver, select))
+            if (WaitHandler.ElementIsPresent(driver, select, 20))
             {
 
                 while (true)
@@ -35,7 +35,7 @@ namespace BT_Selenium.Actions
         {
 
 
-            if (Frame.BuscarFrame(driver, select))
+            if (WaitHandler.ElementIsPresent(driver, select, 20))
             {
 
                 while (true)
@@ -48,9 +48,7 @@ namespace BT_Selenium.Actions
                         selectElement.SelectByValue(value);
                         break;
                     }
-                    catch {
-                        Frame.BuscarFrame(driver, select);
-                        continue; }
+                    catch { break; }
                 }
             }
 
@@ -65,13 +63,14 @@ namespace BT_Selenium.Actions
         public static void ByIndex(IWebDriver driver, By select, int index)
         {
 
-            if (Frame.BuscarFrame(driver, select))
+            if (WaitHandler.ElementIsPresent(driver, select, 20))
             {
 
                 while (true)
                 {
                     try
                     {
+                        WaitHandler.ElementIsPresent(driver, select, 20);
                         IWebElement webElement = driver.FindElement(select);
                         SelectElement selectElement = new SelectElement(webElement);
                         selectElement.SelectByIndex(index);

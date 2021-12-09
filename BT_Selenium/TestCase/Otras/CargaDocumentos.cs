@@ -9,7 +9,7 @@ namespace BT_Selenium.TestCase
 {
 
     [TestFixture]
-    public class CargaDocumentos : BaseTest
+    public class CargaDocumentos : BaseTest_Reporte
     {
       //  [TestCase("27307925597")]
 

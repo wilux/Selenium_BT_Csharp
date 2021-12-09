@@ -112,7 +112,6 @@ namespace BT_Selenium.Task
         public static void Confirmar(IWebDriver driver)
         {
             Click.On(driver, SimulacionProductosUI.BTNOPCONFIRMAR);
-            WaitHandler.Wait(3);
             Click.On(driver, SimulacionProductosUI.BTN_SI);
 
         }
@@ -120,9 +119,14 @@ namespace BT_Selenium.Task
         public static void Descartar(IWebDriver driver)
         {
 
-            Click.On(driver, BandejaTareasUI.BTNOPDESCARTAR);
-            WaitHandler.Wait(3);
-            Click.On(driver, BandejaTareasUI.BTNCONFIRMATION);
+            Click.On(driver, SimulacionProductosUI.BTNOPDESCARTAR);
+            Click.On(driver, SimulacionProductosUI.BTN_SI);
+        }
+
+        public static void Cerrar(IWebDriver driver)
+        {
+
+            Click.On(driver, SimulacionProductosUI.BTNOPCERRAR);
         }
 
 

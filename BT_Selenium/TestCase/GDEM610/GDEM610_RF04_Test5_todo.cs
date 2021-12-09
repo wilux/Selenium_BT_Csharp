@@ -17,7 +17,7 @@ namespace BT_Selenium.TestCase.GDEM610
 
 
     [TestFixture, Description("Alta de 20/1 con 20/5")]
-    public class GDEM610_RF04_Test5_todo : BaseTest
+    public class GDEM610_RF04_Test5_todo : BaseTest_Reporte
     {
         protected string usuarioPlataforma = "dechands";
         protected string usuarioGerentea = "liriac";

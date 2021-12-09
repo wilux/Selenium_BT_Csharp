@@ -3,6 +3,8 @@ using BT_Selenium.Actions;
 using BT_Selenium.UI;
 using BT_Selenium.Tools;
 using System.Threading;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace BT_Selenium.Task
 {
@@ -25,15 +27,15 @@ namespace BT_Selenium.Task
 
         public static void Confirmar(IWebDriver driver)
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             Click.On(driver, EntrevistaUI.BTNOPCONFIRMAR);
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
         }
 
         public static void Cerrar(IWebDriver driver)
         {
             Click.On(driver, EntrevistaUI.BTNOPCERRAR);
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
         }
 
         public static string NroEntrevista(IWebDriver driver)
@@ -75,93 +77,102 @@ namespace BT_Selenium.Task
 
         public static void BuscarCuenta(IWebDriver driver)
         {
-    
             if (WaitHandler.IsVisible(driver, EntrevistaUI.BTNOPELEGIRCTA))
             {
-
-                for (int i = 1; i <= 5; i++)
-                {
-
-                    try
-                    {
-                        string SpanInstancia;
-
-                        if (i < 10)
-                        {
-                            SpanInstancia = "span__ACREDITAENBPN_00" + "0" + i.ToString();
-                        }
-                        else
-                        {
-                            SpanInstancia = "span__ACREDITAENBPN_00" + i.ToString();
-                        }
-
-                        By locator = By.Id(SpanInstancia);
-
-
-                        if (Get.SpanText(driver, locator) == "SI")
-                        {
-                            Grid.SeleccionarFila(driver, EntrevistaUI.GridCtaCredito, locator);
-                            Click.On(driver, EntrevistaUI.BTNOPELEGIRCTA);
-                            Thread.Sleep(5000);
-                            break;
-
-                        }
-                    }
-                    catch
-                    {
-                        continue;
-                    }
-
-                }
-                //Si alterminar for el bt elegir cta sigue activo 
-                if (WaitHandler.IsVisible(driver, EntrevistaUI.BTNOPELEGIRCTA))
-                {
-                    //Elijo la primer fila por defecto
-                    Grid.SeleccionarFila(driver, EntrevistaUI.GridCtaCredito, EntrevistaUI.CampoAcreditaBPN);
-                    Click.On(driver, EntrevistaUI.BTNOPELEGIRCTA);
-                    Thread.Sleep(5000);
-                }
-
-            }
-            else if (!WaitHandler.IsVisible(driver, EntrevistaUI.BTNOPCAMBIARCTA))
-            {   //Ya esta seleccionada la cuenta
-               Select.ByValue(driver, EntrevistaUI.SelectCuentaBT, "1");
+                //Elijo la primer fila por defecto
+                Grid.SeleccionarFila(driver, EntrevistaUI.GridCtaCredito, EntrevistaUI.PrimerFila);
+                Click.On(driver, EntrevistaUI.BTNOPELEGIRCTA);
             }
 
-            
+            //if (WaitHandler.IsVisible(driver, EntrevistaUI.BTNOPELEGIRCTA))
+            //{
+
+            //    for (int i = 1; i <= 5; i++)
+            //    {
+
+            //        try
+            //        {
+            //            string SpanInstancia;
+
+            //            if (i < 10)
+            //            {
+            //                SpanInstancia = "span__ACREDITAENBPN_00" + "0" + i.ToString();
+            //            }
+            //            else
+            //            {
+            //                SpanInstancia = "span__ACREDITAENBPN_00" + i.ToString();
+            //            }
+
+            //            By locator = By.Id(SpanInstancia);
+
+
+            //            if (Get.SpanText(driver, locator) == "SI")
+            //            {
+            //                Grid.SeleccionarFila(driver, EntrevistaUI.GridCtaCredito, locator);
+            //                Click.On(driver, EntrevistaUI.BTNOPELEGIRCTA);
+            //                Thread.Sleep(5000);
+            //                break;
+
+            //            }
+            //        }
+            //        catch
+            //        {
+            //            continue;
+            //        }
+
+            //    }
+            //    //Si alterminar for el bt elegir cta sigue activo 
+            //    if (WaitHandler.IsVisible(driver, EntrevistaUI.BTNOPELEGIRCTA))
+            //    {
+            //        //Elijo la primer fila por defecto
+            //        Grid.SeleccionarFila(driver, EntrevistaUI.GridCtaCredito, EntrevistaUI.CampoAcreditaBPN);
+            //        Click.On(driver, EntrevistaUI.BTNOPELEGIRCTA);
+            //        Thread.Sleep(5000);
+            //    }
+
+            //}
+            //else if (!WaitHandler.IsVisible(driver, EntrevistaUI.BTNOPCAMBIARCTA))
+            //{   //Ya esta seleccionada la cuenta
+            //   Select.ByValue(driver, EntrevistaUI.SelectCuentaBT, "1");
+            //}
+
+
         }
 
         public static void Ingresos(IWebDriver driver, string sector = "PUB",
             string ingresosDependencia = "500000", string ingresosIndependiente = "500000")
         {
 
-            if (Frame.BuscarFrame(driver, EntrevistaUI.SelectSectorEmpleador))
-            {
+
                 if (Get.SelectValue(driver, EntrevistaUI.SelectSectorEmpleador) == "")
                 {
                     Select.ByValue(driver, EntrevistaUI.SelectSectorEmpleador, sector);
                     PressKey.Tab(driver, EntrevistaUI.SelectSectorEmpleador);
                 }
-            }
+            
 
-            if (Frame.BuscarFrame(driver, EntrevistaUI.InputIngresosDepedencia))
-            {
-                if (ingresosDependencia != "")
+
+                if (Get.InputValue(driver, EntrevistaUI.InputIngresosDepedencia) != null )
                 {
 
-                    PressKey.Detelete(driver, EntrevistaUI.InputIngresosDepedencia);
-                    Thread.Sleep(200);
+                    PressKey.Delete(driver, EntrevistaUI.InputIngresosDepedencia);
+                   // Thread.Sleep(200);
                     Enter.Text(driver, EntrevistaUI.InputIngresosDepedencia, ingresosDependencia);
                 }
-            }
+            
 
-            if (Frame.BuscarFrame(driver, EntrevistaUI.InputIngresosIndependiente))
-            {
-                if (ingresosIndependiente != "")
+                if (Get.InputValue(driver, EntrevistaUI.InputIngresosIndependiente) !=  null )
                 {
-                    Enter.Text(driver, EntrevistaUI.InputIngresosIndependiente, ingresosIndependiente);
+                    int i = 0;
+                    while (i < 3) {
+                        i++;
+                        PressKey.Backspace(driver, EntrevistaUI.InputIngresosIndependiente);
+                    }
+                    // Thread.Sleep(200);
+                    //Enter.Text(driver, EntrevistaUI.InputIngresosIndependiente, ingresosIndependiente);
+                    driver.FindElement(EntrevistaUI.InputIngresosIndependiente).SendKeys(ingresosIndependiente);
                 }
-            }
+            
         }
 
 
@@ -170,187 +181,147 @@ namespace BT_Selenium.Task
             string provincia = "15", string localidad = "326", string ciudadania = "80")
         {
 
-            if (Frame.BuscarFrame(driver, EntrevistaUI.inputNombre))
-            {
                 if (Get.InputValue(driver, EntrevistaUI.inputNombre) == "")
                 {
                     Enter.Text(driver, EntrevistaUI.inputNombre, nombre);
                 }
-            }
-            if (Frame.BuscarFrame(driver, EntrevistaUI.inputApellido))
-            {
+            
+
                 if (Get.InputValue(driver, EntrevistaUI.inputApellido) == "")
                 {
                     Enter.Text(driver, EntrevistaUI.inputApellido, apellido);
                 }
-            }
-            if (Frame.BuscarFrame(driver, EntrevistaUI.inputFechaNac))
-            {
-
-
+            
 
                 if (Get.InputValue(driver, EntrevistaUI.inputFechaNac).Contains("/"))
                 {
 
                     Enter.JSTextById(driver, "_BNQFPA2FNA", fecha);
                 }
-            }
-
-            if (Frame.BuscarFrame(driver, EntrevistaUI.inputFechaIngresoPais))
-            {
-
+            
+   
                 if (Get.InputValue(driver, EntrevistaUI.inputFechaIngresoPais).Contains("/"))
                 {
                     Enter.JSTextById(driver, "_SNGC11DAT2", fecha);
-
                 }
-            }
-
-
-            if (Frame.BuscarFrame(driver, EntrevistaUI.SelectCapacidadLegal))
-            {
+            
+ 
                 if (Get.SelectValue(driver, EntrevistaUI.SelectCapacidadLegal) == "")
                 {
                     Select.ByValue(driver, EntrevistaUI.SelectCapacidadLegal, capacidadLegal);// 1 Mayor edad
                 }
-            }
+            
 
-            if (Frame.BuscarFrame(driver, EntrevistaUI.SelectSexo))
-            {
                 if (Get.SelectValue(driver, EntrevistaUI.SelectSexo) == "")
                 {
                     Select.ByValue(driver, EntrevistaUI.SelectSexo, sexo);//M Masculino
                 }
-            }
-
-            if (Frame.BuscarFrame(driver, EntrevistaUI.SelectEstadoCivil))
-            {
+            
+                //EstadoCivil
+                // Requiere tiempo despues
                 if (Get.SelectValue(driver, EntrevistaUI.SelectEstadoCivil) == "")
                 {
                     Select.ByValue(driver, EntrevistaUI.SelectEstadoCivil, "4");
-                    
+                    Thread.Sleep(5000);
                 }
+            
 
-            }
-
-            //PaisNacimiento
-            if (Frame.BuscarFrame(driver, EntrevistaUI.SelectNacionalidad))
-            {
+                //PaisNacimiento
+                // Requiere tiempo despues
                 if (Get.SelectValue(driver, EntrevistaUI.SelectNacionalidad) != "80")
                 {
-                    Thread.Sleep(200);
+                    //Thread.Sleep(200);
                     Select.ByValue(driver, EntrevistaUI.SelectNacionalidad, nacionalidad);//80 argentina
                     Thread.Sleep(5000);
                 }
-
-            }
-
-            if (Frame.BuscarFrame(driver, EntrevistaUI.SelectProvincia))
-            {
-                if (Get.SelectValue(driver, EntrevistaUI.SelectProvincia) != "15")
+            
+                //Provincia
+                // Requiere tiempo despues
+                if (Get.SelectValue(driver, EntrevistaUI.SelectProvincia)!="15")
                 {
-                    Thread.Sleep(200);
+                    //Thread.Sleep(200);
                     Select.ByValue(driver, EntrevistaUI.SelectProvincia, provincia);//15 Neuquen
                     Thread.Sleep(5000);
-
                 }
 
-            }
-
-            if (Frame.BuscarFrame(driver, EntrevistaUI.inputLocalidad))
-            {
 
                 if (Get.InputValue(driver, EntrevistaUI.inputLocalidad) == "0")
                 {
                     Clear.On(driver, EntrevistaUI.inputLocalidad);//326 Neuquen.
-                    Thread.Sleep(200);
+                   // Thread.Sleep(200);
                     Enter.Text(driver, EntrevistaUI.inputLocalidad, localidad);//326 Neuquen
                 }
-            }
 
-            if (Frame.BuscarFrame(driver, EntrevistaUI.SelectPaisCiudadania))
-            {
+                //PaisCiudadania
+                // Requiere tiempo despues
                 if (Get.SelectValue(driver, EntrevistaUI.SelectPaisCiudadania) != "80")
                 {
-                    Thread.Sleep(200);
+                    //Thread.Sleep(200);
                     Select.ByValue(driver, EntrevistaUI.SelectPaisCiudadania, ciudadania);//80 argentina
-                    Thread.Sleep(2000);
+                    Thread.Sleep(5000);
                 }
-            }
-
-            Thread.Sleep(5000);
 
         }
 
 
         public static void Ocupacion(IWebDriver driver, string ocupacion = "1")
         {
-            if (Frame.BuscarFrame(driver, EntrevistaUI.InputFechaNegocio))
-            {
+                //Ocupacion
+                // Requiere tiempo despues
+                if (Get.SelectValue(driver, EntrevistaUI.SelectOcupacion) == "0")
+                {
+                    Select.ByValue(driver, EntrevistaUI.SelectOcupacion, ocupacion);//1 empleado x defecto
+                    Thread.Sleep(5000);
+                }
+
                 if (Get.InputValue(driver, EntrevistaUI.InputFechaNegocio) == "")
                 {
                     Click.On(driver, EntrevistaUI.InputFechaNegocio);
                     Enter.JSTextById(driver, "_SNGC60FINI", "01/01/1981");
+                    Thread.Sleep(5000);
                 }
-            }
+            
 
-            if (Frame.BuscarFrame(driver, EntrevistaUI.InputNombreEmpresa))
-            {
                 if (Get.InputValue(driver, EntrevistaUI.InputNombreEmpresa) == "")
                 {
                     Enter.Text(driver, EntrevistaUI.InputNombreEmpresa, "Test QA S.A");
 
                 }
-            }
+            
 
-            if (Frame.BuscarFrame(driver, EntrevistaUI.inputActividad))
-            {
+
                 if (Get.InputValue(driver, EntrevistaUI.inputActividad) == "")
                 {
                     Enter.Text(driver, EntrevistaUI.inputActividad, "11");
 
                 }
-            }
-
-            if (Frame.BuscarFrame(driver, EntrevistaUI.SelectOcupacion))
-            {
-                if (Get.SelectValue(driver, EntrevistaUI.SelectOcupacion) == "0")
-                {
-                    Thread.Sleep(1000);
-                    Select.ByValue(driver, EntrevistaUI.SelectOcupacion, ocupacion);//1 empleado x defecto
-                    Thread.Sleep(5000);
-                }
-            }
+                        
 
         }
 
         public static void DatosEmpresa(IWebDriver driver)
         {
-            if (WaitHandler.IsVisible(driver, EntrevistaUI.InputRazonSocial)
-                && Get.InputValue(driver, EntrevistaUI.InputRazonSocial) == "")
+            if (Get.InputValue(driver, EntrevistaUI.InputRazonSocial) == "")
             {
-                Click.On(driver, EntrevistaUI.InputRazonSocial);
+                //Click.On(driver, EntrevistaUI.InputRazonSocial);
                 Enter.Text(driver, EntrevistaUI.InputRazonSocial, "Test QA S.A");
             }
-            if (WaitHandler.IsVisible(driver, EntrevistaUI.InputNombreFantasial)
-                && Get.InputValue(driver, EntrevistaUI.InputNombreFantasial) == "")
+            if (Get.InputValue(driver, EntrevistaUI.InputNombreFantasial) == "")
             {
                 Enter.Text(driver, EntrevistaUI.InputNombreFantasial, "Test QA S.A");
 
             }
-            if (WaitHandler.IsVisible(driver, EntrevistaUI.SelectNaturalezaJuridica)
-                 && Get.InputValue(driver, EntrevistaUI.SelectNaturalezaJuridica) == "0")
+            if (Get.InputValue(driver, EntrevistaUI.SelectNaturalezaJuridica) == "0")
             {
                 Select.ByValue(driver, EntrevistaUI.SelectNaturalezaJuridica, "3");//SRL
-                WaitHandler.Wait(2);
+               // WaitHandler.Wait(2);
             }
 
-            if (WaitHandler.IsVisible(driver, EntrevistaUI.InputNroRegistro)
-               && Get.InputValue(driver, EntrevistaUI.InputNroRegistro) == "")
+            if (Get.InputValue(driver, EntrevistaUI.InputNroRegistro) == "")
             {
-                Click.On(driver, EntrevistaUI.InputNroRegistro);
+                //Click.On(driver, EntrevistaUI.InputNroRegistro);
                 Enter.Text(driver, EntrevistaUI.InputNroRegistro, "111");
-                WaitHandler.Wait(2);
+               // WaitHandler.Wait(2);
             }
             
         }
@@ -365,7 +336,7 @@ namespace BT_Selenium.Task
             Select.ByValue(driver, DetalleDireccionUI.SelectLocalidad, "326");
             Enter.Text(driver, DetalleDireccionUI.InputCodigoPostal, "Q8300NQN");
             Click.On(driver, DetalleDireccionUI.BTNOPBTNCONFIRMAR);
-            WaitHandler.Wait(2);
+           // WaitHandler.Wait(2);
         }
 
         public static void DatosContacto(IWebDriver driver, string telefono = "Celular",
@@ -378,28 +349,14 @@ namespace BT_Selenium.Task
                 //No esta completo el bot que genera nuevo domicilio.
                 Click.On(driver, EntrevistaUI.BTNOPDOMICILIOREAL);//abre pantalla para completar domuicilio
                 DetalleDireccion.Completar(driver);
-                Thread.Sleep(5000);
+              //  Thread.Sleep(5000);
 
             }
-
-
-            if (Frame.BuscarFrame(driver, EntrevistaUI.SelectTelefono))
-            {
-                //if (Get.SelectValue(driver, EntrevistaUI.SelectTelefono) == "0" ||
-                //    Get.SelectValue(driver, EntrevistaUI.SelectCodigoArea) == "0" ||
-                //    Get.InputValue(driver, EntrevistaUI.InputTelefono) == "" )
-                //{
-                //    Select.ByText(driver, EntrevistaUI.SelectTelefono, telefono);
-                //    Thread.Sleep(5000);
-                //    Select.ByText(driver, EntrevistaUI.SelectCodigoArea, cArea);
-                //    Thread.Sleep(200);
-                //    Click.On(driver, EntrevistaUI.InputTelefono);
-                //    Enter.Text(driver, EntrevistaUI.InputTelefono, numero);
-                //}
 
                 //Fila 1
                 if (Get.SelectValue(driver, EntrevistaUI.SelectTelefono) == "0"){
                     Select.ByText(driver, EntrevistaUI.SelectTelefono, telefono);
+                    Thread.Sleep(5000);
                 }
 
                 if (Get.SelectValue(driver, EntrevistaUI.SelectCodigoArea) == "0")
@@ -414,38 +371,13 @@ namespace BT_Selenium.Task
 
                 //Fila 2
 
-                if (Get.SelectValue(driver, EntrevistaUI.SelectTelefono2) != "0")
-                {
-                    Select.ByIndex(driver, EntrevistaUI.SelectTelefono2, 0);
-                }
-
-                if (Get.SelectValue(driver, EntrevistaUI.SelectCodigoArea2) != "0")
-                {
-                    Select.ByText(driver, EntrevistaUI.SelectCodigoArea, cArea);
-                }
-
-                if (Get.InputValue(driver, EntrevistaUI.InputTelefono2) != "")
-                {
-                    Clear.On(driver, EntrevistaUI.InputTelefono2);
-                }
+                Select.ByIndex(driver, EntrevistaUI.SelectTelefono2, 0);
+                Thread.Sleep(5000);
+                Select.ByIndex(driver, EntrevistaUI.SelectCodigoArea2, 0);
+                Clear.On(driver, EntrevistaUI.InputTelefono2);
 
 
-
-
-                //if (Get.SelectValue(driver, EntrevistaUI.SelectTelefono2) != "0" ||
-                //    Get.SelectValue(driver, EntrevistaUI.SelectCodigoArea2) != "0" ||
-                //    Get.InputValue(driver, EntrevistaUI.InputTelefono2) != "")
-                //{
-                //    Thread.Sleep(5000);
-                //    Select.ByIndex(driver, EntrevistaUI.SelectTelefono2, 0);
-                //    Thread.Sleep(200);
-                //    Select.ByIndex(driver, EntrevistaUI.SelectCodigoArea2, 0);
-                //    Clear.On(driver, EntrevistaUI.InputTelefono2);
-                //}
-            }
-
-
-            //Mail, sino tiene tildamos, de lo contrario dejamos como esta.
+            //Mail, (si no tiene ponemos uno falso para hacer mas rapido)
             if (Get.InputValue(driver, EntrevistaUI.InputMail) == "" || Get.InputValue(driver, EntrevistaUI.InputMail) == null)
             {
                 Enter.Text(driver, EntrevistaUI.InputMail, "notiene@notiene.com");

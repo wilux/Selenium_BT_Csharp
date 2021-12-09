@@ -43,9 +43,9 @@ namespace BT_Selenium.Task
             Click.On(driver, BandejaTareasUI.InputBuscarAsunto);
             Enter.Text(driver, BandejaTareasUI.InputBuscarAsunto, documento);
             PressKey.Return(driver, BandejaTareasUI.InputBuscarAsunto);
-           // BandejaTareas.Seleccionar(driver);
+            BandejaTareas.Seleccionar(driver);
             //WaitHandler.Wait(5000);
-            //BandejaTareas.Ejecutar(driver);
+            BandejaTareas.Ejecutar(driver);
 
         }
 

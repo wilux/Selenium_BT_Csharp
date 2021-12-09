@@ -19,7 +19,7 @@ namespace BT_Selenium.TestCase
         //Prueba de Pantalla Entrevista
         //Tiempo que demora en completar datos
 
-       //  [TestCase("23179516314")]
+        [TestCase("23179516314")]
         //[TestCase("1010198")]
         public void Completar(string documento)
         {
@@ -32,6 +32,8 @@ namespace BT_Selenium.TestCase
             IrHasta.BandejaDeTareas(driver);
             BandejaTareas.Filtrar(driver, documento);
             BandejaTareas.Ejecutar(driver);
+
+            //Completar
             Entrevista.DatosPersonales(driver);
             Entrevista.Ocupacion(driver);
             Entrevista.DatosContacto(driver);

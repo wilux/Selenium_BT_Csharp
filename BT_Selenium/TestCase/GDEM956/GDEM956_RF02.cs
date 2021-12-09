@@ -14,7 +14,7 @@ namespace BT_Selenium.TestCase.GDEM956
     // N solo cuando la consulta es por cuil, pero en la entrevista busca por cuenta.
 
     [TestFixture]
-    public class GDEM956_RF02 : BaseTest
+    public class GDEM956_RF02 : BaseTest_Reporte
     {
         //[TestCase("20133286838", ExpectedResult = "X")]
         //[TestCase("23255760114", ExpectedResult = "S")]

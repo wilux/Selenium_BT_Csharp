@@ -5,6 +5,7 @@ using BT_Selenium.Tools;
 using NUnit.Framework;
 using System;
 using BT_Selenium.Task;
+using System.Threading;
 
 namespace BT_Selenium.Task
 {
@@ -19,13 +20,12 @@ namespace BT_Selenium.Task
                 Credenciales credenciales = new Credenciales();
                 if (credenciales.usuario != "" && credenciales.password != "")
                 {
-                    Enter.Text(driver, LoginUI.UserInput, credenciales.usuario);
-                    Click.Simple(driver, LoginUI.PasswordInput);
-                    Enter.Text(driver, LoginUI.PasswordInput, credenciales.password);
-                    Click.Simple(driver, LoginUI.LoginButton);
-                    //WaitHandler.Wait(2);
-                    //driver.SwitchTo().Window(driver.WindowHandles[1]);
-                    //driver.Manage().Window.Maximize();
+                    driver.FindElement(LoginUI.UserInput).SendKeys(credenciales.usuario);
+                    driver.FindElement(LoginUI.UserInput).Click();
+
+                    driver.FindElement(LoginUI.PasswordInput).SendKeys(credenciales.password);
+                    driver.FindElement(LoginUI.LoginButton).Click();
+
                     if (WaitHandler.SwichToWindowsUrl(driver))
                     {
                         driver.Manage().Window.Maximize();
@@ -46,32 +46,25 @@ namespace BT_Selenium.Task
             Credenciales credenciales = new Credenciales();
             if (credenciales.usuario != "" && credenciales.password != "")
             {
-                Enter.Text(driver, LoginUI.UserInput, credenciales.usuario);
-                Click.Simple(driver, LoginUI.PasswordInput);
-                Enter.Text(driver, LoginUI.PasswordInput, credenciales.password);
-                Click.Simple(driver, LoginUI.LoginButton);
+                driver.FindElement(LoginUI.UserInput).SendKeys(credenciales.usuario);
+                driver.FindElement(LoginUI.UserInput).Click();
+
+                driver.FindElement(LoginUI.PasswordInput).SendKeys(credenciales.password);
+                driver.FindElement(LoginUI.LoginButton).Click();
+
+                Thread.Sleep(200);
+                Assert.That(driver.Url == "http://btwebqa.ar.bpn/BTWeb/hwelcome.aspx");
+
                 if (WaitHandler.SwichToWindowsUrl(driver))
                 {
                     driver.Manage().Window.Maximize();
                 }
-               // WaitHandler.Wait(2);
-                //try
-                //{
-                //    driver.SwitchTo().Window(driver.WindowHandles[1]);
-                //    driver.Manage().Window.Maximize();
-                //}
-                //catch (Exception e)
-                //{
-                //    TestContext.Write(e);
-                //    if (driver != null)
-                //    {
-                //        driver.Quit();
-                //    }
-                //}
+
             }
             else
             {
                 TestContext.Write("No hay credenciales");
+                Assert.That(driver.Url == "http://btwebqa.ar.bpn/BTWeb/hwelcome.aspx");
                 if (driver != null)
                 {
                     driver.Quit();

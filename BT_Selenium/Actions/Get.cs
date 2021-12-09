@@ -15,7 +15,7 @@ namespace BT_Selenium.Actions
     {
         public static string ImgSrc(IWebDriver driver, By locator)
         {
-            Frame.BuscarFrame(driver, locator);
+            WaitHandler.ElementIsPresent(driver, locator, 20);
 
             var element = driver.FindElement(By.XPath("//img[@id='_ZG1_IMGESTADOIMAGE_0001']"));
             string imageSrc = element.GetAttribute("src");
@@ -27,8 +27,7 @@ namespace BT_Selenium.Actions
         {
             try
             {
-                Thread.Sleep(200);
-                if (Frame.BuscarFrame(driver, locator))
+                if (WaitHandler.ElementIsPresent(driver, locator, 20) && driver.FindElement(locator).Displayed)
                 {
                     IWebElement element = driver.FindElement(locator);
                     string value = element.GetAttribute("value");
@@ -56,7 +55,7 @@ namespace BT_Selenium.Actions
 
         public static string SpanText(IWebDriver driver, By locator)
         {
-            Frame.BuscarFrame(driver, locator);
+            WaitHandler.ElementIsPresent(driver, locator, 20);
             IWebElement l = driver.FindElement(locator);
             return l.Text;
         }
@@ -64,8 +63,8 @@ namespace BT_Selenium.Actions
         public static string SelectValue(IWebDriver driver, By locator)
         {
             string valor ="";
-            WaitHandler.ElementIsPresent(driver, locator);
-            if (Frame.BuscarFrame(driver, locator))
+            
+            if (WaitHandler.ElementIsPresent(driver, locator, 20) && driver.FindElement(locator).Displayed)
             {
                 while (true)
                 {
@@ -74,7 +73,10 @@ namespace BT_Selenium.Actions
                         valor = driver.FindElement(locator).GetAttribute("value");
                         break;
                     }
-                    catch { continue; }
+                    catch {
+                        WaitHandler.ElementIsPresent(driver, locator, 20);
+                        continue; 
+                    }
                 }
             }
 
@@ -113,7 +115,7 @@ namespace BT_Selenium.Actions
 
         public static string InputValue3(IWebDriver driver, By locator)
         {
-            Frame.BuscarFrame(driver, locator);
+            WaitHandler.ElementIsPresent(driver, locator, 20);
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
             string text = "";
             //By hiddenInputId = locator;

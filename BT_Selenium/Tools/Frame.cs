@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
@@ -11,6 +12,7 @@ namespace BT_Selenium.Tools
 {
     public static class Frame
     {
+
 
         public static string FrameActual(IWebDriver driver)
         {
@@ -52,43 +54,104 @@ namespace BT_Selenium.Tools
 
         }
 
+
         public static bool BuscarFrame(IWebDriver driver, By locator)
         {
+            bool estado = false;
 
-            if (FindElementIfExists(driver, locator) == null)
+            if (FindElementIfExists(driver, locator) != null)
             {
-
-                if (Buscar(driver, locator) == true)
-                {
-                    return true;
-                }
-
-                else
-                {
-                    if (BuscarB(driver, locator) == true)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+                return true;
             }
             else
             {
-               
-                return true;
+
+                driver.SwitchTo().DefaultContent();
+                //IWebElement iframe = driver.FindElement(By.Id("0"));
+                //driver.SwitchTo().Frame(iframe);
+                string frameI = FrameActual(driver);
+                //driver.SwitchTo().DefaultContent();
+                int sizeInicial = driver.FindElements(By.TagName("iframe")).Count();
+                //int sizeInicial = CantidadFrames(driver);
+
+                for (int i = 0; i < sizeInicial; i++)
+                {
+
+                    driver.SwitchTo().Frame(i);
+                    int sizeNuevo = driver.FindElements(By.TagName("iframe")).Count();
+                    //int sizeNuevo = CantidadFrames(driver);
+                    if (sizeNuevo != 0)
+                    {
+                        for (int j = 0; j < sizeNuevo; j++)
+                        {
+                            driver.SwitchTo().Frame(j);
+                            try
+                            {
+                                string frameJ = FrameActual(driver);
+                                driver.FindElement(locator);
+                                estado = true;
+                                break;
+                            }
+                            catch
+                            {
+                                driver.SwitchTo().ParentFrame();
+                                continue;
+                            }
+                        }
+                        if (estado == true) { break; } else { driver.SwitchTo().DefaultContent(); }
+                    }
+                    else { driver.SwitchTo().DefaultContent(); }
+                }
             }
 
-
+            return estado;
         }
+
+        //public static bool BuscarFrame(IWebDriver driver, By locator)
+        //{
+
+        //    if (FindElementIfExists(driver, locator) == null)
+        //    {
+
+        //        if (Buscar(driver, locator) == true)
+        //        {
+        //            return true;
+        //        }
+
+        //        else
+        //        {
+        //            if (BuscarB(driver, locator) == true)
+        //            {
+        //                return true;
+        //            }
+        //            else
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+
+        //        return true;
+        //    }
+
+
+        //}
 
         public static IWebElement FindElementIfExists(this IWebDriver driver, By by)
         {
-            IWebElement element;
-            while (true)
+            IWebElement element = null;
+            var timer = new Stopwatch();
+            timer.Start();
+            TimeSpan timeTaken = timer.Elapsed;
+            int segundosTranscurridos = (int)(timeTaken.TotalSeconds);
+
+            do
             {
+                timeTaken = timer.Elapsed;
+                segundosTranscurridos = (int)(timeTaken.TotalSeconds);
+
                 try
                 {
                     IList<IWebElement> elements = driver.FindElements(by);
@@ -96,7 +159,8 @@ namespace BT_Selenium.Tools
                     break;
                 }
                 catch { continue; }
-            }
+
+            } while (segundosTranscurridos >= 60);
 
             return element;
         }
@@ -104,72 +168,72 @@ namespace BT_Selenium.Tools
 
 
         //Metodo que cambia al frame que contiene el elemento buscado.
-        public static bool Buscar(IWebDriver driver, By locator)
-        {
-            int cantidad = CantidadFrames(driver);
+        //public static bool Buscar(IWebDriver driver, By locator)
+        //{
+        //    int cantidad = CantidadFrames(driver);
 
-            for (int i = 0; i < cantidad + 1; i++)
-            {
-                // driver.SwitchTo().DefaultContent();
+        //    for (int i = 0; i < cantidad + 50; i++)
+        //    {
+        //        // driver.SwitchTo().DefaultContent();
 
-                try
-                {
-                    driver.SwitchTo().DefaultContent();
-                    driver.SwitchTo().Frame(4);
-                    driver.SwitchTo().Frame("step" + i);
-                    if (FindElementIfExists(driver, locator) != null && driver.FindElement(locator).Displayed)
-                    {
-                        //string frameActual = FrameActual(driver);
-                        return true;
-
-
-                    }
-
-                }
-                catch { continue; }
-            }
+        //        try
+        //        {
+        //            driver.SwitchTo().DefaultContent();
+        //            driver.SwitchTo().Frame(4);
+        //            driver.SwitchTo().Frame("step" + i);
+        //            if (FindElementIfExists(driver, locator) != null )//&& driver.FindElement(locator).Displayed)
+        //            {
+        //                //string frameActual = FrameActual(driver);
+        //                return true;
 
 
-            return false;
+        //            }
 
-        }//Fin 
+        //        }
+        //        catch { continue; }
+        //    }
 
 
-        public static bool BuscarB(IWebDriver driver, By locator)
-        {
-            int cantidad = CantidadFrames(driver);
-           // string frameActual = FrameActual(driver);
-            for (int i = 0; i < cantidad + 1; i++)
-            {
+        //    return false;
+
+        //}//Fin 
+
+
+        //public static bool BuscarB(IWebDriver driver, By locator)
+        //{
+        //    int cantidad = CantidadFrames(driver);
+        //   // string frameActual = FrameActual(driver);
+        //    for (int i = 0; i < cantidad + 1; i++)
+        //    {
            
-                try
-                {
-                    driver.SwitchTo().DefaultContent();
-                    IWebElement iframe = driver.FindElement(By.Id("0"));
-                    driver.SwitchTo().Frame(iframe);
-                    driver.SwitchTo().Frame("step" + i);
-                    if (FindElementIfExists(driver, locator) != null)
-                    {
-                        //string frameActual = FrameActual(driver);
-                        return true;
+        //        try
+        //        {
+        //            driver.SwitchTo().DefaultContent();
+        //            IWebElement iframe = driver.FindElement(By.Id("0"));
+        //            driver.SwitchTo().Frame(iframe);
+        //            driver.SwitchTo().Frame("step" + i);
+        //            if (FindElementIfExists(driver, locator) != null)
+        //            {
+        //                //string frameActual = FrameActual(driver);
+        //                return true;
 
 
-                    }
-                    else
-                    {
+        //            }
+        //            else
+        //            {
 
-                        driver.SwitchTo().ParentFrame();
-                        driver.SwitchTo().Frame("step" + i);
-                    }
+        //                driver.SwitchTo().ParentFrame();
+        //                driver.SwitchTo().Frame("step" + i);
+        //            }
 
-                }
-                catch { continue; }
-            }
+        //        }
+        //        catch { continue; }
+        //    }
 
 
-            return false;
+        //    return false;
 
-        }//Fin 
+        //}//Fin 
 
     }
 }

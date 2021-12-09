@@ -37,6 +37,7 @@ namespace BT_Selenium.UI
         public static By CheckPrestamo = By.Name("_BNQFPC5PP");
         public static By CheckTarjeta = By.Name("_BNQFPC5TC");
         public static By CheckCtaCte = By.Name("_CTACTE");
+        public static By CheckCaDolar = By.Name("_CA_DOLARES");
         public static By CheckTC1= By.Name("_TCSEL_0001");
         public static By CheckTC2 = By.Name("_TCSEL_0002");
         public static By BTNOPPAQUETIZAR = By.Id("BTNOPPAQUETIZAR");

@@ -16,7 +16,7 @@ namespace BT_Selenium.TestCase.GDEM956
 
 
     [TestFixture, Description("Liquida CA USD")]
-    public class GDEM956_RF04_Liquidacion : BaseTest
+    public class GDEM956_RF04_Liquidacion : BaseTest_Reporte
     {
         //[TestCase("27174708121")]
         //[TestCase("23255760114")]

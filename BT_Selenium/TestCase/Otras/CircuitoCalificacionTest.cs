@@ -4,7 +4,7 @@
 namespace BT_Selenium.TestCase
 {
    //[TestFixture]
-    public class CircuitoCalificacionTest : BaseTest
+    public class CircuitoCalificacionTest : BaseTest_Reporte
     {
         
 

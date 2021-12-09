@@ -15,6 +15,8 @@ namespace BT_Selenium.UI
         public static By PrimerTarea = By.Id("span__IDINSTANCIA_0001");
         public static By SegundaTarea = By.Id("span__IDINSTANCIA_0002");
         public static By PrimerAsunto = By.Id("span__ASUNTO_0001");
+        public static By spanComentarioFila = By.Id("span__COMENTARIOS_0001");
+        public static By spanTareaFila = By.Id("span__TAREA_0001");
         public static By BTNOPOSIGUIENTE = By.Id("BTNOPOSIGUIENTE");
         public static By BTNCONFIRMATION = By.Id("BTNCONFIRMATION");
         public static By BTNOPOEJECUTAR = By.Id("BTNOPOEJECUTAR");

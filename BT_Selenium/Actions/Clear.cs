@@ -9,22 +9,13 @@ namespace BT_Selenium.Actions
         public static void On(IWebDriver driver, By locator)
         {
 
-            if (Frame.BuscarFrame(driver, locator))
+            if (WaitHandler.ElementIsPresent(driver, locator, 20))
             {
-
-                
-                while (true)
-                {
                     try
                     {
                         driver.FindElement(locator).Clear();
-                        break;
                     }
-                    catch {
-                        Frame.BuscarFrame(driver, locator);
-                        continue; }
-                }
-
+                    catch {}
             }
         }
 

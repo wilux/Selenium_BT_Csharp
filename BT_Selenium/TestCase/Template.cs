@@ -5,7 +5,7 @@ namespace BT_Selenium.TestCase
 {
 
     [TestFixture]
-    public class TemplateTest : BaseTest
+    public class TemplateTest : BaseTest_Reporte
     {
 
         //Ante de empezar todas las pruebas

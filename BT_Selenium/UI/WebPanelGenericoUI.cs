@@ -14,9 +14,10 @@ namespace BT_Selenium.UI
         //HTMLTXTTITLE1
         //public static By Titulo = By.CssSelector(".MainTitle");
         public static By Titulo = By.Id("HTMLTXTTITLE1");
+        public static By Titulo2 = By.XPath("//span[@class='MainTitle']");
         public static By Mensaje = By.CssSelector(".MsgText");
-        public static By Wait = By.XPath("//img[@src='http://btwebqa.ar.bpn/BTWeb/images/wait.gif']");
-        //public static By Wait = By.Id("waitMessage");
+        //public static By Wait = By.XPath("//img[@src='http://btwebqa.ar.bpn/BTWeb/images/wait.gif']");
+        public static By Cargando = By.Id("waitMessage");
 
     }
 }

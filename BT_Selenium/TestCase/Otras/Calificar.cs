@@ -12,7 +12,7 @@ namespace BT_Selenium.TestCase
 {
 
     [TestFixture]
-    public class Calificar : BaseTest
+    public class Calificar : BaseTest_Reporte
     {
 
       //  [Test]

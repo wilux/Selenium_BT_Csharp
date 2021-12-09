@@ -416,7 +416,9 @@
   <ItemGroup>
     <Compile Include="Task\DetalleDireccion.cs" />
     <Compile Include="Task\WebPanel.cs" />
-    <Compile Include="TestCase\TestMenu.cs" />
+    <Compile Include="TestCase\BaseTest.cs" />
+    <Compile Include="TestCase\TestCalificacion.cs" />
+    <Compile Include="TestCase\TestMenuEjecutar.cs" />
     <Compile Include="TestCase\Otras\HTestCausd.cs" />
     <Compile Include="TestCase\GDEM610\GDEM610_RF04_Test5_todo.cs" />
     <Compile Include="TestCase\Otras\BridgerInsightTest.cs" />
@@ -494,7 +496,7 @@
     <Compile Include="Task\Otras\SimularPrestamoBITask.cs" />
     <Compile Include="Task\Otras\CalificarTask.cs" />
     <Compile Include="Task\DescartarTarea.cs" />
-    <Compile Include="TestCase\BaseTest.cs" />
+    <Compile Include="TestCase\BaseTest_Reporte.cs" />
     <Compile Include="TestCase\Otras\CircuitoCalificacionTest.cs" />
     <Compile Include="TestCase\Otras\DbTest.cs" />
     <Compile Include="TestCase\Otras\DescartarTest.cs" />

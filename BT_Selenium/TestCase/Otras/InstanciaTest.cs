@@ -8,7 +8,7 @@ namespace BT_Selenium.TestCase
 {
 
     [TestFixture]
-    public class InstanciaTest : BaseTest
+    public class InstanciaTest : BaseTest_Reporte
     {
 
         //Ante de empezar todas las pruebas

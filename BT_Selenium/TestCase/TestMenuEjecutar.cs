@@ -7,9 +7,9 @@ namespace BT_Selenium.TestCase
 {
 
     [TestFixture]
-    public class TestMenu : BaseTest
+    public class TestMenuEjecutar : BaseTest_Reporte
     {
-      [Test]
+     //[Test]
         public void Ejecutar()
         {
             Login.In(driver);

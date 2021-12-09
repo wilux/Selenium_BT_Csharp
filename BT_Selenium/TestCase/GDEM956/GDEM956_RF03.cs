@@ -13,7 +13,7 @@ namespace BT_Selenium.TestCase.GDEM956
 
 
     //[TestFixture, Description("Simula CA USD Monoproducto")]
-    public class GDEM956_RF03 : BaseTest
+    public class GDEM956_RF03 : BaseTest_Reporte
     {
 
         //Ante de empezar todas las pruebas

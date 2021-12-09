@@ -1,4 +1,5 @@
 ﻿using BT_Selenium.Task;
+using BT_Selenium.UI;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -15,12 +16,31 @@ namespace BT_Selenium.Tools
      */
     public class WaitHandler
     {
-        //Metodo para esperar por un elemento presente en la pagina web
-        //Reotorna true si se encuentra el elemento en un maximo de 10 segundos, sino retorna false
-        public static bool ElementIsPresent(IWebDriver driver, By locator, int segundos=60)
+
+        public static void Cartel(IWebDriver driver)
         {
 
+            //Cargando...
+            driver.SwitchTo().DefaultContent();
+            IWebElement iframe = driver.FindElement(By.Id("0"));
+            driver.SwitchTo().Frame(iframe);
+            bool frameCartel = driver.FindElement(WebPanelGenericoUI.Cargando).Displayed;
+
+            while (frameCartel)
+            {
+                continue;
+            }
+        }
+
+        //Metodo para esperar por un elemento presente en la pagina web
+        //Reotorna true si se encuentra el elemento en un maximo de 10 segundos, sino retorna false
+        public static bool ElementIsPresent(IWebDriver driver, By locator, int tiempo = 60)
+        {
+            // Cartel(driver);
+
             var timer = new Stopwatch();
+            bool estado = false;
+
             timer.Start();
 
             while (true)
@@ -29,29 +49,39 @@ namespace BT_Selenium.Tools
                 TimeSpan timeTaken = timer.Elapsed;
                 int segundosTranscurridos = (int)(timeTaken.TotalSeconds);
 
+                if (segundosTranscurridos >= tiempo)
+                {
+                    timer.Stop();
+                    estado = false;
+                    break;
+                }
+
                 try
                 {
 
-                    if (segundosTranscurridos >= segundos)
-                    {
-                        timer.Stop();
-                        break;
-                    }
                     var elements = driver.FindElements(locator);
                     if (elements.Count >= 1)
+                    //if (Frame.BuscarFrame(driver, locator))
                     {
                         timer.Stop();
+                        estado = true;
                         break;
+                    }
+                    else
+                    {
+                        if (Frame.BuscarFrame(driver, locator))
+                        {
+                            timer.Stop();
+                            estado = true;
+                            break;
+                        }
+
                     }
                 }
                 catch { continue; }
-
-
             }
 
-            return true;
-
-
+            return   estado;
 
         }
         //Esperar un tiempo arbitrario

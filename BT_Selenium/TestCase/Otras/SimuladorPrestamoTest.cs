@@ -6,7 +6,7 @@ namespace BT_Selenium.TestCase.Otras
 {
 
     [TestFixture]
-    public class SimularPrestamoTest : BaseTest
+    public class SimularPrestamoTest : BaseTest_Reporte
     {
        
 

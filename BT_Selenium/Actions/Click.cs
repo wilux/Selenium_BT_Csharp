@@ -11,14 +11,15 @@ namespace BT_Selenium.Actions
     {
         public static void Simple(IWebDriver driver, By locator)
         {
-            if (WaitHandler.ElementIsPresent(driver, locator, 10))
-            {
-                driver.FindElement(locator).Click();
-            }
-            else
-            {
-                Console.WriteLine("No se encontro: " + locator);
-            }
+            driver.FindElement(locator).Click();
+            //    if (WaitHandler.ElementIsPresent(driver, locator, 10))
+            //    {
+            //        driver.FindElement(locator).Click();
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("No se encontro: " + locator);
+            //    }
 
         }
 
@@ -47,29 +48,25 @@ namespace BT_Selenium.Actions
             //    Thread.CurrentThread.Abort();
             //}
 
-            if (Frame.BuscarFrame(driver, locator))
+            //if (Frame.BuscarFrame(driver, locator))
+           if (WaitHandler.ElementIsPresent(driver, locator))
             {
-
-
                 while (true)
                 {
+                   // Thread.Sleep(2000);
                     try
                     {
                         driver.FindElement(locator).Click();
                         break;
+
                     }
-                    catch {
-                        if (Frame.BuscarFrame(driver, locator))
-                        {
-
-                            continue;
-
-                        }
-                        else { break; }
-                        }
-                        
+                    catch { continue; }
                 }
 
+            }
+            else
+            {
+                Assert.Inconclusive("No se encontro frame para elemento: " + locator);
             }
 
         }

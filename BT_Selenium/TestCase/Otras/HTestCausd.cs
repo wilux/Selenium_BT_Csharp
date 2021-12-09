@@ -16,7 +16,7 @@ namespace BT_Selenium.TestCase
 {
 
     [TestFixture]
-    public class HtestCausd : BaseTest
+    public class HtestCausd : BaseTest_Reporte
     {
         //Prueba de Pantalla Entrevista
         //Tiempo que demora en completar datos

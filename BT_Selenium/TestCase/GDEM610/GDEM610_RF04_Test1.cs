@@ -16,7 +16,7 @@ namespace BT_Selenium.TestCase.GDEM610
     //Incidente 001
 
     [TestFixture, Description("No debe mostrar mensaje de 20/5 sin acuerdo")]
-    public class GDEM610_RF04_Test1 : BaseTest
+    public class GDEM610_RF04_Test1 : BaseTest_Reporte
     {
 
         protected string usuarioPlataforma = "dechands";
