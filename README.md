@@ -5,7 +5,7 @@ Paso para poder correr el código
 ## Instalación
 
 * IDE para C# [Visual Studio](https://visualstudio.microsoft.com/es/vs/community/) v2019 +
-* Selenium Web Driver para  [Internet Explorer](https://github.com/SeleniumHQ/selenium/releases/download/selenium-3.150.0/IEDriverServer_Win32_3.150.2.zip) V3.150 32 bits
+* Selenium Web Driver para  [Internet Explorer](https://selenium-release.storage.googleapis.com/3.141/IEDriverServer_Win32_3.141.59.zip) V3.141.59 32 bits
 
 Pasos
 
