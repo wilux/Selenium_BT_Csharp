@@ -1,6 +1,6 @@
 # BT Con Selenium en C#
 
-Framework Automatizacion para Bantotal Web
+Framework Automatización para Bantotal Web
 
 ```sh
 Framework creado en C# con Selenium preparado para automatizar pruebas en ambientes Bantotal Web que funcionan solo en Internet Explorer
