@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AngleSharp, Version=0.16.0.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.0.16.0\lib\net461\AngleSharp.dll</HintPath>
@@ -417,6 +420,7 @@
     <Compile Include="Task\DetalleDireccion.cs" />
     <Compile Include="Task\WebPanel.cs" />
     <Compile Include="TestCase\BaseTest.cs" />
+    <Compile Include="TestCase\SimularTest.cs" />
     <Compile Include="TestCase\TestCalificacion.cs" />
     <Compile Include="TestCase\TestMenuEjecutar.cs" />
     <Compile Include="TestCase\Otras\HTestCausd.cs" />
@@ -427,6 +431,7 @@
     <Compile Include="TestCase\Otras\InstanciaTest.cs" />
     <Compile Include="TestCase\Otras\SimuladorTest.cs" />
     <Compile Include="Tools\BridgerInsight.cs" />
+    <Compile Include="Tools\Cronometro.cs" />
     <Compile Include="Tools\LegajoDigital.cs" />
     <Compile Include="Actions\CheckBox.cs" />
     <Compile Include="Actions\Clear.cs" />

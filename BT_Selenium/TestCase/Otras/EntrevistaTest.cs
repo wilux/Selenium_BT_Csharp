@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using BT_Selenium.Task;
-
+using BT_Selenium.Tools;
 
 namespace BT_Selenium.TestCase
 {
@@ -14,39 +14,18 @@ namespace BT_Selenium.TestCase
         public void Before()
         {
             Login.In(driver);
+            
         }
 
         //Prueba de Pantalla Entrevista
         //Tiempo que demora en completar datos
 
-        [TestCase("23179516314")]
-        //[TestCase("1010198")]
+        [TestCase("20134627914")]
         public void Completar(string documento)
         {
 
-            ////Iniciar hasta CUIL/CUIT
-            //Entrevista.Iniciar(driver);
-            //Entrevista.IngresarDocumento(driver, documento);
-
-            //Pantalla Entrevista
-            IrHasta.BandejaDeTareas(driver);
-            BandejaTareas.Filtrar(driver, documento);
-            BandejaTareas.Ejecutar(driver);
-
-            //Completar
-            Entrevista.DatosPersonales(driver);
-            Entrevista.Ocupacion(driver);
-            Entrevista.DatosContacto(driver);
-
-            //Seleccionar Cuenta
-            Entrevista.BuscarCuenta(driver);
-
-            //Ingresos
-            Entrevista.Ingresos(driver);
-
-
-            ////Confirmar Entrevista
-            Entrevista.Confirmar(driver);
+            Entrevista.Iniciar(driver);
+            Entrevista.Completar(driver, documento);
 
         }
 

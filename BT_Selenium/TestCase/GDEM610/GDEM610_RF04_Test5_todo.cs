@@ -36,7 +36,7 @@ namespace BT_Selenium.TestCase.GDEM610
             Login.As(driver, usuarioPlataforma);
 
             //2.-Iniciar Entrevista y Completar
-            Entrevista.Completar(driver);
+            Entrevista.Completar(driver, documento);
 
             //3 .-Simular
             BandejaTareas.Filtrar(driver, documento);

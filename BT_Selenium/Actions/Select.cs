@@ -54,6 +54,23 @@ namespace BT_Selenium.Actions
 
         }
 
+
+        public static void ByValue2(IWebDriver driver, By select, string value)
+        {
+
+
+                    try
+                    {
+
+                        IWebElement webElement = driver.FindElement(select);
+                        SelectElement selectElement = new SelectElement(webElement);
+                        selectElement.SelectByValue(value);
+                   
+                    }
+                    catch { }
+
+        }
+
         public static int Cantidad(IWebDriver driver, By locator)
         {
             IList<IWebElement> selectElements = driver.FindElements(locator);

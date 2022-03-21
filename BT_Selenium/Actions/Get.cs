@@ -15,7 +15,7 @@ namespace BT_Selenium.Actions
     {
         public static string ImgSrc(IWebDriver driver, By locator)
         {
-            WaitHandler.ElementIsPresent(driver, locator, 20);
+            WaitHandler.ElementIsPresent(driver, locator, 5);
 
             var element = driver.FindElement(By.XPath("//img[@id='_ZG1_IMGESTADOIMAGE_0001']"));
             string imageSrc = element.GetAttribute("src");
@@ -27,7 +27,7 @@ namespace BT_Selenium.Actions
         {
             try
             {
-                if (WaitHandler.ElementIsPresent(driver, locator, 20) && driver.FindElement(locator).Displayed)
+                if (WaitHandler.ElementIsPresent(driver, locator, 5) && driver.FindElement(locator).Displayed)
                 {
                     IWebElement element = driver.FindElement(locator);
                     string value = element.GetAttribute("value");
@@ -55,7 +55,7 @@ namespace BT_Selenium.Actions
 
         public static string SpanText(IWebDriver driver, By locator)
         {
-            WaitHandler.ElementIsPresent(driver, locator, 20);
+            WaitHandler.ElementIsPresent(driver, locator, 5);
             IWebElement l = driver.FindElement(locator);
             return l.Text;
         }
@@ -64,7 +64,7 @@ namespace BT_Selenium.Actions
         {
             string valor ="";
             
-            if (WaitHandler.ElementIsPresent(driver, locator, 20) && driver.FindElement(locator).Displayed)
+            if (WaitHandler.ElementIsPresent(driver, locator, 5) && driver.FindElement(locator).Displayed)
             {
                 while (true)
                 {
@@ -74,7 +74,7 @@ namespace BT_Selenium.Actions
                         break;
                     }
                     catch {
-                        WaitHandler.ElementIsPresent(driver, locator, 20);
+                        WaitHandler.ElementIsPresent(driver, locator, 5);
                         continue; 
                     }
                 }
@@ -86,7 +86,24 @@ namespace BT_Selenium.Actions
 
         public static string SelectValue2(IWebDriver driver, By locator)
         {
-            return driver.FindElement(locator).GetAttribute("value");
+            string valor = "";
+
+            if (driver.FindElement(locator).Displayed)
+            {
+
+                    try
+                    {
+                        valor = driver.FindElement(locator).GetAttribute("value");
+                        
+                    }
+                    catch
+                    {
+                    valor = "";
+                    }
+                
+            }
+
+            return valor;
         }
 
 
@@ -115,7 +132,7 @@ namespace BT_Selenium.Actions
 
         public static string InputValue3(IWebDriver driver, By locator)
         {
-            WaitHandler.ElementIsPresent(driver, locator, 20);
+            WaitHandler.ElementIsPresent(driver, locator, 5);
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
             string text = "";
             //By hiddenInputId = locator;

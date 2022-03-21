@@ -32,8 +32,9 @@ namespace BT_Selenium.TestCase
                  _ = new InternetExplorerOptions
                 {
                     EnsureCleanSession = true,
-                    RequireWindowFocus = false //true
-                };
+                    RequireWindowFocus = false, //true
+                    IgnoreZoomLevel = true
+                 };
                 driver = new InternetExplorerDriver("C:\\webdriver\\");
                 driver.Navigate().GoToUrl(QaURL);
                 

@@ -34,15 +34,14 @@ namespace BT_Selenium.Tools
 
         //Metodo para esperar por un elemento presente en la pagina web
         //Reotorna true si se encuentra el elemento en un maximo de 10 segundos, sino retorna false
-        public static bool ElementIsPresent(IWebDriver driver, By locator, int tiempo = 60)
+        public static bool ElementIsPresent(IWebDriver driver, By locator, int tiempo = 20)
         {
             // Cartel(driver);
 
             var timer = new Stopwatch();
-            bool estado = false;
-
             timer.Start();
 
+            bool estado;
             while (true)
             {
 

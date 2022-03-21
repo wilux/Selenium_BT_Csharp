@@ -26,8 +26,8 @@ namespace BT_Selenium.TestCase
         }
 
 
-      [TestCase("27120204217", "2000000")]
-      [TestCase("20257872301", "2000000")]
+      //[TestCase("27120204217", "2000000")]
+      //[TestCase("20257872301", "2000000")]
         public void CalificarTest(string cuil, string ingresos)
         {
             //Iniciar Instancia

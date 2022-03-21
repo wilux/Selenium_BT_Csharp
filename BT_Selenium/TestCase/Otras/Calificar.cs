@@ -19,7 +19,7 @@ namespace BT_Selenium.TestCase
         public void CircuitoIN()
         {
             //string gdem = "GDEMXXX-RFXX";
-            string documento = "30657249765";
+           // string documento = "30657249765";
 
            // IrHasta.SimularProducto(driver, documento);
             ////Cerrar para continuar siguiente pantalla

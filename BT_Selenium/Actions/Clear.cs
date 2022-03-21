@@ -19,5 +19,20 @@ namespace BT_Selenium.Actions
             }
         }
 
+
+        public static void On2(IWebDriver driver, By locator)
+        {
+
+
+                try
+                {
+                    driver.FindElement(locator).Clear();
+                }
+                catch { }
+            
+        }
+
     }
+
+
 }

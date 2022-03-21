@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System;
 using BT_Selenium.Task;
 using System.Threading;
+using System.Drawing;
 
 namespace BT_Selenium.Task
 {
@@ -41,8 +42,9 @@ namespace BT_Selenium.Task
             }
         }
 
-        public static void In(IWebDriver driver)
+        public static void In(IWebDriver driver, bool full=true)
         {
+
             Credenciales credenciales = new Credenciales();
             if (credenciales.usuario != "" && credenciales.password != "")
             {
@@ -53,11 +55,22 @@ namespace BT_Selenium.Task
                 driver.FindElement(LoginUI.LoginButton).Click();
 
                 Thread.Sleep(200);
-                Assert.That(driver.Url == "http://btwebqa.ar.bpn/BTWeb/hwelcome.aspx");
-
-                if (WaitHandler.SwichToWindowsUrl(driver))
+                if (driver.Url != "http://btwebqa.ar.bpn/BTWeb/hwelcome.aspx")
                 {
-                    driver.Manage().Window.Maximize();
+                    Console.WriteLine("Credenciales Inválidas");
+                }
+                else
+                {
+
+                    if (WaitHandler.SwichToWindowsUrl(driver))
+                    {
+                        driver.Manage().Window.Maximize();
+                    }
+
+                    if (full == false)
+                    {
+                        driver.Manage().Window.Size = new Size(780, 920);
+                    }
                 }
 
             }

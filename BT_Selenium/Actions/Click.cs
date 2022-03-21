@@ -4,6 +4,7 @@ using System;
 using NUnit.Framework;
 using System.Threading;
 using BT_Selenium.Task;
+using System.Diagnostics;
 
 namespace BT_Selenium.Actions
 {
@@ -26,50 +27,46 @@ namespace BT_Selenium.Actions
 
         public static void On(IWebDriver driver, By locator)
         {
-
-            //try
-            //{
-            //    if (Frame.BuscarFrame(driver, locator))
-            //    {
-            //        if (WaitHandler.ElementIsPresent(driver, locator))
-            //        {
-            //            driver.FindElement(locator).Click();
-            //        }
-            //        else
-            //        {
-            //            Assert.Inconclusive("No se encotrno elemento: " + locator);
-            //        }
-            //    }
-
-            //}
-            //catch (Exception e)
-            //{
-            //    TestContext.Write(e);
-            //    Thread.CurrentThread.Abort();
-            //}
-
-            //if (Frame.BuscarFrame(driver, locator))
-           if (WaitHandler.ElementIsPresent(driver, locator))
+            try { driver.FindElement(locator).Click(); }
+            catch
             {
-                while (true)
-                {
-                   // Thread.Sleep(2000);
-                    try
-                    {
-                        driver.FindElement(locator).Click();
-                        break;
 
+                if (WaitHandler.ElementIsPresent(driver, locator))
+                {
+                    var timer = new Stopwatch();
+                    int tiempo = 10;
+                    timer.Start();
+                    TimeSpan timeTaken = timer.Elapsed;
+                    int segundosTranscurridos = (int)(timeTaken.TotalSeconds);
+
+                    while (segundosTranscurridos <= tiempo)
+                    {
+
+
+                        try
+                        {
+                            driver.FindElement(locator).Click();
+                            timer.Stop();
+                            break;
+
+                        }
+                        catch { continue; }
                     }
-                    catch { continue; }
+
+                }
+                else
+
+
+                {
+
+                    Console.WriteLine("No se encontro elemento: " + locator);
+
                 }
 
-            }
-            else
-            {
-                Assert.Inconclusive("No se encontro frame para elemento: " + locator);
+
+
             }
 
         }
-
     }
 }

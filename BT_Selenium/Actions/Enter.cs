@@ -23,6 +23,20 @@ namespace BT_Selenium.Actions
         }
 
 
+        public static void Text2(IWebDriver driver, By locator, string text)
+        {
+            //if (Frame.BuscarFrame(driver, locator))
+            if (driver.FindElement(locator).Displayed)
+                try
+                {
+                    driver.FindElement(locator).Clear();
+                    driver.FindElement(locator).SendKeys(text);
+                }
+                catch { }
+
+        }
+
+
         public static void JSTextById(IWebDriver driver, string locator, string text)
         {
      

@@ -1,6 +1,7 @@
 ﻿using BT_Selenium.Tools;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace BT_Selenium.Actions
 {
@@ -8,7 +9,7 @@ namespace BT_Selenium.Actions
     {
         public static void SeleccionarFila(IWebDriver driver, By locator, By fila)
         {
-            WaitHandler.ElementIsPresent(driver, locator, 20);
+            //WaitHandler.ElementIsPresent(driver, locator, 20);
             while (true)
             {
                 try
@@ -18,7 +19,7 @@ namespace BT_Selenium.Actions
                     webElement.FindElement(fila).Click();
                     break;
                 }
-                catch { continue; }
+                catch (Exception e){ Console.WriteLine(e); continue; }
             }
         }
 
