@@ -1,6 +1,12 @@
 # BT Con Selenium en C#
 
-Paso para poder correr el código
+Framework Automatización para Bantotal Web
+
+```sh
+Framework creado en C# con Selenium preparado para automatizar pruebas en ambientes Bantotal Web que funcionan solo en Internet Explorer
+```
+
+Paso para poder ejecutar las pruebas
 
 ## Instalación
 
